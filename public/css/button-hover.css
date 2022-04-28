@@ -1,0 +1,46 @@
+.btn-animate:link,
+.btn-animate:visited {
+    transition: all .3s;
+}
+
+.btn-animate:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-animate:link,
+.card-animate:visited {
+    transition: all .3s;
+}
+
+.card-animate:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.selected {
+    background-color: white !important;
+    color: rgb(124, 122, 122) !important;
+    z-index: 9999
+}
+
+.no-sort::after {
+    display: none!important;
+}
+
+.no-sort {
+    pointer-events: none!important;
+    cursor: default!important;
+}
+
+.sorting_disabled {
+    background-image: none !important;
+}
+
+
+/* .sorting:after,
+.sorting_asc:after,
+.sorting_desc:after {
+    content: "";
+    background: none !important;
+} */
