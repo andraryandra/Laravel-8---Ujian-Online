@@ -37,6 +37,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = '/Role';
 
         /**
      * Get the post register / login redirect path.
@@ -61,7 +62,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        alert()->info('You have been successfully logged out!', 'Good bye!');
+        
         return redirect('/');
     }
 

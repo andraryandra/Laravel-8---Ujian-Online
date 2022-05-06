@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') - Ujian Online</title>
+    <link rel="icon" href="{{ asset('/img/logo-ujian.png') }}"/>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -15,7 +16,7 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.3.4/js/dataTables.select.min.js"></script>
-   
+    <script src="https://kit.fontawesome.com/fe6aa2d4ea.js" crossorigin="anonymous"></script>
    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

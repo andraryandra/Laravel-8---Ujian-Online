@@ -1,5 +1,5 @@
 @extends('layouts.appAdmin')
-@section('title', 'Kelas')
+@section('title', 'Show Kelas')
 @section('kelas')
 
 <!-- Begin Page Content -->
@@ -62,21 +62,19 @@
                     <table class="table table-bordered" id="example" width="100%" cellspacing="0">                       
                         <thead>
                             <tr>
-                                <th width="5%">No</th>
                                 <th width="50%">Kelas</th>
                                 <th width="20%">Wali Kelas</th>
                             </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td><span class="badge bg-info text-white fs-6 text-roboto shadow-sm p-3">{{ $kelas->id }}</span></td>
                             <td><span class="badge bg-info text-white fs-6 text-roboto shadow-sm p-3">{{ $kelas->name_kelas }}</span></td>
                             @if($kelas->id_wali == null) 
                             <td class="text-white bg-danger text-center fw-bold">
                                 <a href="/kelas-edit-{{ $kelas->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 fw-bold"> <i class="bi bi-pencil-square"></i> Isi Data Sekarang !!</a> 
                             </td>
                             @else
-                            <td class="">{{ $kelas->id_wali }}</td>
+                            <td class=""><span class="badge bg-info text-white fs-6 text-roboto shadow-sm p-3">{{ $kelas->id_wali }}</span></td>
                             @endif
                         </tr>               
                         </tbody>

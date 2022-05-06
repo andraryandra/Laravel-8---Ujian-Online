@@ -1,58 +1,66 @@
-@extends('layouts.app')
-@section('posts')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Create Posts</h4>
-                </div>
-                <div class="m-3">
-                    <a href="/posts" class="btn btn-secondary">Kembali</a>
-                    </div>
-                <form action="/posts/store" method="post">
-                    @csrf
-
-                    <div class="form-group m-3">
-                        <label for="id_category" class="pb-2 fw-bold">ID_Category</label>
-                        <select class="form-control" name="id_category" id="id_category">
-                            @foreach($categori as $id => $categories)
+<!-- Create Post -->
+<div class="modal fade" id="createPost" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title btn btn-primary" id="staticBackdropLabel">
+                    <i class="bi bi-folder-plus fa-1x"></i>
+                    Create Post
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/posts/store" method="post">
+                @csrf
+                    <div class="form-group m-3 ">
+                        <label for="id_category" class="fw-bold "><i class="bi bi-bookmarks-fill"></i> Category</label><br>
+                        <select class="form-control " data-style="btn-success" name="id_category" id="id_category">
+                            @forelse($categori as $id => $categories)
                                 <option value="{{ $id}}">{{ $categories}}</option>
-                            @endforeach
+                                @empty
+                                    <option value="">No Category</option>
+                                @endempty
                         </select>
                     </div>
-
                 <div class="m-3">
-                    <label for="soal_ujian" class="pb-2 fw-bold">Create Soal Ujian</label>
-                    <textarea name="soal_ujian" id="soal_ujian" cols="30" rows="10" class="form-control">{{ old('soal_ujian') }}</textarea>
+                    <label for="soal_ujian" class="pb-2 fw-bold"><i class="bi bi-book-fill "></i> Create Soal Ujian</label>
+                    <textarea name="soal_ujian" id="soal_ujian" cols="5" rows="5" class="form-control" required >{{ old('soal_ujian') }}</textarea>
                 </div>
                 <div class="m-3">
-                    <label for="pilihan_a" class="pb-2 fw-bold">{{ __('Pilihan A') }}</label>
-                    <input type="text" class="form-control" placeholder="pilihan_a" name="pilihan_a" value="{{ old('pilihan_a') }}" required>
+                    <label for="pilihan_a" class="pb-2 fw-bold"><i class="bi bi-arrow-right-square-fill"></i> {{ __('Pilihan A') }}</label>
+                    <textarea class="form-control" name="pilihan_a" placeholder="Pilihan_A" required >{{ old('pilihan_a') }}</textarea>
                 </div>    
                 <div class="m-3">
-                    <label for="pilihan_b" class="pb-2 fw-bold">{{ __('Pilihan B') }}</label>
-                    <input type="text" class="form-control" placeholder="pilihan_b" name="pilihan_b" value="{{ old('pilihan_b') }}" required>
+                    <label for="pilihan_b" class="pb-2 fw-bold"><i class="bi bi-arrow-right-square-fill"></i> {{ __('Pilihan B') }}</label>
+                    <textarea class="form-control" name="pilihan_b" placeholder="Pilihan_B" required >{{ old('pilihan_b') }}</textarea>
                 </div>
                 <div class="m-3">
-                    <label for="pilihan_c" class="pb-2 fw-bold">{{ __('Pilihan C') }}</label>
-                    <input type="text" class="form-control" placeholder="pilihan_c" name="pilihan_c" value="{{ old('pilihan_C') }}" required>
+                    <label for="pilihan_c" class="pb-2 fw-bold"><i class="bi bi-arrow-right-square-fill"></i> {{ __('Pilihan C') }}</label>
+                    <textarea class="form-control" name="pilihan_c" placeholder="Pilihan_C" required >{{ old('pilihan_c') }}</textarea>
                 </div> 
                 <div class="m-3">
-                    <label for="pilihan_d" class="pb-2 fw-bold">{{ __('Pilihan D') }}</label>
-                    <input type="text" class="form-control" placeholder="pilihan_d" name="pilihan_d" value="{{ old('pilihan_d') }}" required>
+                    <label for="pilihan_d" class="pb-2 fw-bold"><i class="bi bi-arrow-right-square-fill"></i> {{ __('Pilihan D') }}</label>
+                    <textarea class="form-control" name="pilihan_d" placeholder="Pilihan_D" required >{{ old('pilihan_d') }}</textarea>
                 </div> 
-                <div class="m-3">
-                    <label for="jawaban" class="mb-2 btn btn-success">{{ __('Jawaban Benar') }}</label>
-                    <input type="text" class="form-control" placeholder="jawaban" name="jawaban" value="{{ old('jawaban') }}" required>
-                </div> 
-
-                <div class="m-3">
-                    <button type="submit" class="btn btn-primary">SIMPAN</button>
-                    <button type="reset" class="btn btn-warning">RESET</button>
+                {{-- <div class="m-3">
+                    <label for="jawaban" class="mb-2 btn btn-success fw-bold"><i class="bi bi-bookmark-check-fill"></i> {{ __('Jawaban Benar') }}</label>
+                    <input type="text" class="form-control" placeholder="Jawaban" name="jawaban" value="{{ old('jawaban') }}" required>
+                </div>  --}}
+                <div class="form-group m-3 ">
+                    <label for="jawaban" class="fw-bold "><i class="bi bi-bookmark-check-fill"></i> Jawaban Benar</label><br>
+                    <select class="form-select" name="jawaban" id="jawaban">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                    </select>
                 </div>
-
-            </form>
             </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary fs-5 shadow "><i class="bi bi-check-circle"></i> SIMPAN</button>
+                    <button type="reset" class="btn btn-warning fs-5 shadow fw-bold fst-italic"><i class="bi bi-info-circle-fill"></i> RESET</button>
+                </div>
+            </form>
         </div>
     </div>
-@endsection
+</div> 

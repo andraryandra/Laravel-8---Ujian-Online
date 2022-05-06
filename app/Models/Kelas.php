@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Category;
+use App\Models\UjianSekolah;
+use App\Models\CategoryUjian;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Kelas extends Model
 {
@@ -16,9 +20,22 @@ class Kelas extends Model
         'name_kelas'
     ];
 
+
+    // Kelas butuh User untuk manggil Wali kelas
     public function user()
     {
-        return $this->hasMany(User::class, 'id_kelas');
+        return $this->belongsTo(User::class, 'id_wali');
+    }
+
+    // Kelas butuh banyak kelas di ujianSekolah
+    public function ujianSekolah()
+    {
+        return $this->hasMany(UjianSekolah::class, 'id_user');
+    }
+
+    public function distribusiUjianKelas()
+    {
+        return $this->hasMany(DistribusiUjianKelas::class, 'id_kelas');
     }
 
 }

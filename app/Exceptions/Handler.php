@@ -38,4 +38,12 @@ class Handler extends ExceptionHandler
             //
         });
     }
+    
+    // public function render($request, Throwable $e)
+    // {
+    //     if ($e instanceof \ErrorException) {
+    //         return response()->view('errors.404', [], 404);
+    //     }  
+    // }
+  
 }

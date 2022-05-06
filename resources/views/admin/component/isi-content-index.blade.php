@@ -5,7 +5,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800 fw-bold">
             <i class="bi bi-house-fill"></i>
-            {{ __('Dashboard') }} 
+            {{ __('Dashboard') }}
         </h1>
         {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
@@ -13,10 +13,10 @@
 
     <!-- Content Row -->
     <div class="row">
-
+@if(Auth::User()->role == 'admin')
         <!-- Jumlah Guru -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="#" class="card border-left-primary shadow h-100 py-2 text-decoration-none btn-animate">
+            <a href="{{ url('/guru') }}" class="card border-left-primary shadow h-100 py-2 text-decoration-none btn-animate">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -25,11 +25,11 @@
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $guruCount ?? "" }}</div>
                                 </div>
                                 <div class="col">
                                     <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $guruCount ?? "" }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
 
         <!-- Jumlah Siswa -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="/siswa" class="card border-left-success shadow h-100 py-2 text-decoration-none btn-animate">
+            <a href="{{ url('/siswa') }}" class="card border-left-success shadow h-100 py-2 text-decoration-none btn-animate">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -53,11 +53,11 @@
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $userCount }}</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $siswaCount ?? "" }}</div>
                                 </div>
                                 <div class="col">
                                     <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ $userCount }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: {{ $siswaCount ?? "" }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
 
         <!-- Jumlah Kelas -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="/kelas" class="card border-left-danger shadow h-100 py-2 text-decoration-none btn-animate">
+            <a href="{{ url('/kelas') }}" class="card border-left-danger shadow h-100 py-2 text-decoration-none btn-animate">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -81,11 +81,11 @@
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $kelasesCount }}</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $kelasesCount ?? "" }}</div>
                                 </div>
                                 <div class="col">
                                     <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $kelasesCount }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $kelasesCount ?? "" }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
@@ -98,22 +98,22 @@
             </a>
         </div>
 
-        <!-- Jumlah Category Ujian -->
+        <!-- Jumlah Category Pelajaran -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="/categories" class="card border-left-info shadow h-100 py-2 text-decoration-none btn-animate">
+            <a href="{{ url('/categories-pelajaran') }}" class="card border-left-info shadow h-100 py-2 text-decoration-none btn-animate">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                {{ __('Category Ujian') }}
+                                {{ __('Category Pelajaran') }}
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $categoriesCount }}</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $categoriesCount ?? "" }}</div>
                                 </div>
                                 <div class="col">
                                     <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: {{ $categoriesCount }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: {{ $categoriesCount ?? "" }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@
 
         <!-- Jumlah Post Ujian -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="/posts" class="card border-left-warning shadow h-100 py-2 text-decoration-none btn-animate">
+            <a href="{{ url('/posts') }}" class="card border-left-warning shadow h-100 py-2 text-decoration-none btn-animate">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -137,11 +137,11 @@
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $postsCount }}</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $postsCount ?? "" }}</div>
                                 </div>
                                 <div class="col">
                                     <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $postsCount }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{ $postsCount ?? "" }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
@@ -153,9 +153,9 @@
                 </div>
             </a>
         </div>
+@endif
     </div>
 
-   
 
     <!-- Content Row -->
     <div class="row">

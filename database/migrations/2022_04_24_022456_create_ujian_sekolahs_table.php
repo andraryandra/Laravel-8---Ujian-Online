@@ -15,10 +15,12 @@ class CreateUjianSekolahsTable extends Migration
     {
         Schema::create('ujian_sekolahs', function (Blueprint $table) {
             $table->id(); //kertas
+            $table->string('id_kelas')->nullable(); //kertas
             $table->string('id_user')->nullable(); //kertas
+            $table->string('id_sekolah_asal')->nullable(); //kertas
+            $table->string('id_category_pelajaran')->nullable();
             $table->string('id_category_ujian')->nullable();
-            $table->string('id_soal_ujian')->nullable();
-            $table->string('pilihan_jawaban')->nullable();
+            $table->string('id_soalujian')->nullable();
             $table->string('id_jawaban')->nullable();
             $table->timestamps();
         });

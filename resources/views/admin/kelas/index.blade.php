@@ -76,7 +76,7 @@
                                 <th width="5%">No</th>
                                 <th width="50%">Kelas</th>
                                 <th width="20%">Wali Kelas</th>
-                                <th class="text-center" width="20%">Action</th>
+                                <th class="text-center w-25">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -87,13 +87,13 @@
                         <tr id="tr_{{ $kelas->id }}">
                             <td><input type="checkbox" class="sub_chk" data-id="{{$kelas->id}}"></td>
                             <td class="fw-bold">{{ $no++ }}</td>
-                            <td>{{ $kelas->name_kelas }}</td>
+                            <td>{{ $kelas->name_kelas ?? ""}}</td>
                             @if($kelas->id_wali == null) 
                             <td class="text-white bg-danger text-center fw-bold">
                                 <a href="/kelas-edit-{{ $kelas->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 fw-bold"> <i class="bi bi-pencil-square"></i> Isi Data Sekarang !!</a> 
                             </td>
                             @else
-                            <td class="">{{ $kelas->id_wali }}</td>
+                            <td class="text-capitalize">{{ $kelas->user->name ?? "" }}</td>
                             @endif
                             <td class="text-center">
                                 <a href="/kelas-show-{{ $kelas->id }}" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
@@ -110,66 +110,11 @@
             </div>
         </div>
 
-    <!-- Import Category -->
-    <div class="modal fade" id="importKelas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog ">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title btn btn-success" id="staticBackdropLabel"><i class="bi bi-file-earmark-spreadsheet-fill"></i> Import Categori Excel</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ url('importKelas') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row m-2">  
-                        <input type="file" name="file" class="form-control" required>
-                    </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-box-arrow-in-left"></i> Close</button>
-              <button class="btn btn-success"><i class="bi bi-check-circle-fill"></i> Submit</button>
-            </div>
-        </form>
-          </div>
-        </div>
-      </div>
     
-    <!-- Create Category -->
-    <div class="modal fade" id="createKelas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title btn btn-primary" id="staticBackdropLabel">
-                    <i class="bi bi-folder-plus fa-1x"></i>
-                   {{ __("Create Kelas") }}
-                  </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="/kelas/store" method="post">
-                    @csrf
-                    <div class="form-group m-3">
-                        <label for="id_category" class="pb-2 fw-bold"><i class="bi bi-bookmarks-fill"></i> Category</label>
-                        <select class="form-select" name="id_category" id="id_category">
-                            {{-- @forelse($categori as $id => $categories) --}}
-                                <option value="">Pilih Wali Kelas ...</option>
-                                {{-- @empty --}}
-                                    {{-- <option value="">No Category</option> --}}
-                                {{-- @endempty --}}
-                        </select>
-                    </div> 
-                <div class="m-3">
-                    <label for="name_kelas" class="pb-2 fw-bold"><i class="bi bi-bookmarks-fill"></i> {{ __('Kelas') }}</label>
-                    <input type="text" class="form-control" placeholder="Name Kelas" name="name_kelas" value="{{ old('name_kelas') }}" required>
-                </div>  
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">SIMPAN</button>
-                <button type="reset" class="btn btn-warning">RESET</button>
-            </div>
-            </form>
-        </div>
-        </div>
-    </div>
+    {{-- Import Kelas --}}
+    @include('admin.kelas.importkelas')
+
+    {{-- Create Kelas --}}
+   @include('admin.kelas.create')
 
 @endsection

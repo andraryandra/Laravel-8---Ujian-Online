@@ -63,14 +63,14 @@
                     <table class="table table-bordered" id="example" width="100%" cellspacing="0">           
                         <thead>
                             <tr>
-                                <th class="text-center" style="width: 5%"> No</th>
-                                <th class="text-center" style="width: 20%"> Category</th>
-                                <th class="text-center" style="width: 55%"> Soal Ujian</th>                        
-                                <th class="text-center" style="width: 55%"> Pilihan_A</th>
-                                <th class="text-center" style="width: 55%"> Pilihan_B</th>
-                                <th class="text-center" style="width: 55%"> Pilihan_C</th>
-                                <th class="text-center" style="width: 55%"> Pilihan_D</th>
-                                <th class="text-center" style="width: 5%"> Jawaban Benar</th>
+                                <th class="text-center"> No</th>
+                                <th class="text-center" > Category</th>
+                                <th class="text-center " width="50%"> Soal Ujian</th>                        
+                                <th class="text-center"> Pilihan_A</th>
+                                <th class="text-center"> Pilihan_B</th>
+                                <th class="text-center"> Pilihan_C</th>
+                                <th class="text-center"> Pilihan_D</th>
+                                <th class="text-center"> Jawaban Benar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,25 +79,35 @@
                             @endphp
                             <tr>
                                 <td class="text-center fw-bold">{{ $no++ }}</td>
-                                <td style="width: 25%">{{ $post->category->name_category }}</td>
-                                <td style="width: 55%">{{ $post->soal_ujian }}</td>       
+                                <td width="25%">{{ $post->category->name_category }}</td>
+                                <td width="50%">{{ $post->soal_ujian }}</td>       
                                 <td class="
-                                @if($post->pilihan_a == $post->jawaban) 
+                                @if($post->jawaban == 'A')
                                 text-white text-center bg-success @else text-white text-center bg-danger
-                                @endif">{{ $post->pilihan_a }}</td>
+                                @endif">{{ __("A.") }} {{ $post->pilihan_a }}</td>
                                 <td class="
-                                @if($post->pilihan_b == $post->jawaban) 
+                                @if($post->jawaban == 'B') 
                                 text-white text-center bg-success @else text-white text-center bg-danger
-                                @endif">{{ $post->pilihan_b }}</td>
+                                @endif">{{ __("B.") }} {{ $post->pilihan_b }}</td>
                                 <td class="
-                                @if($post->pilihan_c == $post->jawaban) 
+                                @if($post->jawaban == 'C') 
                                 text-white text-center bg-success @else text-white text-center bg-danger
-                                @endif">{{ $post->pilihan_c }}</td>
+                                @endif">{{ __("C.") }} {{ $post->pilihan_c }}</td>
                                 <td class="
-                                @if($post->pilihan_d == $post->jawaban) 
+                                @if($post->jawaban == 'D') 
                                 text-white text-center bg-success @else text-white text-center bg-danger
-                                @endif">{{ $post->pilihan_d }}</td>
-                                <td class="text-white text-center bg-success">{{ $post->jawaban }}</td>
+                                @endif">{{ __("D.") }} {{ $post->pilihan_d }}</td>
+                                <td class="text-white text-center bg-success">
+                                    @if($post->jawaban == 'A')
+                                    {{ __("A.") }} {{ $post->pilihan_a }}
+                                    @elseif($post->jawaban == 'B')
+                                    {{ __("B.") }} {{ $post->pilihan_b }}
+                                    @elseif($post->jawaban == 'C')
+                                    {{ __("C.") }} {{ $post->pilihan_c }}
+                                    @elseif($post->jawaban == 'D')
+                                    {{ __("D.") }} {{ $post->pilihan_d }}
+                                    @endif
+                                </td>
                             </tr> 
                         </tbody>  
                     </table>
@@ -107,3 +117,8 @@
     </div>
 
 @endsection
+
+
+{{-- @if($post->pilihan_d == $post->jawaban) 
+text-white text-center bg-success @else text-white text-center bg-danger
+@endif">{{ $post->pilihan_d }}</td> --}}

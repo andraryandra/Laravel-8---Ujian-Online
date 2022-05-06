@@ -1,73 +1,28 @@
-@extends('layouts.appAdmin')
-
-@section('category')
-
-@include('admin.component.navbar')
-    <!-- Begin Page Content -->
-    <div class="container-fluid">
-        <!-- Content Row -->
-    <div class="row">
-    
-    <div class="container-fluid">
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="font-weight-bold text-primary">DataTable </h6>
-        <p class="">Fitur pada bagian Category ini berfungsi untuk menambahkan Kategori Ujian yang dimana sesuai dengan mata Ujian SMP / SMA / SMK .</p>
-            </div>
-            <div class="m-3">
-                <a href="/categories" class="btn btn-secondary">Kembali</a>
-            </div>
-            <form action="/categories/store" method="post">
+<!-- Create Category -->
+<div class="modal fade" id="createCategories" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title btn btn-primary" id="staticBackdropLabel">
+                <i class="bi bi-folder-plus fa-1x"></i>
+               Create Category Pelajaran
+              </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/categories-pelajaran/store" method="post">
                 @csrf
 
             <div class="m-3">
-                <label for="name_category" class="pb-2 fw-bold">{{ __('Name Category') }}</label>
-                <input type="text" class="form-control" placeholder="Name Category" name="name_category" value="{{ old('name_category') }}" required>
+                <label for="name_category" class="pb-2 fw-bold"><i class="bi bi-bookmarks-fill"></i> {{ __('Category Pelajaran') }}</label>
+                <input type="text" class="form-control" placeholder="Name Category Pelajaran" name="name_category" value="{{ old('name_category') }}" required>
             </div>  
-
-
-        <div class="m-3">
-            <button type="submit" class="btn btn-primary">SIMPAN</button>
-            <button type="reset" class="btn btn-warning">RESET</button>
         </div>
-
-    </form>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary fs-5 shadow"><i class="bi bi-check-circle"></i> SIMPAN</button>
+            <button type="reset" class="btn btn-warning fs-5 shadow fst-italic fw-bold"><i class="bi bi-info-circle-fill"></i> RESET</button>
         </div>
+        </form>
     </div>
-
-     </div>
-    @include('admin.component.footer')
-</div>    
-    
-
-@endsection
-
-
-{{-- <div class="container">
-        <div class="row justify-content-center">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Create Posts</h4>
-                </div>
-                <div class="m-3">
-                    <a href="/categories" class="btn btn-secondary">Kembali</a>
-                    </div>
-                    <form action="/categories/store" method="post">
-                        @csrf
-
-                    <div class="m-3">
-                        <label for="name_category" class="pb-2 fw-bold">{{ __('Name Category') }}</label>
-                        <input type="text" class="form-control" placeholder="Name Category" name="name_category" value="{{ old('name_category') }}" required>
-                    </div>  
-  
-
-                <div class="m-3">
-                    <button type="submit" class="btn btn-primary">SIMPAN</button>
-                    <button type="reset" class="btn btn-warning">RESET</button>
-                </div>
-
-            </form>
-            </div>
-        </div>
-    </div> --}}
+    </div>
+</div>

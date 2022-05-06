@@ -14,13 +14,65 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ Request::is('home')? " active ":" " }}">
         <a class="nav-link " href="{{ route('admin.dashboard') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="bi bi-house-fill"></i>
             <span>{{ __("Dashboard") }}</span></a>
     </li>
     <li class="nav-item {{ Request::is('profile')? " active ":" " }}">
         <a class="nav-link " href="{{ url('/profile') }}">
             <i class="bi bi-person-workspace"></i>
             <span>{{ __("Profile") }}</span></a>
+    </li>
+
+    @if(Auth::user()->role == 'siswa')
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        {{ __("Master") }}
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item {{ Request::is('ujianSekolah')? " active ":" " }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-users"></i>
+            <span>{{ __("Siswa") }}</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item {{ Request::is('ujianSekolah')? " active ":" " }}" href="{{ url('ujianSekolah') }}">{{ __("Ujian Sekolah") }}</a>
+                {{-- <a class="collapse-item {{ Request::is('siswa/create')? " active ":" " }}" href="{{ route('admin.siswa.create') }}">{{ __("Tambah Siswa") }}</a> --}}
+            </div>
+        </div>
+    </li>
+    @endif
+
+    @if(Auth::User()->role == 'admin')
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading text-gray-200">
+        {{ __('Data Users') }}
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item
+    {{ Request::is('kelas')? " active ":" " }}    || {{ Request::is('kelas-edit-*')? " active ":" " }} || {{ Request::is('kelas-show-*')? " active ":" " }}
+    || {{ Request::is('siswa')? " active ":" " }} || {{ Request::is('siswa-edit-*')? " active ":" " }} || {{ Request::is('siswa-show-*')? " active ":" " }}
+    || {{ Request::is('guru')? " active ":" " }}  || {{ Request::is('guru-edit-*')? " active ":" " }}  || {{ Request::is('guru-show-*')? " active ":" " }}
+    || {{ Request::is('#')? "active ":" " }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+           <i class="bi bi-person-plus-fill"></i>
+            <span>{{ __('Users') }}</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom Users</h6>
+                <a class="collapse-item {{ Request::is('guru')? " active ":" " }}  || {{ Request::is('guru-edit-*')? " active ":" " }}  || {{ Request::is('guru-show-*')? " active ":" " }}"  href="{{ url('/guru') }}">Guru</a>
+                <a class="collapse-item {{ Request::is('kelas')? " active ":" " }} || {{ Request::is('kelas-edit-*')? " active ":" " }} || {{ Request::is('kelas-show-*')? " active ":" " }}" href="{{ url('/kelas') }}">Kelas</a>
+                <a class="collapse-item {{ Request::is('siswa')? " active ":" " }} || {{ Request::is('siswa-edit-*')? " active ":" " }} || {{ Request::is('siswa-show-*')? " active ":" " }}" href="{{ url('/siswa') }}">Siswa</a>
+            </div>
+        </div>
     </li>
 
     <!-- Divider -->
@@ -31,49 +83,59 @@
         {{ __('Materi Ujian') }}
     </div>
 
-    <!-- Nav Item - Category -->
-    <li class="nav-item {{ Request::is('categories') ? " active ":" " }} || {{ Request::is('categories-edit-*') ? " active ":" " }} || {{ Request::is('categories-show-*') ? " active ":" " }} ">
-        <a class="nav-link" href="{{ url('/categories') }}">
-            <i class="fas fa-clipboard-list "></i>
-            <span>{{ __('Category') }}</span></a> 
-            
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item
+    {{ Request::is('categories-ujian')? " active ":" " }}    || {{ Request::is('categories-ujian-edit-*')? " active ":" " }} || {{ Request::is('categories-ujian-show-*')? " active ":" " }}
+    || {{ Request::is('categories-pelajaran')? " active ":" " }} || {{ Request::is('categories-pelajaran-edit-*')? " active ":" " }} || {{ Request::is('categories-pelajaran-show-*')? " active ":" " }}
+    || {{ Request::is('#')? "active ":" " }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#category" aria-expanded="true" aria-controls="category">
+            <i class="fas fa-clipboard-list"></i>
+            <span>{{ __('Category') }}</span>
+        </a>
+        <div id="category" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom Category</h6>
+                <a class="collapse-item {{ Request::is('categories-ujian')? " active ":" " }}  || {{ Request::is('categories-ujian-edit-*')? " active ":" " }}  || {{ Request::is('categories-ujian-show-*')? " active ":" " }}"  href="{{ url('/categories-ujian') }}">
+                    {{ __("Category Ujian") }}</a>
+                <a class="collapse-item {{ Request::is('categories-pelajaran')? " active ":" " }} || {{ Request::is('categories-pelajaran-edit-*')? " active ":" " }} || {{ Request::is('categories-pelajaran-show-*')? " active ":" " }}" href="{{ url('/categories-pelajaran') }}">
+                    {{ __("Category Pelajaran") }}</a>
+            </div>
+        </div>
     </li>
 
+    @endif
+
+
+    @if(Auth::user()->role == 'admin' || Auth::user()->role == 'guru')
     <!-- Nav Item - Posts Ujian -->
     <li class="nav-item {{ Request::is('posts')? " active ":" " }} || {{ Request::is('posts-edit-*') ? " active ":" " }} || {{ Request::is('posts-show-*') ? " active ":" " }}">
         <a class="nav-link " href="{{ url('/posts') }}">
             <i class="bi bi-file-post"></i>
             <span>{{ __('Post Ujian') }}</span></a>
     </li>
+    @endif
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-    <!-- Heading -->
-    <div class="sidebar-heading text-gray-200">
-        {{ __('Data Users') }}
-    </div>
+    @if(Auth::user()->role == 'admin')
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item 
-    {{ Request::is('kelas')? " active ":" " }} || {{ Request::is('kelas-edit-*')? " active ":" " }} || {{ Request::is('kelas-show-*')? " active ":" " }}
-    || {{ Request::is('siswa')? " active ":" " }} || {{ Request::is('siswa-edit-*')? " active ":" " }} || {{ Request::is('siswa-show-*')? " active ":" " }}
-    || {{ Request::is('guru')? " active ":" " }} || {{ Request::is('guru-edit-*')? " active ":" " }} || {{ Request::is('guru-show-*')? " active ":" " }}
-    || {{ Request::is('#')? "active ":" " }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-            <i class="bi bi-person-circle"></i>
-            <span>{{ __('Users') }}</span>
-        </a>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Users</h6>
-                <a class="collapse-item {{ Request::is(" # ") ? "active ": " " }}" href="{{ url('#') }}">Guru</a>
-                <a class="collapse-item {{ Request::is('kelas')? " active ":" " }} || {{ Request::is('kelas-edit-*')? " active ":" " }} || {{ Request::is('kelas-show-*')? " active ":" " }}" href="{{ url('/kelas') }}">Kelas</a>
-                <a class="collapse-item {{ Request::is('siswa')? " active ":" " }} || {{ Request::is('siswa-edit-*')? " active ":" " }} || {{ Request::is('siswa-show-*')? " active ":" " }}" href="{{ url('/siswa') }}">Siswa</a>
-            </div>
-        </div>
+    <!-- Nav Item - Distribusi Ujian Kelas -->
+    <li class="nav-item {{ Request::is('distribusiUjianKelas')? " active ":" " }} || {{ Request::is('distribusiUjianKelas-edit-*') ? " active ":" " }} || {{ Request::is('distribusiUjianKelas-show-*') ? " active ":" " }}">
+        <a class="nav-link " href="{{ url('/distribusiUjianKelas') }}">
+            <i class="bi bi-card-checklist"></i>
+            <span>{{ __('Distribusi Ujian Kelas') }}</span></a>
     </li>
 
-    <!-- Divider -->
+    <!-- Nav Item - Data Ujian -->
+    <li class="nav-item {{ Request::is('dataUjian')? " active ":" " }} || {{ Request::is('dataUjian-edit-*') ? " active ":" " }} || {{ Request::is('dataUjian-show-*') ? " active ":" " }}">
+        <a class="nav-link " href="{{ url('/dataUjian') }}">
+            <i class="bi bi-journal-text"></i>
+            <span>{{ __('Data Ujian') }}</span></a>
+    </li>
+
+
+    @endif
+
+
+    {{-- <!-- Divider -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->
@@ -127,7 +189,8 @@
 
             </div>
         </div>
-    </li>
+    </li> --}}
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
@@ -135,6 +198,11 @@
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
+
+
+
+    {{-- <img src="/loading/dashboard.gif" alt=""  > --}}
+
 
     {{-- <!-- Sidebar Message -->
     <div class="sidebar-card d-none d-lg-flex">

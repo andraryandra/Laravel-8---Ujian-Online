@@ -1,5 +1,5 @@
 @extends('layouts.appAdmin')
-@section('title', 'Siswa')
+@section('title', 'Edit Siswa')
 @section('siswaAdmin')
 
 
@@ -29,7 +29,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Edit Siswa
+                                Siswa
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
@@ -59,6 +59,19 @@
                 <h6 class="font-weight-bold text-primary">DataTable </h6>
                 <p class="">Fitur pada bagian Post ini berfungsi untuk menambahkan Soal Ujian yang dimana sesuai dengan mata Ujian SMP / SMA / SMK.</p>
             </div>
+ 
+        @if($siswaAdmin->kelas == false ?? 'Database Not Found!' ) 
+        <div class="alert alert-warning d-flex align-items-center m-3" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+              </svg>
+            <div>
+              Terdeteksi jika data Kelas tidak ada, silahkan untuk menghubungi pihak Admin !!
+            </div>
+          </div>
+            {{-- <a href="{{ url('/categories') }}" class="btn btn-danger  m-1 p-3 shadow"><i class="bi bi-folder-plus fa-1x"></i> Klik Edit Now!</a> --}}
+        @endif
+
             <div class="card-body">
                 <form action="/siswa/update" method="post">
                     @csrf   
@@ -68,7 +81,7 @@
                 </div>
                     <div class="form-group m-3">
                         
-                        <label for="id_kelas" class="pb-2 fw-bold  fs-5"><i class="bi bi-bookmark"></i> Kelas</label>
+                        <label for="id_kelas" class="pb-2 fw-bold  fs-5"><i class="bi bi-shop-window"></i> Kelas</label>
                         <select class="form-select form-select-lg mb-3 m" name="id_kelas" id="id_kelas">
                             <option disabled value="">Pilih Kelas ...</option>
                             @foreach($kelas as $id => $kelases)
@@ -82,15 +95,15 @@
                     </div>
                     <div class="m-3">
                         <label for="name" class="pb-2 fw-bold mb-2 fs-5"><i class="bi bi-person"></i> {{ __('Name Asli') }}</label>
-                        <input type="text" class="form-control" placeholder="Name" name="name" value="{{ $siswaAdmin->name }}" required>
+                        <input type="text" class="form-control" placeholder="Name" name="name" value="{{ $siswaAdmin->name ?? "" }}" required>
                     </div>
                     <div class="m-3">
                         <label for="no_induk" class="pb-2 fw-bold mb-2 fs-5"><i class="bi bi-card-text"></i> {{ __('NIK') }}</label>
-                        <input type="text" class="form-control" placeholder="NIK" name="no_induk" value="{{ $siswaAdmin->no_induk }}" required>
+                        <input type="text" class="form-control" placeholder="NIK" name="no_induk" value="{{ $siswaAdmin->no_induk ?? "" }}" required>
                     </div>
                     <div class="m-3">
                         <label for="nisn" class="pb-2 fw-bold mb-2 fs-5"><i class="bi bi-card-text"></i> {{ __('NISN') }}</label>
-                        <input type="text" class="form-control" placeholder="NISN" name="nisn" value="{{ $siswaAdmin->nisn }}" required>
+                        <input type="text" class="form-control" placeholder="NISN" name="nisn" value="{{ $siswaAdmin->nisn ?? "" }}" required>
                     </div>
                     <div class="form-group m-3">
                         <label for="jk" class="pb-2 fw-bold mb-2 fs-5"><i class="bi bi-gender-ambiguous"></i> {{ __('Jenis Kelamin') }}</label>
@@ -110,9 +123,22 @@
                             <option class="fw-bold" value="SMP NEGERI 1 LOHBENER">SMP NEGERI 1 LOHBENER</option>
                         </select>
                     </div>
+                    <hr class="m-3">
+                    <h4 class="fw-bold m-3">Account Login Siswa</h4>
+                    <hr class="m-3">
+                    
+                    <div class="m-3">
+                        <label for="username" class="pb-2 fw-bold fs-5"><i class="bi bi-person-check"></i> {{ __('Username Account') }} <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" placeholder="Username Account" name="username" value="{{ $siswaAdmin->username ?? "" }}">
+                    </div>
+                    <div class="m-3">
+                        <label for="password" class="pb-2 fw-bold fs-5"><i class="bi bi-key"></i> {{ __('Password') }} <span class="text-danger">*</span></label>
+                        <input type="password" class="form-control" placeholder="Password" name="password" />
+                        <p class="form-text fst-italic text-danger">--- Kosongkan jika tidak ingin mengubah password.</p>
+                    </div>
                     <div class="m-3 mt-4">
-                        <button type="submit" class="btn btn-primary fw-bold p-3 shadow"><i class="bi bi-check-circle"></i> SIMPAN</button>
-                        <button type="reset" class="btn btn-warning fw-bold p-3 shadow fst-italic" style="float: right;"><i class="bi bi-info-circle-fill"></i> Kembalikan Data Awal</button>
+                        <button type="submit" class="btn btn-primary fs-5 shadow mb-5"><i class="bi bi-check-circle"></i> SIMPAN</button><hr>
+                        <button type="reset" class="btn btn-warning fs-5 shadow fst-italic fw-bold" style="float: right;"><i class="bi bi-info-circle-fill"></i> Kembalikan Data Awal</button>
                     </div> 
                 </form>
             </div>

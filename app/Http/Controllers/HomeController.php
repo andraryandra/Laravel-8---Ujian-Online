@@ -33,12 +33,23 @@ class HomeController extends Controller
         $categories = Category::all();
         $kelases = Kelas::all();
 
-        $userCount = User::count();
+        $siswaCount = User::where('role', 'siswa')->count();
+        $guruCount = User::where('role', 'guru')->count();
         $categoriesCount = Category::count();
         $postsCount = Post::count();
         $kelasesCount = Kelas::count();
         
-        return view('admin.dashboard', compact('users','posts','categories','kelases','userCount','categoriesCount', 'postsCount','kelasesCount'));
+        return view('admin.dashboard', compact('users','posts','categories','kelases','siswaCount','guruCount','categoriesCount', 'postsCount','kelasesCount'));
         // return view('admin.dashboard');
+    }
+
+    public function indexSiswa()
+    {
+       return view('siswa.dashboard');
+    }
+
+    public function indexGuru()
+    {
+        return view('guru.dashboard');
     }
 }

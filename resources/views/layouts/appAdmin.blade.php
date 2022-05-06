@@ -9,6 +9,7 @@
 
     {{-- <title>{{ config('app.Admin', 'Ujian Online') }}</title> --}}
     <title>@yield('title') - Ujian Online</title>
+    <link rel="icon" href="{{ asset('/img/logo-ujian.png') }}"/>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -16,19 +17,22 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.3.4/js/dataTables.select.min.js"></script>
-   
-   
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://kit.fontawesome.com/fe6aa2d4ea.js" crossorigin="anonymous"></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.4/css/select.bootstrap5.min.css">
-    
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
 
      <!-- Custom fonts for this template-->
      <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -42,21 +46,43 @@
      <link
          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
          rel="stylesheet">
- 
+
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="{{ asset('/css/sb-admin-2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/effect-button.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css">
-    <link rel="stylesheet" href="/css/button-hover.css">
-    <link rel="stylesheet" href="{{ asset('/css/button-cyberpunk.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/button-hover.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/radio-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/preloader.css') }}">
+    <script src="jquery.min.js"></script>
+    <script type="text/javascript">
+    //script preloader
+     (function( $ ) {
+       $(window).on('load', function(){
+        $('#preloader').fadeOut('slow',function(){
+               $(this).hide();
+           });
+       });
+
+      })(jQuery);
+
+     //slow bisa diganti dengan angka misal 2000
+    </script>
 
     @yield('styles')
-    
+
 
 </head>
 <body id="page-top">
         @include('sweetalert::alert')
-         <!-- Page Wrapper -->
+
+        {{-- <div id="preloader">
+            <div class="socket">
+             <img src="/loading/loading-web2.gif" alt="">
+            </div>
+        </div> --}}
+
+        <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
@@ -74,24 +100,43 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="">
+               <div>
+                   <!-- Admin -->
                     @yield('profile')
                     @yield('content')
+                    @yield('categoryUjian')
                     @yield('category')
                     @yield('post')
                     @yield('kelas')
                     @yield('siswaAdmin')
+                    @yield('guruAdmin')
+                    @yield('distribusiUjianKelas')
+                    <!-- End Admin -->
+                    @yield('blank')
+                    <!-- Guru -->
+                    @yield('guru')
+                    <!-- End Guru -->
+                    <!-- Siswa -->
+                    @yield('siswa')
+                    @yield('ujianSekolah')
+                    <!-- End Siswa -->
                 </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            @include('admin.component.footer')
-            <!-- End of Footer -->
+
 
         </div>
         <!-- End of Content Wrapper -->
+
+        <!-- Footer -->
+        @include('admin.component.footer')
+        <!-- End of Footer -->
+
     </div>
     <!-- End of Page Wrapper -->
+
+</div>
+<!-- End of Content Wrapper -->
 
     <!-- Scroll to Top Button-->
      <a class="scroll-to-top rounded" href="#page-top">
@@ -122,6 +167,7 @@
         </div>
     </div>
 
+    <script src="https://kit.fontawesome.com/fe6aa2d4ea.js" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -160,7 +206,10 @@
 <script src="js/demo/chart-pie-demo.js"></script>
 <script src="js/demo/datatables-demo.js"></script>
 
+
 </body>
+
+<script src="https://kit.fontawesome.com/fe6aa2d4ea.js" crossorigin="anonymous"></script>
 @yield('scripts')
 <script>
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -253,7 +302,7 @@
                                             }
                                         });
                                         }
-                                        
+
                                     });
                                 } else if (data['success']){
                                     alert(data['error']);
@@ -309,8 +358,8 @@
 <script>
     $(document).ready(function() {
     var table = $('#example').DataTable( {
-        
-        select: false,
+
+        select: true,
         "lengthMenu": [[ 10, 25, 50, -1], [ 10, 25, 50, "All"]],
 //         "targets": 'no-sort',
 // "bSort": false,

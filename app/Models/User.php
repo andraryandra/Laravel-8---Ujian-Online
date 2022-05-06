@@ -2,18 +2,21 @@
 
 namespace App\Models;
 
+use App\Models\Post;
+
+
 use App\Models\Kelas;
-
-
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    
+    public $timestamps = true;
 
     /**
      * The attributes that are mass assignable.
@@ -25,6 +28,7 @@ class User extends Authenticatable
         'username',
         // 'email',
         'password',
+        'role',
     ];
 
     /**
@@ -54,6 +58,16 @@ class User extends Authenticatable
     public function kelas()
     {
         return $this->belongsTo(Kelas::class,'id_kelas');
+
+        // Wali kelas banyak dipakai oleh kelas
+        return $this->hasMany(Kelas::class,'id_wali');
     }
+
+    public function ujiansekolah()
+    {
+        
+        return $this->hasMany(UjianSekolah::class,'id_user');
+    }
+    
 
 }
