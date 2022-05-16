@@ -27,12 +27,12 @@
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $dataUjian }}</div>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $dataUjianCount }}</div>
                             </div>
                             <div class="col">
                                 <div class="progress progress-sm mr-2">
                                     <div class="progress-bar bg-dark" role="progressbar"
-                                        style="width: {{ $dataUjian }}%" aria-valuenow="50" aria-valuemin="0"
+                                        style="width: {{ $dataUjianCount }}%" aria-valuenow="50" aria-valuemin="0"
                                         aria-valuemax="100"></div>
                                 </div>
                             </div>
@@ -54,15 +54,6 @@
         <p class="">Fitur pada bagian Category ini berfungsi untuk menambahkan Kategori Ujian yang dimana sesuai dengan mata Ujian SMP / SMA / SMK.</p>
             </div>
             <div class="m-3">
-                <button type="button" class="btn btn-primary  m-1 p-3" data-bs-toggle="modal" data-bs-target="#createCategories">
-                <i class="bi bi-folder-plus fa-1x"></i>
-                    Create Data Ujian Sekolah
-                </button>
-
-                <button type="button" class="btn btn-success  m-1 p-3" data-bs-toggle="modal" data-bs-target="#importCategories">
-                    <i class="bi bi-file-earmark-spreadsheet-fill"></i>  Import Excel
-                </button>
-
                 <button class="btn btn-danger  m-1 p-3 delete_all" data-url="{{ url('categoriesDeleteAll') }}">
                     <i class="bi bi-trash-fill"></i>
                     Delete All Selected
@@ -73,17 +64,15 @@
                     <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th width="5%" class="text-center">
-                                    <input type="checkbox" class="p-5" id="master" />
+                                <th class="text-center">
+                                    <input type="checkbox" id="master" />
                                 </th>
-                                <th width="5%">No</th>
+                                <th>No</th>
                                 <th>Category Ujian</th>
+                                <th>Mata Pelajaran</th>
                                 <th>Nama Siswa</th>
-                                {{-- <th>Nama Ujian</th> --}}
                                 <th>Kelas</th>
                                 <th>Nilai</th>
-                                {{-- <th>Waktu Ujian</th> --}}
-                                {{-- <th>Status</th> --}}
                                 <th class="text-center w-25">Action</th>
                             </tr>
                         </thead>
@@ -91,25 +80,40 @@
                             @php
                             $no = 1;
                         @endphp
-                        @foreach ($ujianSekolah as $ujianSekolahs)
+                        @foreach ($dataUjian as $dataUjians)
                         <tr id="tr_??">
                             <td class="text-center">
                                 <input type="checkbox" class="sub_chk" data-id="??">
                             </td>
-                           <td>{{ $no++ }}</td>
-                           <td>{{ $ujianSekolahs->category->name_category ?? "Database not found!" }}</td>
-                           <td class="text-capitalize">{{ $ujianSekolahs->user->name ?? "" }}</td>
-                           <td>{{ $ujianSekolahs->user->kelas->name_kelas }}</td>
+                            <td>{{ $no++ }}</td>
+                            <td>{{ $dataUjians->category_ujian->name_category_ujian ?? ""}}</td>
+                            <td class="text-capitalize">{{ $dataUjians->category_pelajaran->name_category ?? "" }}</td>
+                            <td class="text-capitalize">{{ $dataUjians->user->name ?? "" }}</td>
+                            <td>{{ $dataUjians->kelas->name_kelas ?? "" }}</td>
+                            <td>{{ $dataUjians->total_correct ?? "" }}</td>
+                            <td class="text-center w-25">
+                                <a href="/dataUjian-show-{{ $dataUjians->id }}" class="btn btn-info text-white shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i> Lihat Hasil Ujian</a>
+                            </td>
+                        </tr>
 
-                           <td>{{ $ujianSekolahs->id_jawaban == true }} / 10</td>
-                           {{-- <td></td> --}}
-                           {{-- <td></td> --}}
+                        {{-- <tr id="tr_??">
+                            <td class="text-center">
+                                <input type="checkbox" class="sub_chk" data-id="??">
+                            </td>
+                           <td>{{ $no++ }}</td>
+                           <td>{{ $ujianSekolahs->category->name_category ?? "" }}</td>
+                           <td class="text-capitalize">{{ $ujianSekolahs->user->name ?? "" }}</td>
+                           <td>{{ $ujianSekolahs->user->kelas->name_kelas ?? "" }}</td>
+
+                           <td>{{ $ujianSekolahs->id_jawaban }} / 10</td>
+
                             <td class="text-center">
                                 <a href="/dataUjian-show-" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
                                 <a href="/dataUjian-edit-" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i></a>
                                 <a href="/dataUjian/delete/{{ $ujianSekolahs->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>
                                 </td>
-                            </tr>
+                            </tr> --}}
+
                             @endforeach
                             </tbody>
                         </table>

@@ -128,8 +128,12 @@ Route::group(['middleware' => ['auth','role:admin']], function(){
     Route::delete('/guruDeleteAll', [App\Http\Controllers\Admin\TambahGuruController::class, 'deleteAll'])->name('guru.deleteAll');
     Route::post('/importGuru', [App\Http\Controllers\Admin\TambahGuruController::class, 'importGuru'])->name('guru.importGuru');
 
-    Route::get('/dataUjian', [App\Http\Controllers\UjianSekolahController::class, 'indexDataUjian'])->name('dataUjian.indexDataUjian');
-    Route::get('/dataUjian/delete/{id}', [App\Http\Controllers\UjianSekolahController::class, 'destroy'])->name('dataUjian.destroy');
+// Route Data Ujian
+    Route::get('/dataUjian', [App\Http\Controllers\Admin\DataUjianController::class, 'indexDataUjian2'])->name('dataUjian.indexDataUjian');
+    Route::get('/dataUjian-show-{id}', [App\Http\Controllers\Admin\DataUjianController::class, 'show'])->name('dataUjian.show');
+
+    Route::delete('/dataUjianDeleteAll', [App\Http\Controllers\Admin\DataUjianController::class, 'deleteAll'])->name('dataUjian.deleteAll');
+
 
 // Route Distribusi Ujian Kelas
     Route::get('/distribusiUjianKelas', [App\Http\Controllers\Admin\DistribusiUjianKelasController::class, 'index'])->name('distribusiUjianKelas.index');
@@ -159,8 +163,9 @@ Route::group(['middleware' => ['auth','role:admin']], function(){
     Route::get('/ujianSekolah-show-{id}', [App\Http\Controllers\UjianSekolahController::class, 'show'])->name('ujianSekolah.show')->middleware('auth');
 
     Route::get('/ujianSekolah-create-{id}', [App\Http\Controllers\UjianSekolahController::class, 'create'])->name('ujianSekolah.create')->middleware('auth');
-    // Route::get('/ujianSekolah-create', [App\Http\Controllers\UjianSekolahController::class, 'create'])->name('ujianSekolah.create')->middleware('auth');
     Route::post('/ujianSekolah/store', [App\Http\Controllers\UjianSekolahController::class, 'store'])->name('ujianSekolah.store')->middleware('auth');
+    // Route::get('/ujianSekolah-create', [App\Http\Controllers\UjianSekolahController::class, 'create'])->name('ujianSekolah.create')->middleware('auth');
+    // Route::post('/ujianSekolah/store', [App\Http\Controllers\UjianSekolahController::class, 'store'])->name('ujianSekolah.store')->middleware('auth');
 
 
 

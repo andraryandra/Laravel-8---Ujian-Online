@@ -361,15 +361,40 @@
 
         select: true,
         "lengthMenu": [[ 10, 25, 50, -1], [ 10, 25, 50, "All"]],
-//         "targets": 'no-sort',
-// "bSort": false,
-// "order": [],
         "columnDefs": [
         { "orderable": false, "targets": 0 }
-      ],
-      "order": [],
+        ],
+        "order": [],
+        });
     });
-} );
+</script>
+
+<script>
+    $('.jeda-confirm').on('click', function (event) {
+    let timerInterval
+        Swal.fire({
+        title: 'Auto close alert!',
+        html: 'I will close in <b></b> milliseconds.',
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+            }, 100)
+        },
+        willClose: () => {
+            clearInterval(timerInterval)
+        }
+        }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+            console.log('I was closed by the timer')
+        }
+        })
+    });
+
 </script>
 
 <script>

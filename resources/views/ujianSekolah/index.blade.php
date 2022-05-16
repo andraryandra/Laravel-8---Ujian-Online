@@ -4,23 +4,6 @@
 
 <div class="container-fluid">
 
-    {{-- <div class="card">
-        <div class="card-header py-3">
-            <h4 class="font-weight-bold text-primary"><span class="badge bg-info p-3 shadow-sm fw-bold text-white text-monospace"><i class="bi bi-tags"></i> Ujian Online</span></h4>
-            <p class="text-monospace">
-                Diharapkan mengerjakan soal dengan baik dan benar. Pilihlah jawaban sesuai menurut apa kata hati kalian itu jawaban yang benar.
-                Dan jalan lupa selalu berdoa supaya ujian kalian dilancarkan.
-            </p>
-        </div>
-          <div class="card-body">
-            <div class="card mb-4 py-3 border-left-primary">
-                <div class="card-body">
-                    .border-left-primary
-                </div>
-            </div>
-          </div>
-    </div> --}}
-
     <div class="card mb-4 py-2 border-left-primary">
         <div class="card-body">
             <div class="card-header py-3 rounded">

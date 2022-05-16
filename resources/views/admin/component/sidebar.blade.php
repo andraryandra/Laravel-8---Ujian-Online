@@ -29,21 +29,14 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        {{ __("Master") }}
+        {{ __("Ujian Online") }}
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Pages Menu Ujian Sekolah Online -->
     <li class="nav-item {{ Request::is('ujianSekolah')? " active ":" " }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-users"></i>
-            <span>{{ __("Siswa") }}</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ Request::is('ujianSekolah')? " active ":" " }}" href="{{ url('ujianSekolah') }}">{{ __("Ujian Sekolah") }}</a>
-                {{-- <a class="collapse-item {{ Request::is('siswa/create')? " active ":" " }}" href="{{ route('admin.siswa.create') }}">{{ __("Tambah Siswa") }}</a> --}}
-            </div>
-        </div>
+        <a class="nav-link " href="{{ url('/ujianSekolah') }}">
+            <i class="bi bi-person-workspace"></i>
+            <span>{{ __("Ujian Online Sekolah") }}</span></a>
     </li>
     @endif
 

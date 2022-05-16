@@ -76,11 +76,11 @@ class TambahSiswaController extends Controller
         ]);
 
         if($siswaAdmin){
-            return redirect()->route('siswa.index')->with('success', 'Created Siswa Admin successfully!');
+            return redirect()->route('siswa.index')->with('success', 'Created Siswa successfully!');
         } else {
             return redirect()->route('siswa.index')->with('error', 'Failed to create Siswa Admin!');
-        }    
-    }   
+        }
+    }
 
     /**
      * Display the specified resource.
@@ -119,7 +119,7 @@ class TambahSiswaController extends Controller
      */
     public function update(Request $request, User $siswaAdmin)
     {
-        
+
         DB::table('users')->where('id', $request->id)->update([
             'id_kelas' => $request->id_kelas,
             'no_induk' => $request->no_induk,
@@ -132,7 +132,7 @@ class TambahSiswaController extends Controller
             'updated_at' => now(),
         ]);
 
-        return redirect()->route('siswa.index')->with('success', 'Updated Siswa successfully!');  
+        return redirect()->route('siswa.index')->with('success', 'Updated Siswa successfully!');
     }
 
 
@@ -149,9 +149,9 @@ class TambahSiswaController extends Controller
     }
 
     public function deleteAll(Request $request)
-    {   
+    {
         $ids = $request->ids;
-        User::whereIn('id',explode(',',$ids))->delete(); 
+        User::whereIn('id',explode(',',$ids))->delete();
         $messages = ['success', 'Delete Post successfully!'];
         return response()->json([
             'success' => $messages,
@@ -164,5 +164,5 @@ class TambahSiswaController extends Controller
         //jika berhasil kembali ke halaman sebelumnya
         return back()->with('success', 'Import Post successfully!');
     }
-    
+
 }

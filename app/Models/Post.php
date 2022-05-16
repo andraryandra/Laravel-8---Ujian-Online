@@ -10,7 +10,7 @@ class Post extends Model
     use HasFactory;
     public $timestamps = true;
     protected $fillable = ([
-        'id_category', 'soal_ujian', 'pilihan_a', 'pilihan_b', 'pilihan_c', 'pilihan_d', 'jawaban',
+        'id_category', 'soal_ujian', 'pilihan_a', 'pilihan_b', 'pilihan_c', 'pilihan_d', 'jawaban','correct',
     ]);
 
     public function category()

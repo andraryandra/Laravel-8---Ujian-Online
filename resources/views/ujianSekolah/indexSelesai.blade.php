@@ -22,14 +22,20 @@
           <h5 class="card-title">Information</h5>
           <p class="card-text">Terima kasih sudah mengerjakan Ujian ini dengan baik.</p>
           <p class="card-text">Untuk Nilai Hasil Ujian ini untuk akan di post Account Ujian masing-masing, jadi tetap stand-by untuk mengecek.</p>
-
+          <p>Nilai Ujian:</p>
+          {{-- <input type="text" name="total_correct" value="{{ round(($ujianSekolah*100) / $ujianSekolahCount) }}"> --}}
+          {{-- {{ round(($correct*100) / $total_quiz) }} --}}
+          {{-- {{-- <span class="badge bg-success p-3 text-white fw-bold  " style="font-size: 16px;">{{ $ujianSekolah ?? "" }}</span> --}}
+          {{-- <span class="badge bg-success p-3 text-white fw-bold  " style="font-size: 16px;">{{ $ujianSekolahCount ?? "" }}</span> --}} --}}
+          <span class="badge bg-success p-3 text-white fw-bold  " style="font-size: 16px;">{{ round(($ujianSekolah*100) / $ujianSekolahCount) }}</span> --}}
         </div>
-      </div>
-      
-      
+
+    </div>
+
+
       <a href="{{ url('/home') }}" class="btn btn-primary mt-4"><i class="bi bi-box-arrow-in-right fa-2x"></i> Keluar</a>
 
-      
+
     </div>
   </div>
 </div>

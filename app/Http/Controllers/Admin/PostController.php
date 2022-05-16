@@ -54,6 +54,7 @@ class PostController extends Controller
             'pilihan_c' => 'required',
             'pilihan_d' => 'required',
             'jawaban' => 'required',
+            // 'correct' => 'required',
         ]);
 
         $post = Post::create([
@@ -64,6 +65,7 @@ class PostController extends Controller
             'pilihan_c' => $request->pilihan_c,
             'pilihan_d' => $request->pilihan_d,
             'jawaban' => $request->jawaban,
+            // 'correct' => $request->correct,
         ]);
 
         if($post){
@@ -118,8 +120,9 @@ class PostController extends Controller
             'pilihan_c' => 'required',
             'pilihan_d' => 'required',
             'jawaban' => 'required',
+            // 'correct' => 'required',
         ]);
-        
+
         $post = Post::find($request->id);
         $post = $post->update([
             'id_category' => $request->id_category,
@@ -129,6 +132,7 @@ class PostController extends Controller
             'pilihan_c' => $request->pilihan_c,
             'pilihan_d' => $request->pilihan_d,
             'jawaban' => $request->jawaban,
+            // 'correct' => $request->correct,
         ]);
 
         if($post){
@@ -151,9 +155,9 @@ class PostController extends Controller
     }
 
     public function deleteAll(Request $request)
-    {   
+    {
         $ids = $request->ids;
-        Post::whereIn('id',explode(',',$ids))->delete(); 
+        Post::whereIn('id',explode(',',$ids))->delete();
         $messages = ['success', 'Delete Post successfully!'];
         return response()->json([
             'success' => $messages,

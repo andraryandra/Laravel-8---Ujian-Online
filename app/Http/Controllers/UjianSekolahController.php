@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Category;
 use App\Models\UjianSekolah;
+use App\Models\DataUjian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -23,14 +24,18 @@ class UjianSekolahController extends Controller
     public function index()
     {
 
-        $ujianSekolahs = User::with('kelas')->get();
+        // $ujianSekolahs = User::with('kelas')->get();
+        $ujianSekolahs = UjianSekolah::all();
         return view('ujianSekolah.index', compact('ujianSekolahs'));
     }
 
-    public function indexSelesai()
+    public function indexSelesai(Request $request)
     {
-        $ujianSekolah = User::with('kelas')->get();
-        return view('ujianSekolah.indexSelesai', compact('ujianSekolah'));
+        // $ujianSekolah = UjianSekolah::sum('correct', Auth::user()->id, '=', 1);
+        $ujianSekolah = UjianSekolah::where('id_user', Auth::user()->id)->sum('correct');
+        $ujianSekolahCount = UjianSekolah::where('id_user', Auth::user()->id)->count();
+        return view('ujianSekolah.indexSelesai', compact('ujianSekolah','ujianSekolahCount'));
+
     }
 
     public function indexDataUjian()
@@ -52,11 +57,10 @@ class UjianSekolahController extends Controller
     public function create($id)
     {
         $DisujianKelases = DistribusiUjianKelas::with('kelas')->with('category')->with('categoryUjian')->find($id);
-        // $DisujianKelases = DistribusiUjianKelas::with('category')->with('categoryUjian')->first();
         $ujianSekolah = UjianSekolah::with('kelas')->with('distribusiUjianKelas')->get();
         $post = Post::get();
         $categori = Category::pluck('name_category', 'id')->all();
-        return view('ujianSekolah.create', compact('ujianSekolah','categori','post','DisujianKelases'));
+        return view('ujianSekolah.create', compact('ujianSekolah', 'categori', 'post', 'DisujianKelases'));
     }
 
     /**
@@ -65,53 +69,63 @@ class UjianSekolahController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, UjianSekolah $ujianSekolah)
+    public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'id_kelas' => 'required',
-        //     'id_user' => 'required',
-        //     'nama_ujian' => 'required',
-        //     'tanggal_ujian' => 'required',
-        //     'waktu_ujian' => 'required',
-        //     'jumlah_soal' => 'required',
-        //     'jumlah_benar' => 'required',
-        //     'jumlah_salah' => 'required',
-        //     'jumlah_kosong' => 'required',
-        //     'nilai' => 'required',
-        // ]);
 
-        $this->validate($request, [
-            // 'id_kelas' => 'required',
-            'id_user' => 'required',
-            // 'id_sekolah_asal' => 'required',
-            'id_category_ujian' => 'required',
-            'id_soal_ujian' => 'required',
-            // 'pila' => 'required',
-            // 'pilb' => 'required',
-            // 'pilc' => 'required',
-            // 'pild' => 'required',
-            'id_jawaban' => 'required',
-        ]);
+        foreach($request->id_jawaban as $key => $name) {
+            $idjawaban = $request->id_jawaban[$key];
+            $id_soalujian = $request->id_soalujian[$key];
+            $jawaban = Post::find($id_soalujian)->jawaban;
 
-            $ujianSekolah = UjianSekolah::insert([
-            // 'id_kelas' => $request->id_kelas,
-            'id_user' => $request->id_user,
-            // 'id_sekolah_asal' => $request->id_sekolah_asal,
-            'id_category_ujian' => $request->id_category_ujian,
-            'id_soal_ujian' => $request->id_soal_ujian,
-            // 'pila' => $request->pila,
-            // 'pilb' => $request->pilb,
-            // 'pilc' => $request->pilc,
-            // 'pild' => $request->pild,
-            'id_jawaban' => $request->id_jawaban,
-            'created_at' => now(),
-        ]);
+            $benar = 1;
+            $salah = 0;
 
-        if($ujianSekolah){
-            return redirect()->route('ujianSekolah.indexSelesai')->with('success', 'Selalamat Anda Telah Mengerjakan Ujian Sekolah dengan baik.');
-        }else{
-            return redirect()->route('ujianSekolah.index')->with('error', 'Terjadi kesalahan sistem, silahkan menghubungi pihak Admin.');
+            if($idjawaban == $jawaban) {
+                $correct = 1;
+            }else{
+                $correct = 0;
+            }
+
+            $insert = [
+                'id_kelas' => $request->id_kelas,
+                'id_user' => $request->id_user,
+                'id_sekolah_asal' => $request->id_sekolah_asal,
+                'id_category_pelajaran' => $request->id_category_pelajaran,
+                'id_category_ujian' => $request->id_category_ujian,
+                'id_soalujian' => $id_soalujian,
+                'id_jawaban' => $idjawaban,
+                'correct' => $correct,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+
+            if($correct == 1) {
+                $hasil = UjianSekolah::where('id_user', Auth::user()->id)->sum('correct') + 1;
+            }else{
+                $hasil = UjianSekolah::where('id_user', Auth::user()->id)->sum('correct');
+            }
+
+            $dataUjian = [
+                'id_kelas' => $request->id_kelas,
+                'id_user' => $request->id_user,
+                'id_sekolah_asal' => $request->id_sekolah_asal,
+                'id_category_pelajaran' => $request->id_category_pelajaran,
+                'id_category_ujian' => $request->id_category_ujian,
+                // 'id_ujiansekolah' => $request->id,
+                'total_correct' => $hasil,
+                // 'total_nilai' => $hasil2,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+
+
+            DB::table('ujian_sekolahs')->insert($insert);
+
         }
+        DB::table('data_ujians')->insert($dataUjian);
+
+        return redirect()->route('ujianSekolah.indexSelesai')->withSuccess('Selamat Telah Mengerjakan Ujian Dengan Baik '. Auth::user()->name .'!');
+
     }
 
     /**
@@ -124,29 +138,6 @@ class UjianSekolahController extends Controller
     {
         $ujianSekolah = User::with('kelas')->findOrFail($id);
         return view('ujianSekolah.show', compact('ujianSekolah'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\UjianSekolah  $ujianSekolah
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(UjianSekolah $ujianSekolah)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\UjianSekolah  $ujianSekolah
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, UjianSekolah $ujianSekolah)
-    {
-        //
     }
 
     /**

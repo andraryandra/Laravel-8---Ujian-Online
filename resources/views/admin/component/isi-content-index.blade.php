@@ -166,7 +166,7 @@
                     <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-info-circle-fill"></i> Information Dashboard</h6>
                 </div>
                 <div class="card-body">
-                    <p>Selamat Datang <b>{{ Auth::user()->name }}</b></p>
+                    <p class="text-capitalize">Selamat Datang <b>{{ Auth::user()->name }}</b></p>
                     <p class="mb-0">Aplikasi ini digunakan untuk pembelajaran dan penggunaan Ujian secara online. Selamat menikmati...</p>
                 </div>
             </div>

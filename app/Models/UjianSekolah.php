@@ -19,11 +19,8 @@ class UjianSekolah extends Model
         'id_sekolah_asal',
         'id_category_ujian',
         'id_soal_ujian',
-        'pila',
-        'pilb',
-        'pilc',
-        'pild',
         'id_jawaban',
+        'correct',
     ]);
 
      // ujianSekolah butuh Kelas untuk manggil id_user
@@ -41,6 +38,22 @@ class UjianSekolah extends Model
      {
          return $this->belongsTo(Category::class, 'id_category_ujian');
      }
+
+     public function category_ujian()
+     {
+         return $this->belongsTo(CategoryUjian::class, 'id_category_ujian');
+     }
+
+     public function category_pelajaran()
+     {
+         return $this->belongsTo(Category::class, 'id_category_pelajaran');
+     }
+
+     public function post()
+     {
+         return $this->belongsTo(Post::class, 'id_soalujian');
+     }
+
 
      public function distribusiUjianKelas()
      {
