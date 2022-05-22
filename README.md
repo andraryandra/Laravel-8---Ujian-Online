@@ -1,4 +1,4 @@
-Selamat Datang di Project Laravel 8 Ujian Online.
+<h1 class="fw-bold">Selamat Datang di Project Laravel 8 Ujian Online.</h1>
 
 Untuk menggunakan atau menjalankan Project Laravel 8 Ujian Online ini.
 
