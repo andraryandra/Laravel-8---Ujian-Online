@@ -14,23 +14,23 @@ class SekolahSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sekolas')->insert([
+        DB::table('sekolahs')->insert([
             'name_sekolah' => 'MTS Lohbener Indramayu',
             'created_at' => now(),
         ]);
-        DB::table('sekolas')->insert([
+        DB::table('sekolahs')->insert([
             'name_sekolah' => 'SMPN 1 Karangampel',
             'created_at' => now(),
         ]);
-        DB::table('sekolas')->insert([
+        DB::table('sekolahs')->insert([
             'name_sekolah' => 'SMP Muhammadiyah Karangampel',
             'created_at' => now(),
         ]);
-        DB::table('sekolas')->insert([
+        DB::table('sekolahs')->insert([
             'name_sekolah' => 'SMPN Lohbener Indramayu',
             'created_at' => now(),
         ]);
-        DB::table('sekolas')->insert([
+        DB::table('sekolahs')->insert([
             'name_sekolah' => 'SMPN 1 Indramayu',
             'created_at' => now(),
         ]);

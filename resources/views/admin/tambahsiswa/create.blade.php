@@ -53,9 +53,12 @@
                     </select>
                 </div>
                 <div class="form-group m-3" >
-                    <label for="sekolah_asal" class="pb-2 fw-bold fs-5"><i class="bi bi-building"></i> Sekolah</label>
-                    <select class="form-control py-2" name="sekolah_asal" id="sekolah_asal">
-                        <option class="fw-bold" value="SMP NEGERI 1 LOHBENER">SMP NEGERI 1 LOHBENER</option>
+                    <label for="sekolah_asal" class="pb-2  fs-5"><i class="bi bi-building"></i> Sekolah</label>
+                    <select class="form-select form-select-lg  py-2" name="sekolah_asal" id="sekolah_asal">
+                        {{-- <option class="" value="">Pilih Sekolah...</option> --}}
+                        @if(Auth::user()->role == 'admin' && Auth::user()->sekolah->name_sekolah)
+                            <option class="fw-bold" value="{{ Auth::user()->sekolah->id }}">{{ Auth::user()->sekolah->name_sekolah }}</option>
+                        @endif
                     </select>
                 </div>
                 <hr>

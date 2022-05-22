@@ -9,7 +9,7 @@
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="/home">{{ __("Dashboard") }}</a></li>
-              <li class="breadcrumb-item active" aria-current="page">{{ __("Admin") }}</li>
+              <li class="breadcrumb-item active" aria-current="page">{{ __("Admin Sekolah") }}</li>
             </ol>
           </nav>
     </div>
@@ -18,12 +18,12 @@
     <div class="row">
        <!-- Earnings (Monthly) Card Example -->
        <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Jumlah Data Siswa">
+        <div class="card border-left-success shadow h-100 py-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Jumlah Data Admin Sekolah">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            {{ __("Admin") }}
+                            {{ __("Admin Sekolah") }}
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
@@ -94,9 +94,9 @@
                                 <input type="checkbox" class="sub_chk" data-id="{{$admin->id}}">
                             </td>
                             <td>{{ $no++ }}</td>
-                            <td class="text-capitalize">{{ $admin->role }}</td>
-                            <td class="text-capitalize">{{ $admin->name }}</td>
-                            <td class="text-capitalize">{{ $admin->sekolah->name_sekolah }}</td>
+                            <td class="text-capitalize">{{ $admin->role ?? ""}}</td>
+                            <td class="text-capitalize">{{ $admin->name ?? ""}}</td>
+                            <td class="text-capitalize">{{ $admin->sekolah->name_sekolah ?? ""}}</td>
                             <td class="text-center">
                                 <a href="/admin-show-{{ $admin->id }}" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
                                 <a href="/admin-edit-{{ $admin->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i></a>

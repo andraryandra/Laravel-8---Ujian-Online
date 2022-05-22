@@ -2,8 +2,6 @@
 @section('title', 'Edit Guru')
 @section('guruAdmin')
 
-
-<!-- Begin Page Content -->
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -61,7 +59,7 @@
             </div>
             <div class="card-body">
                 <form action="/guru/update" method="post">
-                    @csrf   
+                    @csrf
                     <div class="m-3" hidden>
                         <label for="id" class="pb-2 fw-bold">ID</label>
                         <input type="text" class="form-control" placeholder="id" name="id" value="{{ $guruAdmin->id }}" required>
@@ -93,14 +91,14 @@
                     </div>
                     <div class="form-group m-3" hidden>
                         <label for="sekolah_asal" class="pb-2 fw-bold fs-5"><i class="bi bi-building"></i> Sekolah</label>
-                        <select class="form-control py-2" name="sekolah_asal" id="sekolah_asal">
-                            <option class="fw-bold" value="SMP NEGERI 1 LOHBENER">SMP NEGERI 1 LOHBENER</option>
+                        <select class="form-select form-select-lg py-2" name="sekolah_asal" id="sekolah_asal">
+                            <option value="{{ $guruAdmin->sekolah_asal }}">{{ $guruAdmin->sekolah->name_sekolah }}</option>
                         </select>
                     </div>
                     <hr class="m-3">
                     <h4 class="fw-bold m-3">Account Login Guru</h4>
                     <hr class="m-3">
-                    
+
                     <div class="m-3">
                         <label for="username" class="pb-2 fw-bold fs-5"><i class="bi bi-person-check"></i> {{ __('Username Account') }} <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" placeholder="Username Account" name="username" value="{{ $guruAdmin->username  }}">
@@ -113,7 +111,7 @@
                     <div class="m-3 mt-4">
                         <button type="submit" class="btn btn-primary fs-5 shadow mb-5"><i class="bi bi-check-circle"></i> SIMPAN</button><hr>
                         <button type="reset" class="btn btn-warning fs-5 shadow fst-italic fw-bold" style="float: right;"><i class="bi bi-info-circle-fill"></i> Kembalikan Data Awal</button>
-                    </div> 
+                    </div>
                 </form>
             </div>
          </div>

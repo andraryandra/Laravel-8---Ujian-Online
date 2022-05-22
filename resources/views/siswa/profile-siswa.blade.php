@@ -27,6 +27,6 @@
     </div>
     <div class="col-6 mb-3">
       <h6 class="fw-bold">Sekolah </h6>
-      <p class="text-muted text-uppercase">{{ Auth::User()->sekolah_asal ?? "Database not found!" }}</p>
+      <p class="text-muted text-uppercase">{{ Auth::User()->sekolah->name_sekolah ?? "Database not found!" }}</p>
     </div>
   {{-- </div> --}}

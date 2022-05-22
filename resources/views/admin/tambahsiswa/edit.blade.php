@@ -59,8 +59,8 @@
                 <h6 class="font-weight-bold text-primary">DataTable </h6>
                 <p class="">Fitur pada bagian Post ini berfungsi untuk menambahkan Soal Ujian yang dimana sesuai dengan mata Ujian SMP / SMA / SMK.</p>
             </div>
- 
-        @if($siswaAdmin->kelas == false ?? 'Database Not Found!' ) 
+
+        @if($siswaAdmin->kelas == false ?? 'Database Not Found!' )
         <div class="alert alert-warning d-flex align-items-center m-3" role="alert">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
                 <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
@@ -74,21 +74,21 @@
 
             <div class="card-body">
                 <form action="/siswa/update" method="post">
-                    @csrf   
+                    @csrf
                 <div class="m-3" hidden>
                     <label for="id" class="pb-2 fw-bold">ID</label>
                     <input type="text" class="form-control" placeholder="id" name="id" value="{{ $siswaAdmin->id }}" required>
                 </div>
                     <div class="form-group m-3">
-                        
+
                         <label for="id_kelas" class="pb-2 fw-bold  fs-5"><i class="bi bi-shop-window"></i> Kelas</label>
                         <select class="form-select form-select-lg mb-3 m" name="id_kelas" id="id_kelas">
                             <option disabled value="">Pilih Kelas ...</option>
                             @foreach($kelas as $id => $kelases)
-                                <option class=" 
-                                @if($kelases >= '7-A' && $kelases <= '7-Z') bg-info text-white  
-                                @elseif($kelases >= '8-A' && $kelases <= '8-Z') bg-warning 
-                                @elseif($kelases >= '9-A' && $kelases <= '9-Z') bg-success text-white  @endif" 
+                                <option class="
+                                @if($kelases >= '7-A' && $kelases <= '7-Z') bg-info text-white
+                                @elseif($kelases >= '8-A' && $kelases <= '8-Z') bg-warning
+                                @elseif($kelases >= '9-A' && $kelases <= '9-Z') bg-success text-white  @endif"
                                 value="{{ $id }}" {{ $siswaAdmin->id_kelas == $id ? 'selected' : '' }}>{{ $kelases }}</option>
                             @endforeach
                         </select>
@@ -117,16 +117,16 @@
                             @endif
                         </select>
                     </div>
-                    <div class="form-group m-3" hidden>
+                    <div class="form-group m-3" >
                         <label for="sekolah_asal" class="pb-2 fw-bold fs-5"><i class="bi bi-building"></i> Sekolah</label>
-                        <select class="form-control py-2" name="sekolah_asal" id="sekolah_asal">
-                            <option class="fw-bold" value="SMP NEGERI 1 LOHBENER">SMP NEGERI 1 LOHBENER</option>
+                        <select class="form-select form-select-lg py-2" name="sekolah_asal" id="sekolah_asal">
+                                <option value="{{ Auth::user()->sekolah->id }}" selected>{{ Auth::user()->sekolah->name_sekolah }}</option>
                         </select>
                     </div>
                     <hr class="m-3">
                     <h4 class="fw-bold m-3">Account Login Siswa</h4>
                     <hr class="m-3">
-                    
+
                     <div class="m-3">
                         <label for="username" class="pb-2 fw-bold fs-5"><i class="bi bi-person-check"></i> {{ __('Username Account') }} <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" placeholder="Username Account" name="username" value="{{ $siswaAdmin->username ?? "" }}">
@@ -139,7 +139,7 @@
                     <div class="m-3 mt-4">
                         <button type="submit" class="btn btn-primary fs-5 shadow mb-5"><i class="bi bi-check-circle"></i> SIMPAN</button><hr>
                         <button type="reset" class="btn btn-warning fs-5 shadow fst-italic fw-bold" style="float: right;"><i class="bi bi-info-circle-fill"></i> Kembalikan Data Awal</button>
-                    </div> 
+                    </div>
                 </form>
             </div>
          </div>

@@ -46,7 +46,7 @@
         </div>
         </div>
     </div>
-        
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -55,17 +55,17 @@
             </div>
             <div class="m-3">
                 <button type="button" class="btn btn-primary  m-1 p-3 shadow" data-bs-toggle="modal" data-bs-target="#createGuru">
-                <i class="bi bi-folder-plus fa-1x"></i> 
+                <i class="bi bi-folder-plus fa-1x"></i>
                     Create Guru
                 </button>
 
                 <button type="button" class="btn btn-success  m-1 p-3 shadow" data-bs-toggle="modal" data-bs-target="#importGuru">
-                    <i class="bi bi-file-earmark-spreadsheet-fill"></i>  
+                    <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                     Import Excel
                 </button>
 
                 <button class="btn btn-danger  m-1 p-3 shadow delete_all" data-url="{{ url('/guruDeleteAll') }}">
-                    <i class="bi bi-trash-fill"></i> 
+                    <i class="bi bi-trash-fill"></i>
                     Delete All Selected
                 </button>
             </div>
@@ -75,7 +75,7 @@
                         <thead>
                             <tr>
                                 <th width="5%" class="text-center">
-                                    <input type="checkbox" class="p-5" id="master" /> 
+                                    <input type="checkbox" class="p-5" id="master" />
                                 </th>
                                 <th width="">No</th>
                                 <th width="">Status</th>
@@ -98,25 +98,25 @@
                             <td class="fw-bold bg-primary text-white text-capitalize">{{ $guru->role ?? "" }}</td>
                             <td class="text-capitalize">{{ $guru->name ?? "" }}</td>
                             <td>{{ $guru->jk ?? "" }}</td>
-                            <td>{{ $guru->sekolah_asal ?? "" }}</td>
+                            <td>{{ $guru->sekolah->name_sekolah ?? "" }}</td>
                             <td class="text-center">
                                 <a href="/guru-show-{{ $guru->id }}" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
                                 <a href="/guru-edit-{{ $guru->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i></a>
-                                <a href="/guru/delete/{{ $guru->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>   
-                                </td> 
-                            </tr> 
-                            @endforeach                      
+                                <a href="/guru/delete/{{ $guru->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>
+                                </td>
+                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    
+
 
 {{-- Import guru --}}
     @include('admin.tambahguru.importguru')
-    
+
 {{-- Create guru --}}
     @include('admin.tambahguru.create')
 

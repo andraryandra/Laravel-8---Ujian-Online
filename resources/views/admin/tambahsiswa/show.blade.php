@@ -59,8 +59,8 @@
                 <p class="">Fitur pada bagian Show ini berfungsi untuk menampilkan Identitas data diri yang dimana sesuai dengan data SMP / SMA / SMK .</p>
             </div>
             <div class="card-body">
-                <div class="table-responsive "> 
-                    <table class="table table-bordered" id="example" width="100%" cellspacing="0">           
+                <div class="table-responsive ">
+                    <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th width="">No</th>
@@ -77,14 +77,14 @@
                             @endphp
                             <tr>
                                 <td class="text-center fw-bold">{{ $no++ }}</td>
-                                <td>{{ $siswaAdmin->role }}</td>
-                                <td class="text-capitalize">{{ $siswaAdmin->name }}</td>
-                                <td>{{ $siswaAdmin->kelas->name_kelas }}</td>
-                                <td>{{ $siswaAdmin->jk }}</td>       
-                                <td >{{ $siswaAdmin->sekolah_asal }}</td>       
-                              
-                            </tr> 
-                        </tbody>  
+                                <td>{{ $siswaAdmin->role ?? ""}}</td>
+                                <td class="text-capitalize">{{ $siswaAdmin->name ?? ""}}</td>
+                                <td>{{ $siswaAdmin->kelas->name_kelas ?? ""}}</td>
+                                <td>{{ $siswaAdmin->jk ?? ""}}</td>
+                                <td >{{ $siswaAdmin->sekolah->name_sekolah ?? ""}}</td>
+
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>

@@ -93,7 +93,7 @@
                                 <input type="checkbox" class="sub_chk" data-id="{{$sekolah->id}}">
                             </td>
                             <td>{{ $no++ }}</td>
-                            <td>{{ $sekolah->name_sekolah }}</td>
+                            <td>{{ $sekolah->name_sekolah ?? ""}}</td>
                             <td class="text-center">
                                 <a href="/sekolah-show-{{ $sekolah->id }}" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
                                 <a href="/sekolah-edit-{{ $sekolah->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i></a>

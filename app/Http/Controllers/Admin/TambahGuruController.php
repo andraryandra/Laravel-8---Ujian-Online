@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Kelas;
+use App\Models\Sekolah;
 use App\Imports\PostImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,9 +24,10 @@ class TambahGuruController extends Controller
     {
         // $guruAdmins = User::all();
         $guruAdmins = User::where('role', 'guru')->orderBy('id', 'desc')->get(); // Menampilkan data terbaru
+        $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
         // ->whereRole('admin') // menampilkan data  Admin saja
         $guruAdminCount = User::where('role', 'guru')->count();
-        return view('admin.tambahguru.index', compact('guruAdmins','guruAdminCount'));
+        return view('admin.tambahguru.index', compact('guruAdmins','sekolahs','guruAdminCount'));
 
     }
 
@@ -77,8 +79,8 @@ class TambahGuruController extends Controller
             return redirect()->route('guru.index')->with('success', 'Created Guru Admin successfully!');
         } else {
             return redirect()->route('guru.index')->with('error', 'Failed to create Guru Admin!');
-        }    
-    }   
+        }
+    }
 
     /**
      * Display the specified resource.
@@ -102,8 +104,9 @@ class TambahGuruController extends Controller
     public function edit($id)
     {
         $guruAdmin = User::findOrFail($id);
+        $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
         $guruAdminCount = User::where('role', 'guru')->count();
-        return view('admin.tambahguru.edit', compact('guruAdmin', 'guruAdminCount'));
+        return view('admin.tambahguru.edit', compact('guruAdmin','sekolahs', 'guruAdminCount'));
     }
 
     /**
@@ -115,7 +118,7 @@ class TambahGuruController extends Controller
      */
     public function update(Request $request, User $guruAdmin)
     {
-        
+
         DB::table('users')->where('id', $request->id)->update([
             'no_induk' => $request->no_induk,
             'nisn' => $request->nisn,
@@ -127,7 +130,7 @@ class TambahGuruController extends Controller
             'updated_at' => now(),
         ]);
 
-        return redirect()->route('guru.index')->with('success', 'Updated Guru successfully!');  
+        return redirect()->route('guru.index')->with('success', 'Updated Guru successfully!');
     }
 
 
@@ -144,9 +147,9 @@ class TambahGuruController extends Controller
     }
 
     public function deleteAll(Request $request)
-    {   
+    {
         $ids = $request->ids;
-        User::whereIn('id',explode(',',$ids))->delete(); 
+        User::whereIn('id',explode(',',$ids))->delete();
         $messages = ['success', 'Delete Post successfully!'];
         return response()->json([
             'success' => $messages,
@@ -159,5 +162,5 @@ class TambahGuruController extends Controller
         //jika berhasil kembali ke halaman sebelumnya
         return back()->with('success', 'Import Guru successfully!');
     }
-    
+
 }

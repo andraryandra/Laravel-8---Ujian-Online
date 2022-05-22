@@ -59,8 +59,8 @@
                 <p class="">Fitur pada bagian Show ini berfungsi untuk menampilkan Identitas data diri yang dimana sesuai dengan data SMP / SMA / SMK .</p>
             </div>
             <div class="card-body">
-                <div class="table-responsive "> 
-                    <table class="table table-bordered" id="example" width="100%" cellspacing="0">           
+                <div class="table-responsive ">
+                    <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th width="">No</th>
@@ -79,9 +79,9 @@
                                 <td class="text-capitalize">{{ $guruAdmin->role ?? "" }}</td>
                                 <td class="text-capitalize">{{ $guruAdmin->name ?? "" }}</td>
                                 <td class="text-uppercase">{{ $guruAdmin->jk ?? "" }}</td>
-                                <td class="text-uppercase">{{ $guruAdmin->sekolah_asal ?? "" }}</td>
-                            </tr> 
-                        </tbody>  
+                                <td class="text-uppercase">{{ $guruAdmin->sekolah->name_sekolah ?? "" }}</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>

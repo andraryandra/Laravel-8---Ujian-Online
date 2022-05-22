@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Kelas;
+use App\Models\Sekolah;
 use App\Imports\PostImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,9 +24,10 @@ class TambahSiswaController extends Controller
     {
         $siswaAdmins = User::with('kelas')->where('role', 'siswa')->orderBy('id', 'desc')->get(); // Menampilkan data terbaru
         // ->whereRole('admin') // menampilkan data  Admin saja
+        $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
         $kelas = Kelas::pluck('name_kelas', 'id')->all();
         $siswaAdminCount = User::where('role', 'siswa')->count();
-        return view('admin.tambahsiswa.index', compact('siswaAdmins','kelas','siswaAdminCount'));
+        return view('admin.tambahsiswa.index', compact('siswaAdmins','sekolahs','kelas','siswaAdminCount'));
     }
 
     /**
@@ -91,9 +93,10 @@ class TambahSiswaController extends Controller
     public function show($id)
     {
         $siswaAdmin = User::findOrFail($id);
+        $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
         $siswaAdmins = User::with('kelas')->get();
         $siswaAdminCount = User::where('role', 'siswa')->count();
-        return view('admin.tambahsiswa.show', compact('siswaAdmin','siswaAdmins','siswaAdminCount'));
+        return view('admin.tambahsiswa.show', compact('siswaAdmin','sekolahs','siswaAdmins','siswaAdminCount'));
     }
 
     /**
@@ -105,9 +108,10 @@ class TambahSiswaController extends Controller
     public function edit($id)
     {
         $siswaAdmin = User::with('kelas')->findOrFail($id);
+        $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
         $kelas = Kelas::pluck('name_kelas', 'id')->all();
         $siswaAdminCount = User::where('role', 'siswa')->count();
-        return view('admin.tambahsiswa.edit', compact('siswaAdmin','kelas','siswaAdminCount'));
+        return view('admin.tambahsiswa.edit', compact('siswaAdmin','sekolahs','kelas','siswaAdminCount'));
     }
 
     /**

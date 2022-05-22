@@ -104,19 +104,12 @@ class TambahAdminController extends Controller
      */
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'username' => 'required',
-            'password' => 'required',
-            'role' => 'required',
-            'sekolah_asal' => 'required',
-        ]);
 
         DB::table('users')->where('id', $request->id)->update([
+            'role' => $request->role,
             'name' => $request->name,
             'username' => $request->username,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
             'sekolah_asal' => $request->sekolah_asal,
             'updated_at' => now(),
         ]);

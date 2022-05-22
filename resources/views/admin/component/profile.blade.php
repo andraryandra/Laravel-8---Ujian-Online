@@ -94,7 +94,7 @@
                                           </div> --}}
                                           <hr>
                                           <div class="d-flex justify-content-start">
-                                            <a href="#!" class="fw-bold">{{ Auth::User()->sekolah_asal ?? "Database not found!" }}</a>
+                                            <a href="#!" class="fw-bold">{{ Auth::User()->sekolah->name_sekolah ?? "Database not found!" }}</a>
                                           </div>
                                         </div>
                                       </div>
