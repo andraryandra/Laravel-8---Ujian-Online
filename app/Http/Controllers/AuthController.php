@@ -14,7 +14,7 @@ class AuthController extends Controller
 
     public function index()
     {
-        $users = User::get();
+        $users = User::all();
         return response()->json(['messagess' => 'Data Tampil Success', 'Data' => $users]);
     }
 
@@ -22,10 +22,10 @@ class AuthController extends Controller
     {
         // Validate
         $rules=[
-          'role'=>'required|string', 
-          'name'=>'required|string',  
-          'username'=>'required|string|unique:users',  
-          'password'=>'required|string|min:6',  
+          'role'=>'required|string',
+          'name'=>'required|string',
+          'username'=>'required|string|unique:users',
+          'password'=>'required|string|min:6',
         ];
         $validator = Validator::make($req->all(), $rules);
         if($validator->fails()){
@@ -41,12 +41,12 @@ class AuthController extends Controller
         $token = $user->createToken('Personal Access Token')->plainTextToken;
         $response = ['user'=> $user, 'token'=>$token];
         return response()->json($response, 200);
-        
+
     }
 
     public function login(Request $req)
     {
-        
+
          // Validate Inputs
          $rules = [
             'role' => 'required',
@@ -84,6 +84,6 @@ class AuthController extends Controller
             'data' => $user
         ], 200);
     }
-    
+
 
 }

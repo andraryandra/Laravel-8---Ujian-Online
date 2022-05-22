@@ -8,6 +8,7 @@ use App\Models\UjianSekolah;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\DistribusiUjianKelas;
+use Illuminate\Support\Facades\Auth;
 
 class DataUjianController extends Controller
 {
@@ -23,6 +24,7 @@ class DataUjianController extends Controller
         ->with('kelas')
         ->with('user')
         ->get();
+
         $dataUjianCount = DataUjian::count();
         return view('guru.dataUjian.index', compact('dataUjian','dataUjianCount'));
     }
@@ -50,10 +52,12 @@ class DataUjianController extends Controller
         ->with('user')
         ->get();
 
-        $post = Post::get();
+        // $ujianSekolahCount = UjianSekolah::where('id_user', Auth::user()->id)->count();
+        // $ujianSekolahCount = UjianSekolah::count();
+        $ujianSekolahCount = UjianSekolah::where('id_user', $id)->count();
 
         $dataUjianCount = DataUjian::count();
-        return view('guru.dataUjian.show', compact('dataUjian','ujianSekolah','post','dataUjianCount'));
+        return view('guru.dataUjian.show', compact('dataUjian','ujianSekolah','dataUjianCount','ujianSekolahCount'));
 
     }
 

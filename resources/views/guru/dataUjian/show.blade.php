@@ -66,7 +66,7 @@
                                 <th>Mata Pelajaran</th>
                                 <th>Nama Siswa</th>
                                 <th>Kelas</th>
-                                <th>Nilai</th>
+                                <th>Total Jawaban Benar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,6 +80,16 @@
                                 <td class="text-capitalize">{{ $dataUjian->user->name }}</td>
                                 <td>{{ $dataUjian->kelas->name_kelas }}</td>
                                 <td>{{ $dataUjian->total_correct }}</td>
+                                {{-- @if($dataUjian->category_ujian->name_category_ujian == $ujianSekolah && $dataUjian->category_pelajaran->name_category == $ujianSekolah && $dataUjian->user->name == $ujianSekolah && $dataUjian->kelas->name_kelas == $ujianSekolah) --}}
+                                {{-- @if($dataUjian->category_ujian->name_category_ujian == $ujianSekolah && $dataUjian->category_pelajaran->name_category == $ujianSekolah && $dataUjian->user->name == $ujianSekolah && $dataUjian->kelas->name_kelas == $ujianSekolah) --}}
+
+                                    {{-- <td>{{ count($ujianSekolah) }}</td> --}}
+
+
+
+                                {{-- @endif --}}
+
+                                {{-- <td>{{ round(($ujianSekolahs*100) / $ujianSekolahCount) }}</td> --}}
 
                             </tr>
                         </tbody>

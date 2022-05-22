@@ -6,6 +6,7 @@ use App\Models\Post;
 
 
 use App\Models\Kelas;
+use App\Models\Sekolah;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -15,7 +16,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    
+
     public $timestamps = true;
 
     /**
@@ -54,7 +55,7 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Post::class,'id_user','id_category');
     }
-    
+
     public function kelas()
     {
         return $this->belongsTo(Kelas::class,'id_kelas');
@@ -65,9 +66,13 @@ class User extends Authenticatable
 
     public function ujiansekolah()
     {
-        
+
         return $this->hasMany(UjianSekolah::class,'id_user');
     }
-    
+
+   public function sekolah()
+    {
+        return $this->belongsTo(Sekolah::class,'sekolah_asal');
+    }
 
 }

@@ -46,6 +46,7 @@ class UjianSekolahController extends Controller
         ->with('kelas')
         ->with('user')
         ->get();
+
         return view('guru.dataUjian.index', compact('ujianSekolah','dataUjian'));
     }
 

@@ -91,6 +91,7 @@
                             <td class="text-capitalize">{{ $dataUjians->user->name ?? "" }}</td>
                             <td>{{ $dataUjians->kelas->name_kelas ?? "" }}</td>
                             <td>{{ $dataUjians->total_correct ?? "" }}</td>
+                            {{-- <td>{{ round(($ujianSekolah*100) / $ujianSekolahCount) }}</td> --}}
                             <td class="text-center w-25">
                                 <a href="/dataUjian-show-{{ $dataUjians->id }}" class="btn btn-info text-white shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i> Lihat Hasil Ujian</a>
                             </td>

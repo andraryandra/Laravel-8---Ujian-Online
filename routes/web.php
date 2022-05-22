@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\User;
+use App\Models\Sekolah;
 use App\Models\Category;
+use App\Models\TambahAdmin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -12,9 +14,13 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\UjianSekolahController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DataUjianController;
 use App\Http\Controllers\Admin\TambahGuruController;
 use App\Http\Controllers\Admin\TambahSiswaController;
+use App\Http\Controllers\SuperAdmin\SekolahController;
 use App\Http\Controllers\Admin\CategoryUjianController;
+use App\Http\Controllers\SuperAdmin\TambahAdminController;
+use App\Http\Controllers\Admin\DistribusiUjianKelasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +45,43 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Auth::routes();
-Route::group(['middleware' => ['auth','role:admin']], function(){
+// ----------------- SUPER ADMIN -----------------------
+Route::group(['middleware' => ['auth']], function(){
+//Route Sekolah
+    Route::controller(SekolahController::class)->group(function () {
+        Route::get('/sekolah', 'index')->name('sekolah.index');
+        Route::get('/sekolah-show-{id}', 'show')->name('sekolah.show');
 
+        Route::get('/sekolah/create', 'create')->name('sekolah.create');
+        Route::post('/sekolah/store', 'store')->name('sekolah.store');
+
+        Route::get('/sekolah-edit-{id}', 'edit')->name('sekolah.edit');
+        Route::post('/sekolah/update', 'update')->name('sekolah.update');
+
+        Route::post('/importSekolah', 'importSekolah')->name('sekolah.importSekolah');
+
+        Route::delete('/sekolahDeleteAll', 'deleteAll')->name('sekolah.deleteAll');
+        Route::get('/sekolah/delete/{id}', 'destroy')->name('sekolah.delete');
+    });
+
+    Route::controller(TambahAdminController::class)->group(function () {
+        Route::get('/admin', 'index')->name('admin.index');
+        Route::get('/admin-show-{id}', 'show')->name('admin.show');
+
+        Route::get('/admin/create', 'create')->name('admin.create');
+        Route::post('/admin/store', 'store')->name('admin.store');
+
+        Route::get('/admin-edit-{id}', 'edit')->name('admin.edit');
+        Route::post('/admin/update', 'update')->name('admin.update');
+
+        Route::delete('/adminDeleteAll', 'deleteAll')->name('admin.deleteAll');
+        Route::get('/admin/delete/{id}', 'destroy')->name('admin.delete');
+    });
+
+});
+
+// ----------------- ADMIN -----------------------
+Route::group(['middleware' => ['auth','role:admin']], function(){
 //Route Profile
     Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
 

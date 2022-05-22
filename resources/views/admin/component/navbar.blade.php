@@ -19,7 +19,7 @@
             </div>
         </div> --}}
 
-        <h4 class="text-uppercase m-3"><span class="badge badge-primary p-2 shadow-sm"><i class="bi bi-hash"></i> {{ Auth::user()->sekolah_asal ?? "" }}</span></h4>
+        <h4 class="text-uppercase m-3"><span class="badge badge-primary p-2 shadow-sm"><i class="bi bi-hash"></i> {{ Auth::user()->sekolah->name_sekolah ?? "" }}</span></h4>
 
         {{-- <div class="row pt-3">
             <div class="input-group mb-3">

@@ -50,12 +50,18 @@
                                         <img src="img/undraw_profile_3.svg" alt="Avatar" class="img-fluid my-5 rounded-circle shadow-sm" style="width: 100%;" />
                                         @elseif(Auth::User()->role == 'admin')
                                         <img src="img/undraw_profile.svg" alt="Avatar" class="img-fluid my-5 rounded-circle shadow-sm" style="width: 100%;" />
+                                        @elseif(Auth::User()->role == 'superadmin')
+                                        <img src="img/undraw_profile.svg" alt="Avatar" class="img-fluid my-5 rounded-circle shadow-sm" style="width: 100%;" />
                                         @else
                                         <img src="" alt="">
                                         @endif
                                         <h2 class="text-capitalize fw-bold">{{ Auth::user()->name ?? "" }}</h2>
                                         <h2 class="fw-bold">{{ Auth::user()->kelas->name_kelas ?? "" }}</h2>
-                                        <h5 class="@if(Auth::user()->role == 'admin') badge badge-danger @elseif(Auth::user()->role == 'siswa') badge badge-primary @elseif(Auth::user()->role == 'guru') badge badge-warning @endif
+                                        <h5 class="
+                                            @if(Auth::user()->role == 'superadmin') badge badge-danger shadow
+                                            @elseif(Auth::user()->role == 'admin') badge badge-danger
+                                            @elseif(Auth::user()->role == 'siswa') badge badge-primary
+                                            @elseif(Auth::user()->role == 'guru') badge badge-warning @endif
                                          py-2 fs-5  mb-3 text-uppercase">- {{ Auth::user()->role ?? "" }} -</h5>
                                         {{-- <i class="far fa-edit mb-5"></i> --}}
                                       </div>
@@ -64,7 +70,9 @@
                                           <h6 class="fw-bold text-primary"><i class="bi bi-info-circle-fill"></i> Profile</h6>
                                           <hr class="mt-0 mb-4">
                                           <div class="row pt-1">
-                                            @if(Auth::user()->role == 'admin')
+                                            @if(Auth::user()->role == 'superadmin')
+                                              @include('superadmin.profile-superadmin')
+                                            @elseif(Auth::user()->role == 'admin')
                                               @include('admin.profile-admin')
                                             @elseif(Auth::user()->role == 'guru')
                                               @include('guru.profile-guru')

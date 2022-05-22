@@ -17,12 +17,19 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
+            'role' => 'superadmin',
+            'name' => 'superadmin',
+            'username' => 'superadmin',
+            'password' => Hash::make('superadmin'),
+            'created_at' => now(),
+        ]);
+
+        DB::table('users')->insert([
             'role' => 'admin',
             'name' => 'admin',
             'username' => 'admin',
-            // 'email' => 'admin@gmail.com',
             'password' => Hash::make('admin'),
-
+            'created_at' => now(),
         ]);
 
         DB::table('users')->insert([
@@ -30,7 +37,7 @@ class UserTableSeeder extends Seeder
             'name' => 'siswa',
             'username' => 'siswa',
             'password' => Hash::make('siswa12345'),
-
+            'created_at' => now(),
         ]);
     }
 }

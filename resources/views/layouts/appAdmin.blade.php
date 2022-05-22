@@ -101,6 +101,10 @@
 
                 <!-- Begin Page Content -->
                <div>
+                   <!-- SuperAdmin -->
+                    @yield('admin')
+                    @yield('sekolah')
+                    <!-- End SuperAdmin -->
                    <!-- Admin -->
                     @yield('profile')
                     @yield('content')

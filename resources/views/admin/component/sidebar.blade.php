@@ -40,6 +40,34 @@
     </li>
     @endif
 
+    @if(Auth::user()->role == 'superadmin')
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        {{ __("Super Admin") }}
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item
+    {{ Request::is('sekolah')? " active ":" " }}    || {{ Request::is('sekolah-edit-*')? " active ":" " }} || {{ Request::is('sekolah-show-*')? " active ":" " }}
+    || {{ Request::is('admin')? " active ":" " }} || {{ Request::is('admin-edit-*')? " active ":" " }} || {{ Request::is('admin-show-*')? " active ":" " }}
+    || {{ Request::is('#')? "active ":" " }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+           <i class="bi bi-person-plus-fill"></i>
+            <span>{{ __('Users') }}</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom Users</h6>
+                <a class="collapse-item {{ Request::is('sekolah')? " active ":" " }}  || {{ Request::is('sekolah-edit-*')? " active ":" " }}  || {{ Request::is('sekolah-show-*')? " active ":" " }}"  href="{{ url('/sekolah') }}">Sekolah</a>
+                <a class="collapse-item {{ Request::is('admin')? " active ":" " }} || {{ Request::is('admin-edit-*')? " active ":" " }} || {{ Request::is('admin-show-*')? " active ":" " }}" href="{{ url('/admin') }}">Admin</a>
+            </div>
+        </div>
+    </li>
+    @endif
+
     @if(Auth::User()->role == 'admin')
     <!-- Divider -->
     <hr class="sidebar-divider">
