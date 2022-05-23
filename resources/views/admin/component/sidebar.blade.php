@@ -128,12 +128,33 @@
 
 
     @if(Auth::user()->role == 'admin' || Auth::user()->role == 'guru')
-    <!-- Nav Item - Posts Ujian -->
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item
+    {{ Request::is('posts')? " active ":" " }}    || {{ Request::is('posts-edit-*')? " active ":" " }} || {{ Request::is('posts-show-*')? " active ":" " }}
+    || {{ Request::is('post-essay')? " active ":" " }} || {{ Request::is('post-essay-edit-*')? " active ":" " }} || {{ Request::is('post-essay-show-*')? " active ":" " }}
+    || {{ Request::is('#')? "active ":" " }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#posts" aria-expanded="true" aria-controls="posts">
+            <i class="bi bi-stickies"></i>
+            <span>{{ __('Post Ujian') }}</span>
+        </a>
+        <div id="posts" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom Category</h6>
+                <a class="collapse-item {{ Request::is('posts')? " active ":" " }}  || {{ Request::is('posts-edit-*')? " active ":" " }}  || {{ Request::is('posts-show-*')? " active ":" " }}"  href="{{ url('/posts') }}">
+                    {{ __("Soal Ujian Pilihan Ganda") }}</a>
+                <a class="collapse-item {{ Request::is('post-essay')? " active ":" " }} || {{ Request::is('post-essay-edit-*')? " active ":" " }} || {{ Request::is('post-essay-show-*')? " active ":" " }}" href="{{ url('/post-essay') }}">
+                    {{ __("Soal Ujian Essay") }}</a>
+            </div>
+        </div>
+    </li>
+
+    {{-- <!-- Nav Item - Posts Ujian -->
     <li class="nav-item {{ Request::is('posts')? " active ":" " }} || {{ Request::is('posts-edit-*') ? " active ":" " }} || {{ Request::is('posts-show-*') ? " active ":" " }}">
         <a class="nav-link " href="{{ url('/posts') }}">
             <i class="bi bi-file-post"></i>
             <span>{{ __('Post Ujian') }}</span></a>
-    </li>
+    </li> --}}
     @endif
 
     @if(Auth::user()->role == 'admin')

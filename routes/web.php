@@ -21,6 +21,7 @@ use App\Http\Controllers\SuperAdmin\SekolahController;
 use App\Http\Controllers\Admin\CategoryUjianController;
 use App\Http\Controllers\SuperAdmin\TambahAdminController;
 use App\Http\Controllers\Admin\DistribusiUjianKelasController;
+use App\Http\Controllers\Admin\PostEssayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,23 @@ Route::group(['middleware' => ['auth']], function(){
 Route::group(['middleware' => ['auth','role:admin']], function(){
 //Route Profile
     Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
+
+    Route::controller(PostEssayController::class)->group(function () {
+        Route::get('/post-essay', 'index')->name('post-essay.index');
+        Route::get('/post-essay-show-{id}', 'show')->name('post-essay.show');
+
+        Route::get('/post-essay/create', 'create')->name('post-essay.create');
+        Route::post('/post-essay/store', 'store')->name('post-essay.store');
+
+        Route::get('/post-essay-edit-{id}', 'edit')->name('post-essay.edit');
+        Route::post('/post-essay/update', 'update')->name('post-essay.update');
+
+        Route::delete('/postEssayDeleteAll', 'deleteAll')->name('post-essay.deleteAll');
+        Route::get('/post/delete/{id}', 'destroy')->name('post-essay.delete');
+
+        Route::post('/importPostsEssay', 'importPostsEssay')->name('posts.importPosts');
+
+    });
 
 // Route Post
     Route::get('/posts', [App\Http\Controllers\Admin\PostController::class, 'index'])->name('posts.index');

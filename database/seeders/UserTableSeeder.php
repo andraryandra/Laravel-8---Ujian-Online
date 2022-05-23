@@ -26,8 +26,18 @@ class UserTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'role' => 'admin',
-            'name' => 'admin',
-            'username' => 'admin',
+            'name' => 'adminMTS',
+            'username' => 'adminMTS',
+            'sekolah_asal' => 1,
+            'password' => Hash::make('admin'),
+            'created_at' => now(),
+        ]);
+
+        DB::table('users')->insert([
+            'role' => 'admin',
+            'name' => 'adminSMP',
+            'username' => 'adminSMP',
+            'sekolah_asal' => 2,
             'password' => Hash::make('admin'),
             'created_at' => now(),
         ]);

@@ -111,6 +111,7 @@
                     @yield('categoryUjian')
                     @yield('category')
                     @yield('post')
+                    @yield('postEssay')
                     @yield('kelas')
                     @yield('siswaAdmin')
                     @yield('guruAdmin')
