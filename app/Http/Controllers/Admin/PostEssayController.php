@@ -68,7 +68,9 @@ class PostEssayController extends Controller
     public function show($id)
     {
         $postsEssay = PostEssay::findOrFail($id);
-        return view('admin.postsEssay.show', compact('postsEssay'));
+        $categori = Category::pluck('name_category', 'id')->all();
+        $postEssayCount = PostEssay::count();
+        return view('admin.postsEssay.show', compact('postsEssay','categori','postEssayCount'));
     }
 
     /**
@@ -79,9 +81,10 @@ class PostEssayController extends Controller
      */
     public function edit($id)
     {
-        $postsEssay = PostEssay::findOrFail($id);
+        $postsEssay = PostEssay::find($id);
         $categori = Category::pluck('name_category', 'id')->all();
-        return view('admin.postsEssay.edit', compact('postsEssay','categori'));
+        $postEssayCount = PostEssay::count();
+        return view('admin.postsEssay.edit', compact('postsEssay','categori','postEssayCount'));
     }
 
     /**
@@ -91,15 +94,10 @@ class PostEssayController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $this->validate($request, [
-            'id_category' => 'required',
-            'soal_ujian_essay' => 'required',
-            'jawaban_essay' => 'required',
-        ]);
 
-        DB::table('post_essays')->where('id', $id)->update([
+        PostEssay::where('id', $request->id)->update([
             'id_category' => $request->id_category,
             'soal_ujian_essay' => $request->soal_ujian_essay,
             'jawaban_essay' => $request->jawaban_essay,

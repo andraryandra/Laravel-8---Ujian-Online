@@ -97,7 +97,7 @@ Route::group(['middleware' => ['auth','role:admin']], function(){
         Route::post('/post-essay/update', 'update')->name('post-essay.update');
 
         Route::delete('/postEssayDeleteAll', 'deleteAll')->name('post-essay.deleteAll');
-        Route::get('/post/delete/{id}', 'destroy')->name('post-essay.delete');
+        Route::get('/post-essay/delete/{id}', 'destroy')->name('post-essay.delete');
 
         Route::post('/importPostsEssay', 'importPostsEssay')->name('posts.importPosts');
 

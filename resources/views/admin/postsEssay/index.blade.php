@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="col-auto">
-                            <i class="bi bi-file-post fa-2x text-gray-300"></i>
+                            <i class="bi bi-stickies fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>

@@ -14,7 +14,7 @@
                 @csrf
                     <div class="form-group m-3 ">
                         <label for="id_category" class="fw-bold "><i class="bi bi-bookmarks-fill"></i> Category</label><br>
-                        <select class="form-control " data-style="btn-success" name="id_category" id="id_category">
+                        <select class="form-select form-select-lg " data-style="btn-success" name="id_category" id="id_category">
                             @forelse($categori as $id => $categories)
                                 <option value="{{ $id}}">{{ $categories}}</option>
                                 @empty
