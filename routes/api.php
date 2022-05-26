@@ -21,6 +21,10 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::post('/auth/logout', [AuthController::class, 'logout']);
 Route::post('/auth/person', [AuthController::class, 'userDetail']);
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::controller(CategoryAPIController::class)->group(function () {
+    Route::get('/category-pelajaran', [CategoryAPIController::class, 'index']);
+    Route::get('/category-pelajaran/{id}', [CategoryAPIController::class, 'show']);
+    Route::post('/category-pelajaran', [CategoryAPIController::class, 'store']);
+    Route::put('/category-pelajaran/{id}', [CategoryAPIController::class, 'update']);
+    Route::delete('/category-pelajaran/{id}', [CategoryAPIController::class, 'destroy']);
+});

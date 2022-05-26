@@ -6,8 +6,9 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Category;
-use App\Models\UjianSekolah;
 use App\Models\DataUjian;
+use App\Models\PostEssay;
+use App\Models\UjianSekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -60,8 +61,9 @@ class UjianSekolahController extends Controller
         $DisujianKelases = DistribusiUjianKelas::with('kelas')->with('category')->with('categoryUjian')->find($id);
         $ujianSekolah = UjianSekolah::with('kelas')->with('distribusiUjianKelas')->get();
         $post = Post::get();
+        $postsEssay = PostEssay::get();
         $categori = Category::pluck('name_category', 'id')->all();
-        return view('ujianSekolah.create', compact('ujianSekolah', 'categori', 'post', 'DisujianKelases'));
+        return view('ujianSekolah.create', compact('ujianSekolah', 'categori', 'post','postsEssay', 'DisujianKelases'));
     }
 
     /**
@@ -72,7 +74,7 @@ class UjianSekolahController extends Controller
      */
     public function store(Request $request)
     {
-
+        DB::beginTransaction();
         foreach($request->id_jawaban as $key => $name) {
             $idjawaban = $request->id_jawaban[$key];
             $id_soalujian = $request->id_soalujian[$key];
@@ -121,9 +123,31 @@ class UjianSekolahController extends Controller
 
 
             DB::table('ujian_sekolahs')->insert($insert);
-
         }
+
+        if(is_array($request->id_jawaban_essay) || is_object($request->id_jawaban_essay)) {
+            foreach($request->id_jawaban_essay as $keyEssay => $name2) {
+                $id_soalujianEssay = $request->id_soalujian_essay[$keyEssay];
+                $idjawabanEssay = $request->id_jawaban_essay[$keyEssay];
+
+                $insert2 = [
+                    'id_kelas' => $request->id_kelas,
+                    'id_user' => $request->id_user,
+                    'id_sekolah_asal' => $request->id_sekolah_asal,
+                    'id_category_pelajaran' => $request->id_category_pelajaran,
+                    'id_category_ujian' => $request->id_category_ujian,
+                    'id_soalujian_essay' => $id_soalujianEssay,
+                    'id_jawaban_essay' => $idjawabanEssay,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+
+                DB::table('ujian_sekolah_essays')->insert($insert2);
+            }
+        };
+
         DB::table('data_ujians')->insert($dataUjian);
+        DB::commit();
 
         return redirect()->route('ujianSekolah.indexSelesai')->withSuccess('Selamat Telah Mengerjakan Ujian Dengan Baik '. Auth::user()->name .'!');
 

@@ -33,5 +33,5 @@ class DistribusiUjianKelas extends Model
         return $this->belongsTo(CategoryUjian::class, 'id_category_ujian');
     }
 
-    
+
 }

@@ -91,6 +91,33 @@
                                 @endif
                             @endforeach
                          <hr>
+                         <div class="card text-start|center|end m-3">
+                            <div class="card-header">
+                                <p class="text-capitalize badge bg-info fs-5 m-2 text-center">Soal Essay Ujian</p>
+                            </div>
+                        </div>
+                        @php
+                            $noEssay = 1;
+                        @endphp
+                        @foreach ($postsEssay as $postEssay)
+                        @if($DisujianKelases->id_category == $postEssay->id_category )
+                        <div class="card m-3 shadow-sm">
+                        <div class="card-header p-3">
+                            {{ $noEssay++ }}. {{ $postEssay->soal_ujian_essay }}
+                            <input type="hidden" name="id_soalujian_essay[{{ $postEssay->id }}]" id="{{ $postEssay->id }}" value="{{ $postEssay->id }}">
+                        </div>
+                        <div class="card-body">
+                            <label for="id_jawaban_essay" class="fw-bold mb-2"> Jawaban Essay:</label>
+                            <div class="m-3">
+                                <textarea name="id_jawaban_essay[{{ $postEssay->id }}]" id="id_jawaban_essay" cols="5" rows="5" placeholder="Isi Jawaban Soal..." class="form-control" required >{{ old('id_jawaban_essay') }}</textarea>
+                            </div>
+                        </div>
+                        </div>
+                        @endif
+                        @endforeach
+
+
+
                         <div class="m-2 float-end">
                             <button type="submit" class="btn btn-primary fs-5 shadow"><i class="bi bi-check-circle"></i> Finish Ujian</button>
                         </div>

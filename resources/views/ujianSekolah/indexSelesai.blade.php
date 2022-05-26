@@ -26,8 +26,8 @@
           {{-- <input type="text" name="total_correct" value="{{ round(($ujianSekolah*100) / $ujianSekolahCount) }}"> --}}
           {{-- {{ round(($correct*100) / $total_quiz) }} --}}
           {{-- {{-- <span class="badge bg-success p-3 text-white fw-bold  " style="font-size: 16px;">{{ $ujianSekolah ?? "" }}</span> --}}
-          {{-- <span class="badge bg-success p-3 text-white fw-bold  " style="font-size: 16px;">{{ $ujianSekolahCount ?? "" }}</span> --}} --}}
-          <span class="badge bg-success p-3 text-white fw-bold  " style="font-size: 16px;">{{ round(($ujianSekolah*100) / $ujianSekolahCount) }}</span> --}}
+          {{-- <span class="badge bg-success p-3 text-white fw-bold  " style="font-size: 16px;">{{ $ujianSekolahCount ?? "" }}</span> --}}
+          <span class="badge bg-success p-3 text-white fw-bold  " style="font-size: 16px;">{{ round(($ujianSekolah*100) / $ujianSekolahCount) }}</span>
         </div>
 
     </div>

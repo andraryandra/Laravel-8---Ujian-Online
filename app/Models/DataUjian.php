@@ -44,8 +44,14 @@ class DataUjian extends Model
     }
     public function post()
     {
-        // return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class);
     }
+
+    public function postEssay()
+    {
+        return $this->hasMany(PostEssay::class);
+    }
+
     public function distribusiUjianKelas()
      {
             return $this->belongsTo(DistribusiUjianKelas::class, 'id_category','id_category_ujian','id_kelas');

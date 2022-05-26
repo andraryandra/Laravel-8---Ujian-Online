@@ -199,8 +199,46 @@
                             </div>
                             @endif
                         @endforeach
+
+                            @php
+                                $noEssay = 1;
+                            @endphp
+                        <!-- Hasil Rekapan Data Ujian -->
+                    @foreach ($ujianSekolahEssay as $ujianSekolahEssays)
+                        @if($dataUjian->id_category_ujian == $ujianSekolahEssays->id_category_ujian && $dataUjian->id_category_pelajaran == $ujianSekolahEssays->id_category_pelajaran && $dataUjian->id_user == $ujianSekolahEssays->id_user && $dataUjian->id_kelas == $ujianSekolahEssays->id_kelas)
+                            <div class="card mb-3">
+                                <div class="card-header fw-bold">
+                                    {{ $noEssay++ }}. {{ $ujianSekolahEssays->postEssay->soal_ujian_essay ?? "Not Found!"}}
+                                </div>
+                                <div class="card-body">
+                                    <div class="list-group m-3">
+                                        <label for="id_category" class="fw-bold mb-2"> Jawaban:</label>
+                                            <div class="list-group-item list-group-item-action">
+                                                <div class="row ">
+                                                    <div class="col-md-6 ">
+                                                        <div class="form-group ">
+                                                            <label for="id_category" class="fw-bold"> Jawaban Guru:</label>
+                                                                <textarea name="" disabled class="form-control bg-success text-white fw-bold" id="" cols="30" rows="10">{{ $ujianSekolahEssays->postEssay->jawaban_essay ?? "Not Found!" }}</textarea>
+                                                        </div>
+                                                    </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="id_category" class="fw-bold"> Jawaban Siswa:</label>
+                                                        <div class="form-control bg-success text-white fw-bold">
+                                                            {{ $ujianSekolahEssays->id_jawaban_essay ?? "Not Found!" }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    @endif
+                @endforeach
             </div>
 @endsection
 

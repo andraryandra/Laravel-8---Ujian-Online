@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
 use App\Models\DataUjian;
+use App\Models\PostEssay;
 use App\Models\UjianSekolah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\DistribusiUjianKelas;
+use App\Models\UjianSekolahEssay;
 use Illuminate\Support\Facades\Auth;
 
 class DataUjianController extends Controller
@@ -52,12 +55,22 @@ class DataUjianController extends Controller
         ->with('user')
         ->get();
 
+        $ujianSekolahEssay = UjianSekolahEssay::with('category_ujian')
+        ->with('category_pelajaran')
+        ->with('postEssay')
+        ->with('kelas')
+        ->with('user')
+        ->get();
+
+
+
+
         // $ujianSekolahCount = UjianSekolah::where('id_user', Auth::user()->id)->count();
         // $ujianSekolahCount = UjianSekolah::count();
         $ujianSekolahCount = UjianSekolah::where('id_user', $id)->count();
 
         $dataUjianCount = DataUjian::count();
-        return view('guru.dataUjian.show', compact('dataUjian','ujianSekolah','dataUjianCount','ujianSekolahCount'));
+        return view('guru.dataUjian.show', compact('dataUjian','ujianSekolahEssay','ujianSekolah','dataUjianCount','ujianSekolahCount'));
 
     }
 
