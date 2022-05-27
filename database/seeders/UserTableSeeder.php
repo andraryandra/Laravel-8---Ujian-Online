@@ -42,12 +42,12 @@ class UserTableSeeder extends Seeder
             'created_at' => now(),
         ]);
 
-        DB::table('users')->insert([
-            'role' => 'siswa',
-            'name' => 'siswa',
-            'username' => 'siswa',
-            'password' => Hash::make('siswa12345'),
-            'created_at' => now(),
-        ]);
+        // DB::table('users')->insert([
+        //     'role' => 'siswa',
+        //     'name' => 'siswa',
+        //     'username' => 'siswa',
+        //     'password' => Hash::make('siswa12345'),
+        //     'created_at' => now(),
+        // ]);
     }
 }

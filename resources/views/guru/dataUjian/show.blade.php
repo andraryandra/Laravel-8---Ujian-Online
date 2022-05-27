@@ -225,9 +225,8 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="id_category" class="fw-bold"> Jawaban Siswa:</label>
-                                                        <div class="form-control bg-success text-white fw-bold">
-                                                            {{ $ujianSekolahEssays->id_jawaban_essay ?? "Not Found!" }}
-                                                        </div>
+                                                        <textarea name="" disabled class="form-control bg-gray-350 text-black fw-bold" id="" cols="30" rows="10">{{ $ujianSekolahEssays->id_jawaban_essay ?? "Not Found!" }}</textarea>
+
                                                     </div>
                                                 </div>
                                             </div>
