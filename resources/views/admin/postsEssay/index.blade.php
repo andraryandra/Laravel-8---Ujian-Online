@@ -95,7 +95,7 @@
                                         <input type="checkbox" class="sub_chk" data-id="{{ $postsEssay->id }}">
                                     </td>
                                     <td class="text-start fw-bold">{{ $no++ }}</td>
-                                    <td>{{ $postsEssay->category->name_category }}</td>
+                                    <td>{{ $postsEssay->category_pelajaran->name_category }}</td>
                                     <td>{{ $postsEssay->soal_ujian_essay }}</td>
                                     <td class="text-center">
                                         <a href="/post-essay-show-{{ $postsEssay->id }}" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>

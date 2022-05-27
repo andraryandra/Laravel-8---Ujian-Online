@@ -19,7 +19,7 @@ class PostEssayController extends Controller
      */
     public function index()
     {
-        $postsEssays = PostEssay::with('category')->get();
+        $postsEssays = PostEssay::with('category_pelajaran')->get();
         $categori = Category::pluck('name_category', 'id')->all();
         $postEssayCount = PostEssay::count();
         return view('admin.postsEssay.index', compact('postsEssays','categori','postEssayCount'));

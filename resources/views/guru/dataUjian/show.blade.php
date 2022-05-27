@@ -79,7 +79,7 @@
                                 <td class="text-capitalize">{{ $dataUjian->category_pelajaran->name_category }}</td>
                                 <td class="text-capitalize">{{ $dataUjian->user->name }}</td>
                                 <td>{{ $dataUjian->kelas->name_kelas }}</td>
-                                <td>{{ $dataUjian->total_correct }}</td>
+                                <td class="text-center"><span class="btn bg-success text-white fw-bold">{{ $dataUjian->total_correct }}</span></td>
                                 {{-- @if($dataUjian->category_ujian->name_category_ujian == $ujianSekolah && $dataUjian->category_pelajaran->name_category == $ujianSekolah && $dataUjian->user->name == $ujianSekolah && $dataUjian->kelas->name_kelas == $ujianSekolah) --}}
                                 {{-- @if($dataUjian->category_ujian->name_category_ujian == $ujianSekolah && $dataUjian->category_pelajaran->name_category == $ujianSekolah && $dataUjian->user->name == $ujianSekolah && $dataUjian->kelas->name_kelas == $ujianSekolah) --}}
 
