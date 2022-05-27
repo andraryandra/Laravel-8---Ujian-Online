@@ -5,9 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\Admin\CategoryAPIController;
 use App\Http\Controllers\API\Admin\CategoryUjianApiController;
+use App\Http\Controllers\API\Admin\DataUjianApiController;
+use App\Http\Controllers\API\Admin\DistribusiUjianKelasApiController;
 use App\Http\Controllers\API\Admin\KelasApiController;
 use App\Http\Controllers\API\Admin\PostApiController;
 use App\Http\Controllers\API\Admin\PostEssayApiController;
+use App\Http\Controllers\API\UjianSekolahApiController;
+use App\Http\Controllers\API\UjianSekolahEssayApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +66,35 @@ Route::controller(PostEssayApiController::class)->group(function () {
     Route::post('/posts-essay/update', 'update');
     Route::post('/posts-essay/delete', 'delete');
 });
+
+Route::controller(DistribusiUjianKelasApiController::class)->group(function () {
+    Route::get('/distribusi-ujian-kelas/index', 'index');
+    Route::post('/distribusi-ujian-kelas/store', 'store');
+    Route::post('/distribusi-ujian-kelas/update', 'update');
+    Route::post('/distribusi-ujian-kelas/delete', 'delete');
+});
+
+Route::controller(DataUjianApiController::class)->group(function () {
+    Route::get('/data-ujian/index', 'indexDataUjian2');
+    Route::get('/data-ujian/show/{id}', 'show');
+});
+
+Route::controller(UjianSekolahApiController::class)->group(function () {
+    Route::get('/ujian-sekolah/index', 'index');
+    Route::post('/ujian-sekolah/store', 'store');
+    Route::post('/ujian-sekolah/update', 'update');
+    Route::post('/ujian-sekolah/delete', 'delete');
+});
+
+Route::controller(UjianSekolahEssayApiController::class)->group(function () {
+    Route::get('/ujian-sekolah-essay/index', 'index');
+    Route::post('/ujian-sekolah-essay/store', 'store');
+    Route::post('/ujian-sekolah-essay/update', 'update');
+    Route::post('/ujian-sekolah-essay/delete', 'delete');
+});
+
+
+
 
 
 
