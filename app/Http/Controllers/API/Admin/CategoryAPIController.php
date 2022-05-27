@@ -1,19 +1,15 @@
 <?php
 
-
 namespace App\Http\Controllers\API\Admin;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Imports\CategoryImport;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Database\Eloquent\Collection;
 
-class CategoryController extends Controller
+class CategoryApiController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -21,11 +17,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $categoriesCount = Category::count();
         return response()->json([
             'data' => 'Data Category Pelajaran Tampil Success',
             'categories' => $categories,
-            'categoriesCount' => $categoriesCount,
         ]);
     }
 
@@ -81,11 +75,9 @@ class CategoryController extends Controller
     public function show($id)
     {
         $categori = Category::find($id);
-        $categoriesCount = Category::count();
         return response()->json([
             'data' => 'Data Category Pelajaran Tampil Success',
             'categori' => $categori,
-            'categoriesCount' => $categoriesCount,
         ]);
     }
 
@@ -97,14 +89,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::get();
         $categori = Category::find($id);
-        $categoriesCount = Category::count();
         return response()->json([
             'data' => 'Data Category Pelajaran Tampil Success',
-            'categories' => $categories,
             'categori' => $categori,
-            'categoriesCount' => $categoriesCount,
         ]);
     }
 
@@ -163,14 +151,4 @@ class CategoryController extends Controller
         ]);
 
     }
-
-    public function importCategories(Request $request){
-        //melakukan import file
-        Excel::import(new CategoryImport, request()->file('file'));
-        //jika berhasil kembali ke halaman sebelumnya
-        return response()->json([
-            'success' => 'Data Category Pelajaran Berhasil Diimport',
-        ]);
-    }
-
 }

@@ -148,13 +148,6 @@
             </div>
         </div>
     </li>
-
-    {{-- <!-- Nav Item - Posts Ujian -->
-    <li class="nav-item {{ Request::is('posts')? " active ":" " }} || {{ Request::is('posts-edit-*') ? " active ":" " }} || {{ Request::is('posts-show-*') ? " active ":" " }}">
-        <a class="nav-link " href="{{ url('/posts') }}">
-            <i class="bi bi-file-post"></i>
-            <span>{{ __('Post Ujian') }}</span></a>
-    </li> --}}
     @endif
 
     @if(Auth::user()->role == 'admin')
@@ -172,8 +165,15 @@
             <i class="bi bi-journal-text"></i>
             <span>{{ __('Data Ujian') }}</span></a>
     </li>
+    @endif
 
-
+    @if( Auth::user()->role == 'guru')
+    <!-- Nav Item - Data Ujian -->
+    <li class="nav-item {{ Request::is('dataUjian')? " active ":" " }} || {{ Request::is('dataUjian-edit-*') ? " active ":" " }} || {{ Request::is('dataUjian-show-*') ? " active ":" " }}">
+        <a class="nav-link " href="{{ url('/dataUjian') }}">
+            <i class="bi bi-journal-text"></i>
+            <span>{{ __('Data Ujian') }}</span></a>
+    </li>
     @endif
 
 
