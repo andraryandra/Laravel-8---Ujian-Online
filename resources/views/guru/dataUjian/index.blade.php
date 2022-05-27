@@ -53,20 +53,12 @@
                 <h6 class="font-weight-bold text-primary">DataTable </h6>
         <p class="">Fitur pada bagian Category ini berfungsi untuk menambahkan Kategori Ujian yang dimana sesuai dengan mata Ujian SMP / SMA / SMK.</p>
             </div>
-            <div class="m-3">
-                <button class="btn btn-danger  m-1 p-3 delete_all" data-url="{{ url('categoriesDeleteAll') }}">
-                    <i class="bi bi-trash-fill"></i>
-                    Delete All Selected
-                </button>
-            </div>
+
             <div class="card-body">
                 <div class="table-responsive ">
                     <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="text-center">
-                                    <input type="checkbox" id="master" />
-                                </th>
                                 <th>No</th>
                                 <th>Category Ujian</th>
                                 <th>Mata Pelajaran</th>
@@ -81,10 +73,7 @@
                             $no = 1;
                         @endphp
                         @foreach ($dataUjian as $dataUjians)
-                        <tr id="tr_??">
-                            <td class="text-center">
-                                <input type="checkbox" class="sub_chk" data-id="??">
-                            </td>
+                        <tr id="tr_{{ $dataUjians->id }}">
                             <td>{{ $no++ }}</td>
                             <td>{{ $dataUjians->category_ujian->name_category_ujian ?? ""}}</td>
                             <td class="text-capitalize">{{ $dataUjians->category_pelajaran->name_category ?? "" }}</td>

@@ -114,22 +114,27 @@
                         <div class="card-body">
                             <p class="fw-bold btn bg-primary text-light">Identitas Profil:</p>
                             <div class="fw-bold">
-                                <p class="text-capitalize">{{ __("Nama:") }} <span class="badge bg-info" style="font-size: 16px;">
+                                <p class="text-capitalize">{{ __("Nama:") }} <span class="badge bg-primary" style="font-size: 16px;">
                                     {{ $dataUjian->user->name }}
                                 </span></p>
-                                <p>{{ __("Kelas:") }} <span class="badge bg-info" style="font-size: 16px;">
+                                <p>{{ __("Kelas:") }} <span class="badge bg-primary" style="font-size: 16px;">
                                     {{ $dataUjian->kelas->name_kelas }}
                                 </span></p>
-                                <p>{{ __("Kategori Ujian:") }} <span class="badge bg-info" style="font-size: 16px;">
+                                <p>{{ __("Kategori Ujian:") }} <span class="badge bg-primary" style="font-size: 16px;">
                                     {{ $dataUjian->category_ujian->name_category_ujian }}
                                 </span></p>
-                                <p>{{ __("Kategori Pelajaran:") }} <span class="badge bg-info" style="font-size: 16px;">
+                                <p>{{ __("Kategori Pelajaran:") }} <span class="badge bg-primary" style="font-size: 16px;">
                                     {{ $dataUjian->category_pelajaran->name_category }}
                                 </span></p>
                             </div>
                         </div>
                     </div>
 
+                    <div class="card text-start|center|end">
+                        <div class="card-header">
+                            <p class="text-capitalize badge bg-info fs-5 m-2 text-center">Soal Ujian Pilihan Ganda</p>
+                        </div>
+                    </div>
                     @php
                         $no = 1;
                     @endphp
@@ -199,7 +204,12 @@
                             </div>
                             @endif
                         @endforeach
-
+                            <hr>
+                        <div class="card text-start|center|end">
+                            <div class="card-header">
+                                <p class="text-capitalize badge bg-info fs-5 m-2 text-center">Soal Essay Ujian</p>
+                            </div>
+                        </div>
                             @php
                                 $noEssay = 1;
                             @endphp
