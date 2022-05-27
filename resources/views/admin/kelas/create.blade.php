@@ -12,6 +12,14 @@
         <div class="modal-body">
             <form action="/kelas/store" method="post">
                 @csrf
+                <div class="form-group m-3" >
+                    <label for="id_sekolah_asal" class="pb-2  fs-5"><i class="bi bi-building"></i> Sekolah</label>
+                    <select class="form-select form-select-lg  py-2" name="id_sekolah_asal" id="id_sekolah_asal">
+                        @if(Auth::user()->role == 'admin' && Auth::user()->sekolah->name_sekolah)
+                            <option class="fw-bold" value="{{ Auth::user()->sekolah->id }}">{{ Auth::user()->sekolah->name_sekolah }}</option>
+                        @endif
+                    </select>
+                </div>
                 <div class="form-group m-3 ">
                     <label for="id_wali" class="fw-bold "><i class="bi bi-bookmarks-fill"></i> Wali Kelas</label><br>
                     <select class="form-select form-select-lg text-capitalize" data-style="btn-success" name="id_wali" id="id_wali">
@@ -23,10 +31,11 @@
                             @endempty
                     </select>
                 </div>
+
             <div class="m-3">
                 <label for="name_kelas" class="pb-2 fw-bold"><i class="bi bi-bookmarks-fill"></i> {{ __('Kelas') }}</label>
                 <input type="text" class="form-control" placeholder="Name Kelas" name="name_kelas" value="{{ old('name_kelas') }}" required>
-            </div>  
+            </div>
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary fs-5 shadow"><i class="bi bi-check-circle"></i> SIMPAN</button>

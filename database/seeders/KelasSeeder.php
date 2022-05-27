@@ -17,24 +17,27 @@ class KelasSeeder extends Seeder
      */
     public function run()
     {
-        
+
         DB::table('kelas')->insert([
             'id_wali' => 5,
+            'id_sekolah_asal' => 1,
             'name_kelas' => '7-A',
             'created_at' => now(),
         ]);
 
         DB::table('kelas')->insert([
             'id_wali' => 6,
+            'id_sekolah_asal' => 1,
             'name_kelas' => '7-B',
             'created_at' => now(),
         ]);
 
         DB::table('kelas')->insert([
             'id_wali' => 7,
+            'id_sekolah_asal' => 1,
             'name_kelas' => '7-C',
             'created_at' => now(),
         ]);
-        
+
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Imports\PostEssayImport;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Sekolah;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PostEssayController extends Controller
@@ -21,8 +22,9 @@ class PostEssayController extends Controller
     {
         $postsEssays = PostEssay::with('category_pelajaran')->get();
         $categori = Category::pluck('name_category', 'id')->all();
+        $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
         $postEssayCount = PostEssay::count();
-        return view('admin.postsEssay.index', compact('postsEssays','categori','postEssayCount'));
+        return view('admin.postsEssay.index', compact('postsEssays','sekolahs','categori','postEssayCount'));
     }
 
     /**
@@ -44,12 +46,14 @@ class PostEssayController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'id_sekolah_asal' => 'required',
             'id_category' => 'required',
             'soal_ujian_essay' => 'required',
             'jawaban_essay' => 'required',
         ]);
 
         DB::table('post_essays')->insert([
+            'id_sekolah_asal' => $request->id_sekolah_asal,
             'id_category' => $request->id_category,
             'soal_ujian_essay' => $request->soal_ujian_essay,
             'jawaban_essay' => $request->jawaban_essay,
@@ -98,6 +102,7 @@ class PostEssayController extends Controller
     {
 
         PostEssay::where('id', $request->id)->update([
+            'id_sekolah_asal' => $request->id_sekolah_asal,
             'id_category' => $request->id_category,
             'soal_ujian_essay' => $request->soal_ujian_essay,
             'jawaban_essay' => $request->jawaban_essay,

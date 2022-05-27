@@ -59,13 +59,13 @@
                 <p class="">Fitur pada bagian Post ini berfungsi untuk menambahkan Soal Ujian yang dimana sesuai dengan mata Ujian SMP / SMA / SMK .</p>
             </div>
             <div class="card-body">
-                <div class="table-responsive "> 
-                    <table class="table table-bordered" id="example" width="100%" cellspacing="0">           
+                <div class="table-responsive ">
+                    <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th class="text-center"> No</th>
                                 <th class="text-center" > Category</th>
-                                <th class="text-center " width="50%"> Soal Ujian</th>                        
+                                <th class="text-center " width="50%"> Soal Ujian</th>
                                 <th class="text-center"> Pilihan_A</th>
                                 <th class="text-center"> Pilihan_B</th>
                                 <th class="text-center"> Pilihan_C</th>
@@ -80,21 +80,21 @@
                             <tr>
                                 <td class="text-center fw-bold">{{ $no++ }}</td>
                                 <td width="25%">{{ $post->category->name_category }}</td>
-                                <td width="50%">{{ $post->soal_ujian }}</td>       
+                                <td width="50%">{{ $post->soal_ujian }}</td>
                                 <td class="
                                 @if($post->jawaban == 'A')
                                 text-white text-center bg-success @else text-white text-center bg-danger
                                 @endif">{{ __("A.") }} {{ $post->pilihan_a }}</td>
                                 <td class="
-                                @if($post->jawaban == 'B') 
+                                @if($post->jawaban == 'B')
                                 text-white text-center bg-success @else text-white text-center bg-danger
                                 @endif">{{ __("B.") }} {{ $post->pilihan_b }}</td>
                                 <td class="
-                                @if($post->jawaban == 'C') 
+                                @if($post->jawaban == 'C')
                                 text-white text-center bg-success @else text-white text-center bg-danger
                                 @endif">{{ __("C.") }} {{ $post->pilihan_c }}</td>
                                 <td class="
-                                @if($post->jawaban == 'D') 
+                                @if($post->jawaban == 'D')
                                 text-white text-center bg-success @else text-white text-center bg-danger
                                 @endif">{{ __("D.") }} {{ $post->pilihan_d }}</td>
                                 <td class="text-white text-center bg-success">
@@ -108,8 +108,8 @@
                                     {{ __("D.") }} {{ $post->pilihan_d }}
                                     @endif
                                 </td>
-                            </tr> 
-                        </tbody>  
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -119,6 +119,6 @@
 @endsection
 
 
-{{-- @if($post->pilihan_d == $post->jawaban) 
+{{-- @if($post->pilihan_d == $post->jawaban)
 text-white text-center bg-success @else text-white text-center bg-danger
 @endif">{{ $post->pilihan_d }}</td> --}}

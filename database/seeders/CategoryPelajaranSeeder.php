@@ -20,14 +20,17 @@ class CategoryPelajaranSeeder extends Seeder
         $kelas_9 = '9 | ';
 
         DB::table('categories')->insert([
+            'id_sekolah_asal' => 1,
             'name_category' => $kelas_7."Bahasa Indonesia",
             'created_at' => now(),
         ]);
         DB::table('categories')->insert([
+            'id_sekolah_asal' => 1,
             'name_category' => $kelas_7.'Matematika',
             'created_at' => now(),
         ]);
         DB::table('categories')->insert([
+            'id_sekolah_asal' => 1,
             'name_category' => $kelas_7.'Sistem Operasi',
             'created_at' => now(),
         ]);

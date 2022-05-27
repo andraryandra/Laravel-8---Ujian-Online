@@ -58,19 +58,21 @@
         <p class="">Fitur pada bagian Category ini berfungsi untuk mengedit Kategori Ujian yang dimana sesuai dengan mata Ujian SMP / SMA / SMK.</p>
             </div>
             <div class="card-body">
-                <div class="table-responsive ">    
-                    <table class="table table-bordered" id="example" width="100%" cellspacing="0">                       
+                <div class="table-responsive ">
+                    <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th width="75%">Category Pelajaran</th>
+                                <th width="50%">Category Pelajaran</th>
+                                <th width="30%">Sekolah</th>
                             </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td><span class="badge bg-info text-white fs-6 text-roboto shadow-sm p-2">{{ $categori->id ?? "" }}</span></td>
                             <td><span class="badge bg-info text-white fs-6 text-roboto shadow-sm p-2">{{ $categori->name_category ?? "" }}</span></td>
-                        </tr>               
+                            <td>{{ $categori->sekolah->name_sekolah }}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

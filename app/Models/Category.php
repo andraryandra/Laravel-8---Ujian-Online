@@ -12,6 +12,7 @@ class Category extends Model
     use HasFactory;
     public $timestamps = true;
     protected $fillable = ([
+        'id_sekolah_asal',
         'name_category',
     ]);
 
@@ -24,6 +25,13 @@ class Category extends Model
     {
         return $this->hasMany(UjianSekolah::class, 'id_category_ujian');
     }
+
+    public function sekolah()
+    {
+        return $this->belongsTo(Sekolah::class, 'id_sekolah_asal');
+    }
+
+
 
 
 }

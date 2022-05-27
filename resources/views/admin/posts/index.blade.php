@@ -56,7 +56,7 @@
             </div>
             <div class="m-3">
                 <button type="button" class="btn btn-primary  m-1 p-3 shadow" data-bs-toggle="modal" data-bs-target="#createPost">
-                <i class="bi bi-folder-plus fa-1x"></i> 
+                <i class="bi bi-folder-plus fa-1x"></i>
                     Create Post
                 </button>
 
@@ -65,31 +65,32 @@
                 </button>
 
                 <button class="btn btn-danger m-1 p-3 shadow delete_all" data-url="{{ url('postsDeleteAll') }}">
-                    <i class="bi bi-trash-fill"></i> 
+                    <i class="bi bi-trash-fill"></i>
                     Delete All Selected
                 </button>
 
             </div>
             <div class="card-body">
                 <div class="table-responsive ">
-                    <table class="table table-bordered display" id="example" cellspacing="0">                       
+                    <table class="table table-bordered display" id="example" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th class="text-center">
-                                        <input type="checkbox" class="p-5" id="master" /> 
+                                        <input type="checkbox" class="p-5" id="master" />
                                     </th>
                                     <th class="">No</th>
                                     <th class="" width="20%">Category</th>
                                     <th class="" width="50%">Soal Ujian</th>
                                     <th class="text-center">Jawaban Benar</th>
-                                    <th class="text-center w-25">Action</th>    
+                                    <th class="text-center">Sekolahr</th>
+                                    <th class="text-center w-25">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
                                     $no = 1;
                                 @endphp
-                            
+
                                 @foreach ($posts as $post)
                                 <tr id="tr_{{ $post->id }}">
                                      <td class="text-center">
@@ -97,23 +98,24 @@
                                     </td>
                                     <td class="text-start fw-bold">{{ $no++ }}</td>
                                     {{-- <td class="@if($post->category == false ?? 'Database Not Found!' ) text-white bg-danger text-center fw-bold @endif">{{ $post->category->name_category ?? "Silahkan klik edit dan sesuaikan data Category"}}</td> --}}
-                                    @if($post->category == false ?? 'Database Not Found!' ) 
+                                    @if($post->category == false ?? 'Database Not Found!' )
                                         <td class="text-white bg-danger text-center fw-bold">
-                                            <a href="/posts-edit-{{ $post->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i> Silahkan klik edit dan sesuaikan data Category</a>    
+                                            <a href="/posts-edit-{{ $post->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i> Silahkan klik edit dan sesuaikan data Category</a>
                                         </td>
                                     @else
                                     <td class="">{{ $post->category->name_category ?? "Silahkan klik edit dan sesuaikan data Category"}}</td>
                                     @endif
                                     <td class="">{{ $post->soal_ujian ?? ""}}</td>
                                     <td class="text-white text-center fw-bold fs-5 bg-success">{{ $post->jawaban ?? ""}}</td>
+                                    <td>{{ $post->sekolah->name_sekolah }}</td>
                                     <td class="text-center">
                                         <a href="/posts-show-{{ $post->id }}" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
                                         <a href="/posts-edit-{{ $post->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i></a>
-                                        <a href="/posts/delete/{{ $post->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>             
-                                    </td> 
-                                </tr> 
+                                        <a href="/posts/delete/{{ $post->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>
+                                    </td>
+                                </tr>
                                 @endforeach
-                            </tbody>  
+                            </tbody>
                         </table>
                     </div>
                 </div>

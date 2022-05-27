@@ -56,7 +56,7 @@
             <div class="card-header py-3">
                 <h6 class="font-weight-bold text-primary">DataTable </h6>
                  <p class="">Fitur pada bagian Category ini berfungsi untuk menambahkan Kategori Ujian yang dimana sesuai dengan mata Ujian SMP / SMA / SMK.</p>
-            </div>  
+            </div>
 
              <div class="card-body">
                 <form action="/categories-pelajaran/update" method="post">
@@ -64,11 +64,17 @@
                         <div class="m-3">
                             <label for="id" class="pb-2 fw-bold" hidden >{{ __('ID Categori') }}</label>
                             <input type="hidden" class="form-control" placeholder="id" name="id" value="{{ $categori->id ?? "" }}" required>
-                        </div>  
+                        </div>
+                        <div class="form-group m-3" hidden>
+                            <label for="id_sekolah_asal" class="pb-2 fw-bold fs-5"><i class="bi bi-building"></i> Sekolah</label>
+                            <select class="form-select form-select-lg py-2" name="id_sekolah_asal" id="id_sekolah_asal">
+                                <option value="{{ $categori->id_sekolah_asal ?? ""}}">{{ $categori->sekolah->name_sekolah ?? ""}}</option>
+                            </select>
+                        </div>
                         <div class="m-3">
                             <label for="name_category" class="pb-2 fw-bold"><i class="bi bi-bookmarks-fill"></i> {{ __('Category Pelajaran') }}</label>
                             <input type="text" class="form-control" placeholder="Name Category Pelajaran" name="name_category" value="{{ $categori->name_category ?? "" }}" required>
-                        </div>  
+                        </div>
                         <div class="m-3">
                             <button type="submit" class="btn btn-primary fs-5 shadow mb-5"><i class="bi bi-check-circle"></i> SIMPAN</button><hr>
                             <button type="reset" class="btn btn-warning fs-5 fst-italic fw-bold shadow" style="float: right;"><i class="bi bi-info-circle-fill"></i> Kembalikan Data Awal</button>
@@ -78,5 +84,5 @@
             </div>
         </div>
 
-    
+
 @endsection

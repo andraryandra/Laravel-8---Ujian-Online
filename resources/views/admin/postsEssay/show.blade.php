@@ -75,7 +75,8 @@
                             @endphp
                             <tr>
                                 <td class="text-center fw-bold">{{ $no++ }}</td>
-                                <td width="20%">{{ $postsEssay->category->name_category }}</td>
+                                <td width="20%">{{ $postsEssay->category_pelajaran->name_category }}</td>
+
                                 <td>{{ $postsEssay->soal_ujian_essay }}</td>
                                 <td>{{ $postsEssay->jawaban_essay }}</td>
                             </tr>

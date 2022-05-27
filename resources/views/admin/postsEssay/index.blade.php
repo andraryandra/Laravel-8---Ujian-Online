@@ -79,8 +79,9 @@
                                         <input type="checkbox" class="p-5" id="master" />
                                     </th>
                                     <th class="">No</th>
-                                    <th class="" width="20%">Category</th>
-                                    <th class="" width="50%">Soal Ujian</th>
+                                    <th class="" width="15%">Category</th>
+                                    <th class="" width="35%">Soal Ujian</th>
+                                    <th class="" width="15%">Sekolah</th>
                                     <th class="text-center w-25">Action</th>
                                 </tr>
                             </thead>
@@ -97,6 +98,7 @@
                                     <td class="text-start fw-bold">{{ $no++ }}</td>
                                     <td>{{ $postsEssay->category_pelajaran->name_category }}</td>
                                     <td>{{ $postsEssay->soal_ujian_essay }}</td>
+                                    <td>{{ $postsEssay->sekolah->name_sekolah }}</td>
                                     <td class="text-center">
                                         <a href="/post-essay-show-{{ $postsEssay->id }}" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
                                         <a href="/post-essay-edit-{{ $postsEssay->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i></a>

@@ -15,6 +15,7 @@ class CreateCategoryUjiansTable extends Migration
     {
         Schema::create('category_ujians', function (Blueprint $table) {
             $table->id();
+            $table->string('id_sekolah_asal');
             $table->string('name_category_ujian');
             $table->timestamps();
         });

@@ -12,6 +12,14 @@
         <div class="modal-body">
             <form action="/posts/store" method="post">
                 @csrf
+                <div class="form-group m-3" >
+                    <label for="id_sekolah_asal" class="pb-2  fs-5"><i class="bi bi-building"></i> Sekolah</label>
+                    <select class="form-select form-select-lg  py-2" name="id_sekolah_asal" id="id_sekolah_asal">
+                        @if(Auth::user()->role == 'admin' && Auth::user()->sekolah->name_sekolah)
+                            <option class="fw-bold" value="{{ Auth::user()->sekolah->id }}">{{ Auth::user()->sekolah->name_sekolah }}</option>
+                        @endif
+                    </select>
+                </div>
                     <div class="form-group m-3 ">
                         <label for="id_category" class="fw-bold "><i class="bi bi-bookmarks-fill"></i> Category</label><br>
                         <select class="form-control " data-style="btn-success" name="id_category" id="id_category">
@@ -29,7 +37,7 @@
                 <div class="m-3">
                     <label for="pilihan_a" class="pb-2 fw-bold"><i class="bi bi-arrow-right-square-fill"></i> {{ __('Pilihan A') }}</label>
                     <textarea class="form-control" name="pilihan_a" placeholder="Pilihan_A" required >{{ old('pilihan_a') }}</textarea>
-                </div>    
+                </div>
                 <div class="m-3">
                     <label for="pilihan_b" class="pb-2 fw-bold"><i class="bi bi-arrow-right-square-fill"></i> {{ __('Pilihan B') }}</label>
                     <textarea class="form-control" name="pilihan_b" placeholder="Pilihan_B" required >{{ old('pilihan_b') }}</textarea>
@@ -37,11 +45,11 @@
                 <div class="m-3">
                     <label for="pilihan_c" class="pb-2 fw-bold"><i class="bi bi-arrow-right-square-fill"></i> {{ __('Pilihan C') }}</label>
                     <textarea class="form-control" name="pilihan_c" placeholder="Pilihan_C" required >{{ old('pilihan_c') }}</textarea>
-                </div> 
+                </div>
                 <div class="m-3">
                     <label for="pilihan_d" class="pb-2 fw-bold"><i class="bi bi-arrow-right-square-fill"></i> {{ __('Pilihan D') }}</label>
                     <textarea class="form-control" name="pilihan_d" placeholder="Pilihan_D" required >{{ old('pilihan_d') }}</textarea>
-                </div> 
+                </div>
                 {{-- <div class="m-3">
                     <label for="jawaban" class="mb-2 btn btn-success fw-bold"><i class="bi bi-bookmark-check-fill"></i> {{ __('Jawaban Benar') }}</label>
                     <input type="text" class="form-control" placeholder="Jawaban" name="jawaban" value="{{ old('jawaban') }}" required>
@@ -63,4 +71,4 @@
             </form>
         </div>
     </div>
-</div> 
+</div>

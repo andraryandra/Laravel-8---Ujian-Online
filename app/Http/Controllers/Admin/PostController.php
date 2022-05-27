@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
+use App\Models\Sekolah;
 use App\Models\Category;
 use App\Imports\PostImport;
 use Illuminate\Http\Request;
@@ -21,9 +22,10 @@ class PostController extends Controller
     {
         $posts = Post::with('category')->get();
         $categori = Category::pluck('name_category', 'id')->all();
+        $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
         $categoriesCount = Category::count();
         $postCount = Post::count();
-        return view('admin.posts.index', compact('posts','categori','categoriesCount','postCount'));
+        return view('admin.posts.index', compact('posts','categori','sekolahs','categoriesCount','postCount'));
     }
 
     /**
@@ -47,6 +49,7 @@ class PostController extends Controller
     public function store(Request $request, Post $post)
     {
         $this->validate($request, [
+            'id_sekolah_asal' => 'required',
             'id_category' => 'required',
             'soal_ujian' => 'required',
             'pilihan_a' => 'required',
@@ -58,6 +61,7 @@ class PostController extends Controller
         ]);
 
         $post = Post::create([
+            'id_sekolah_asal' => $request->id_sekolah_asal,
             'id_category' => $request->id_category,
             'soal_ujian' => $request->soal_ujian,
             'pilihan_a' => $request->pilihan_a,
@@ -113,6 +117,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $this->validate($request, [
+            'id_sekolah_asal' => 'required',
             'id_category' => 'required',
             'soal_ujian' => 'required',
             'pilihan_a' => 'required',
@@ -125,6 +130,7 @@ class PostController extends Controller
 
         $post = Post::find($request->id);
         $post = $post->update([
+            'id_sekolah_asal' => $request->id_sekolah_asal,
             'id_category' => $request->id_category,
             'soal_ujian' => $request->soal_ujian,
             'pilihan_a' => $request->pilihan_a,

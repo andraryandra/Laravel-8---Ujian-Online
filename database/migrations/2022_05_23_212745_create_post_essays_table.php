@@ -15,6 +15,7 @@ class CreatePostEssaysTable extends Migration
     {
         Schema::create('post_essays', function (Blueprint $table) {
             $table->id();
+            $table->string('id_sekolah_asal')->nullable();
             $table->string('id_category')->nullable();
             $table->string('soal_ujian_essay')->nullable();
             $table->string('jawaban_essay')->nullable();

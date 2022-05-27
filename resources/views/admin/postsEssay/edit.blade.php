@@ -79,6 +79,12 @@
                     <label for="id" class="pb-2 fw-bold">ID</label>
                     <input type="text" class="form-control" placeholder="id" name="id" value="{{ $postsEssay->id }}" required>
                 </div>
+                <div class="form-group m-3" hidden>
+                    <label for="id_sekolah_asal" class="pb-2 fw-bold fs-5"><i class="bi bi-building"></i> Sekolah</label>
+                    <select class="form-select form-select-lg py-2" name="id_sekolah_asal" id="id_sekolah_asal">
+                        <option value="{{ $postsEssay->id_sekolah_asal ?? ""}}">{{ $postsEssay->sekolah->name_sekolah ?? ""}}</option>
+                    </select>
+                </div>
                     <div class="form-group m-3">
                         <label for="id_category" class="pb-2 fw-bold mb-2 btn btn-info text-white"><i class="bi bi-bookmarks-fill"></i> {{ __('Category') }}</label>
                         <select class="form-select" name="id_category" id="id_category">

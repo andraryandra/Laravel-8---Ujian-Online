@@ -16,7 +16,8 @@ class Kelas extends Model
     protected $table = 'kelas';
 
     protected $fillable = [
-        'id_wali', 
+        'id_wali',
+        'id_sekolah_asal',
         'name_kelas'
     ];
 
@@ -36,6 +37,11 @@ class Kelas extends Model
     public function distribusiUjianKelas()
     {
         return $this->hasMany(DistribusiUjianKelas::class, 'id_kelas');
+    }
+
+    public function sekolah()
+    {
+        return $this->belongsTo(Sekolah::class, 'id_sekolah_asal');
     }
 
 }

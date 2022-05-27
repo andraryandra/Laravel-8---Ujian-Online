@@ -45,7 +45,7 @@
         </div>
         </div>
     </div>
-        
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -54,7 +54,7 @@
             </div>
             <div class="m-3">
                 <button type="button" class="btn btn-primary  m-1 p-3 shadow" data-bs-toggle="modal" data-bs-target="#createKelas">
-                <i class="bi bi-folder-plus fa-1x"></i> 
+                <i class="bi bi-folder-plus fa-1x"></i>
                     Create Kelas
                 </button>
 
@@ -63,7 +63,7 @@
                 </button>
 
                 <button class="btn btn-danger  m-1 p-3 shadow delete_all" data-url="{{ url('kelasDeleteAll') }}">
-                    <i class="bi bi-trash-fill"></i> 
+                    <i class="bi bi-trash-fill"></i>
                     Delete All Selected
                 </button>
             </div>
@@ -74,8 +74,9 @@
                             <tr>
                                 <th width="5%" ><input type="checkbox" class="p-5" id="master" /> </th>
                                 <th width="5%">No</th>
-                                <th width="50%">Kelas</th>
-                                <th width="20%">Wali Kelas</th>
+                                <th width="30%">Kelas</th>
+                                <th width="20%">Sekolah</th>
+                                <th width="15%">Wali Kelas</th>
                                 <th class="text-center w-25">Action</th>
                             </tr>
                         </thead>
@@ -88,9 +89,10 @@
                             <td><input type="checkbox" class="sub_chk" data-id="{{$kelas->id}}"></td>
                             <td class="fw-bold">{{ $no++ }}</td>
                             <td>{{ $kelas->name_kelas ?? ""}}</td>
-                            @if($kelas->id_wali == null) 
+                            <td>{{ $kelas->sekolah->name_sekolah ?? ""}}</td>
+                            @if($kelas->id_wali == null)
                             <td class="text-white bg-danger text-center fw-bold">
-                                <a href="/kelas-edit-{{ $kelas->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 fw-bold"> <i class="bi bi-pencil-square"></i> Isi Data Sekarang !!</a> 
+                                <a href="/kelas-edit-{{ $kelas->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 fw-bold"> <i class="bi bi-pencil-square"></i> Isi Data Sekarang !!</a>
                             </td>
                             @else
                             <td class="text-capitalize">{{ $kelas->user->name ?? "" }}</td>
@@ -98,11 +100,11 @@
                             <td class="text-center">
                                 <a href="/kelas-show-{{ $kelas->id }}" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
                                 <a href="/kelas-edit-{{ $kelas->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i></a>
-                                <a href="/kelas/delete/{{ $kelas->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>   
-                                </td> 
-                            </tr> 
-                            @endforeach                      
-                             
+                                <a href="/kelas/delete/{{ $kelas->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>
+                                </td>
+                            </tr>
+                            @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -110,7 +112,7 @@
             </div>
         </div>
 
-    
+
     {{-- Import Kelas --}}
     @include('admin.kelas.importkelas')
 

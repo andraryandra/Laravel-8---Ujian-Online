@@ -46,7 +46,7 @@
         </div>
         </div>
     </div>
-        
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -55,7 +55,7 @@
             </div>
             <div class="m-3">
                 <button type="button" class="btn btn-primary  m-1 p-3" data-bs-toggle="modal" data-bs-target="#createCategories">
-                <i class="bi bi-folder-plus fa-1x"></i> 
+                <i class="bi bi-folder-plus fa-1x"></i>
                     Create Category Pelajaran
                 </button>
 
@@ -64,7 +64,7 @@
                 </button>
 
                 <button class="btn btn-danger  m-1 p-3 delete_all" data-url="{{ url('categories-pelajaranDeleteAll') }}">
-                    <i class="bi bi-trash-fill"></i> 
+                    <i class="bi bi-trash-fill"></i>
                     Delete All Selected
                 </button>
             </div>
@@ -74,10 +74,11 @@
                         <thead>
                             <tr>
                                 <th width="5%" class="text-center">
-                                    <input type="checkbox" class="p-5" id="master" /> 
+                                    <input type="checkbox" class="p-5" id="master" />
                                 </th>
                                 <th width="5%">No</th>
-                                <th width="70%">Category Pelajaran</th>
+                                <th width="30%">Category Pelajaran</th>
+                                <th width="30%">Sekolah</th>
                                 <th class="text-center w-25">Action</th>
                             </tr>
                         </thead>
@@ -92,28 +93,29 @@
                             </td>
                             <td class="fw-bold">{{ $no++ }}</td>
                             <td>{{ $categori->name_category ?? "" }}</td>
+                            <td>{{ $categori->sekolah->name_sekolah ?? "" }}</td>
                             <td class="text-center">
                                 <a href="/categories-pelajaran-show-{{ $categori->id }}" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
                                 <a href="/categories-pelajaran-edit-{{ $categori->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i></a>
-                                <a href="/categories-pelajaran/delete/{{ $categori->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>   
-                                </td> 
-                            </tr> 
-                            @endforeach                      
+                                <a href="/categories-pelajaran/delete/{{ $categori->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>
+                                </td>
+                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    
+
 
     {{-- Import Category --}}
     @include('admin.categories.importcategories')
 
     {{-- Create Category --}}
     @include('admin.categories.create')
-    
-    
+
+
 
 
 @endsection

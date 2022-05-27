@@ -55,7 +55,7 @@
             <div class="card-header py-3">
                 <h6 class="font-weight-bold text-primary">DataTable </h6>
                 <p class="">Fitur pada bagian Users - Kelas ini berfungsi untuk mengedit Kelas Ujian yang dimana sesuai dengan kelasnya masing-masing Ujian SMP / SMA / SMK.</p>
-            </div>  
+            </div>
 
              <div class="card-body">
                 <form action="/kelas/update" method="post">
@@ -64,8 +64,8 @@
                             <label for="id" class="pb-2 fw-bold" hidden >{{ __('ID Kelas') }}</label>
                             <input type="hidden" class="form-control" placeholder="id" name="id" value="{{ $kelas->id }}" required>
                         </div>
-                        
-                        @if($kelas->id_wali == null) 
+
+                        @if($kelas->id_wali == null)
                         <div class="form-group m-3 ">
                             <label for="id_wali" class="fw-bold "><i class="bi bi-bookmarks-fill"></i> Wali Kelas</label><br>
                             <select class="form-select form-select-lg text-capitalize" data-style="btn-success" name="id_wali" id="id_wali">
@@ -88,13 +88,19 @@
                                 <option value="{{ $id }}" {{ $id == $kelas->id_wali ? 'selected' : '' }}>{{ $guruAdmins }}</option>
                                 @endforeach
                             </select>
-                        </div>   
+                        </div>
                         @endif
-                          
+                        <div class="form-group m-3" hidden>
+                            <label for="id_sekolah_asal" class="pb-2 fw-bold fs-5"><i class="bi bi-building"></i> Sekolah</label>
+                            <select class="form-select form-select-lg py-2" name="id_sekolah_asal" id="id_sekolah_asal">
+                                <option value="{{ $kelas->id_sekolah_asal ?? ""}}">{{ $kelas->sekolah->name_sekolah ?? ""}}</option>
+                            </select>
+                        </div>
+
                         <div class="m-3">
                             <label for="name_kelas" class="pb-2 fw-bold">{{ __('Name Kelas') }}</label>
                             <input type="text" class="form-control" placeholder="Name Kelas" name="name_kelas" value="{{ $kelas->name_kelas }}">
-                        </div>  
+                        </div>
                         <div class="m-3">
                             <button type="submit" class="btn btn-primary fs-5 shadow mb-5"><i class="bi bi-check-circle"></i> SIMPAN</button><hr>
                             <button type="reset" class="btn btn-warning fs-5 fst-italic fw-bold shadow" style="float: right;"><i class="bi bi-info-circle-fill"></i> Kembalikan Data Awal</button>

@@ -12,6 +12,14 @@
         <div class="modal-body">
             <form action="/post-essay/store" method="post">
                 @csrf
+                <div class="form-group m-3" >
+                    <label for="id_sekolah_asal" class="pb-2  fs-5"><i class="bi bi-building"></i> Sekolah</label>
+                    <select class="form-select form-select-lg  py-2" name="id_sekolah_asal" id="id_sekolah_asal">
+                        @if(Auth::user()->role == 'admin' && Auth::user()->sekolah->name_sekolah)
+                            <option class="fw-bold" value="{{ Auth::user()->sekolah->id }}">{{ Auth::user()->sekolah->name_sekolah }}</option>
+                        @endif
+                    </select>
+                </div>
                     <div class="form-group m-3 ">
                         <label for="id_category" class="fw-bold "><i class="bi bi-bookmarks-fill"></i> Category</label><br>
                         <select class="form-select form-select-lg " data-style="btn-success" name="id_category" id="id_category">

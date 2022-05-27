@@ -3,6 +3,7 @@
 // namespace App\Http\Controllers;
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Sekolah;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Imports\CategoryImport;
@@ -21,8 +22,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
         $categoriesCount = Category::count();
-        return view('admin.categories.index', compact('categories','categoriesCount'));
+        return view('admin.categories.index', compact('categories','sekolahs','categoriesCount'));
     }
 
     /**
@@ -45,10 +47,12 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'id_sekolah_asal' => 'required',
             'name_category' => 'required|unique:categories',
         ]);
-        
+
         $categori = Category::create([
+            'id_sekolah_asal' => $request->id_sekolah_asal,
             'name_category' => $request->name_category,
         ]);
 
@@ -96,11 +100,13 @@ class CategoryController extends Controller
     public function update(Request $request, Category $categori)
     {
         $this->validate($request, [
+            'id_sekolah_asal' => 'required',
             'name_category' => 'required|unique:categories',
         ]);
 
         $categori = Category::find($request->id);
         $categori = $categori->update([
+            'id_sekolah_asal' => $request->id_sekolah_asal,
             'name_category' => $request->name_category,
         ]);
 
@@ -126,14 +132,14 @@ class CategoryController extends Controller
     }
 
     public function deleteAll(Request $request)
-    {   
+    {
         $ids = $request->ids;
-        Category::whereIn('id',explode(',',$ids))->delete(); 
+        Category::whereIn('id',explode(',',$ids))->delete();
         $messages = ['success', 'Delete Category successfully!'];
         return response()->json([
             'success' => $messages,
         ]);
-    
+
     }
 
     public function importCategories(Request $request){
@@ -142,5 +148,5 @@ class CategoryController extends Controller
         //jika berhasil kembali ke halaman sebelumnya
         return back()->with('success', 'Import Category successfully!');
     }
-    
+
 }

@@ -58,25 +58,27 @@
                 <p class="">Fitur pada bagian Users - Kelas ini berfungsi untuk menambahkan Kelas Ujian yang dimana sesuai dengan kelasnya masing-masing Ujian SMP / SMA / SMK.</p>
             </div>
             <div class="card-body">
-                <div class="table-responsive ">    
-                    <table class="table table-bordered" id="example" width="100%" cellspacing="0">                       
+                <div class="table-responsive ">
+                    <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th width="50%">Kelas</th>
                                 <th width="20%">Wali Kelas</th>
+                                <th width="20%">Sekolah</th>
                             </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td><span class="badge bg-info text-white fs-6 text-roboto shadow-sm p-3">{{ $kelas->name_kelas }}</span></td>
-                            @if($kelas->id_wali == null) 
+                            @if($kelas->id_wali == null)
                             <td class="text-white bg-danger text-center fw-bold">
-                                <a href="/kelas-edit-{{ $kelas->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 fw-bold"> <i class="bi bi-pencil-square"></i> Isi Data Sekarang !!</a> 
+                                <a href="/kelas-edit-{{ $kelas->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 fw-bold"> <i class="bi bi-pencil-square"></i> Isi Data Sekarang !!</a>
                             </td>
                             @else
-                            <td class=""><span class="badge bg-info text-white fs-6 text-roboto shadow-sm p-3">{{ $kelas->id_wali }}</span></td>
+                            <td class="">{{ $kelas->user->name }}</td>
                             @endif
-                        </tr>               
+                            <td>{{ $kelas->sekolah->name_sekolah }}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Sekolah;
 use Illuminate\Http\Request;
 use App\Models\CategoryUjian;
-use App\Imports\CategoryUjianImport;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Imports\CategoryUjianImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CategoryUjianController extends Controller
@@ -19,8 +20,9 @@ class CategoryUjianController extends Controller
     public function index()
     {
         $categoryUjians = CategoryUjian::all();
+        $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
         $categoryUjiansCount = CategoryUjian::count();
-        return view('admin.categories-ujian.index', compact('categoryUjians','categoryUjiansCount'));
+        return view('admin.categories-ujian.index', compact('categoryUjians','sekolahs','categoryUjiansCount'));
     }
 
     /**
@@ -43,10 +45,12 @@ class CategoryUjianController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'id_sekolah_asal' => 'required',
             'name_category_ujian' => 'required|unique:category_ujians',
         ]);
-        
+
         $categoryUjian = CategoryUjian::create([
+            'id_sekolah_asal' => $request->id_sekolah_asal,
             'name_category_ujian' => $request->name_category_ujian,
         ]);
 
@@ -93,10 +97,12 @@ class CategoryUjianController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
+            'id_sekolah_asal' => 'required',
             'name_category_ujian' => 'required|unique:category_ujians',
         ]);
 
         DB::table('category_ujians')->where('id', $request->id)->update([
+            'id_sekolah_asal' => $request->id_sekolah_asal,
             'name_category_ujian' => $request->name_category_ujian,
             'updated_at' => now(),
         ]);
@@ -117,9 +123,9 @@ class CategoryUjianController extends Controller
     }
 
     public function deleteAll(Request $request)
-    {   
+    {
         $ids = $request->ids;
-        CategoryUjian::whereIn('id',explode(',',$ids))->delete(); 
+        CategoryUjian::whereIn('id',explode(',',$ids))->delete();
         $messages = ['success', 'Delete Category Ujian successfully!'];
         return response()->json([
             'success' => $messages,
