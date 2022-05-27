@@ -20,8 +20,9 @@ class UjianSekolah extends Model
         'id_kelas',
         'id_user',
         'id_sekolah_asal',
+        'id_category_pelajaran',
         'id_category_ujian',
-        'id_soal_ujian',
+        'id_soalujian',
         'id_jawaban',
         'correct',
     ]);

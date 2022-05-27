@@ -5,13 +5,16 @@ namespace App\Http\Controllers\API;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\DataUjian;
 use App\Models\PostEssay;
 use App\Models\UjianSekolah;
 use Illuminate\Http\Request;
+use App\Models\UjianSekolahEssay;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\DistribusiUjianKelas;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\DataUjianController;
 
 class UjianSekolahApiController extends Controller
 {
@@ -86,16 +89,13 @@ class UjianSekolahApiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, UjianSekolah $ujianSekolah)
     {
-        DB::beginTransaction();
-        foreach($request->id_jawaban as $key => $name) {
+        // DB::beginTransaction();
+         foreach((array) $request->id_jawaban as $key => $value) {
             $idjawaban = $request->id_jawaban[$key];
-            $id_soalujian = $request->id_soalujian[$key];
-            $jawaban = Post::find($id_soalujian)->jawaban;
-
-            $benar = 1;
-            $salah = 0;
+            $idsoal = $request->id_soalujian[$key];
+            $jawaban = Post::find($idsoal)->jawaban;
 
             if($idjawaban == $jawaban) {
                 $correct = 1;
@@ -103,73 +103,59 @@ class UjianSekolahApiController extends Controller
                 $correct = 0;
             }
 
-            $insert = [
+            $insert = UjianSekolah::create([
                 'id_kelas' => $request->id_kelas,
                 'id_user' => $request->id_user,
                 'id_sekolah_asal' => $request->id_sekolah_asal,
                 'id_category_pelajaran' => $request->id_category_pelajaran,
                 'id_category_ujian' => $request->id_category_ujian,
-                'id_soalujian' => $id_soalujian,
-                'id_jawaban' => $idjawaban,
+                'id_soalujian' => $request->id_soalujian[$key],
+                'id_jawaban' => $request->id_jawaban[$key],
                 'correct' => $correct,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
+            ]);
 
             if($correct == 1) {
-                $hasil = UjianSekolah::where('id_user', Auth::user()->id)->sum('correct') + 1;
+                $hasil = UjianSekolah::where('id_user', $request->id_user)->sum('correct');
             }else{
-                $hasil = UjianSekolah::where('id_user', Auth::user()->id)->sum('correct');
+                $hasil = UjianSekolah::where('id_user', $request->id_user)->sum('correct');
             }
 
-            $dataUjian = [
+            $insert2 = DataUjian::create([
                 'id_kelas' => $request->id_kelas,
                 'id_user' => $request->id_user,
                 'id_sekolah_asal' => $request->id_sekolah_asal,
                 'id_category_pelajaran' => $request->id_category_pelajaran,
                 'id_category_ujian' => $request->id_category_ujian,
-                // 'id_ujiansekolah' => $request->id,
                 'total_correct' => $hasil,
-                // 'total_nilai' => $hasil2,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
+            ]);
 
-
-           $postsGanda =  DB::table('ujian_sekolahs')->insert($insert);
+            return response()->json([
+                'data' => 'Data Ujian Sekolah Tampil Success',
+                'ujianSekolah' => $insert,
+                'ujianSekolah2' => $insert2,
+            ]);
         }
 
-        if(is_array($request->id_jawaban_essay) || is_object($request->id_jawaban_essay)) {
-            foreach($request->id_jawaban_essay as $keyEssay => $name2) {
-                $id_soalujianEssay = $request->id_soalujian_essay[$keyEssay];
-                $idjawabanEssay = $request->id_jawaban_essay[$keyEssay];
+            foreach((array) $request->id_jawaban_essay as $keyEssay => $name3)
+            {
+                $idjawabanEssay = $name3;
+                $idsoalEssay = $request->id_soalujian_essay[$keyEssay];
 
-                $insert2 = [
+                $insert3 = UjianSekolahEssay::create([
                     'id_kelas' => $request->id_kelas,
                     'id_user' => $request->id_user,
                     'id_sekolah_asal' => $request->id_sekolah_asal,
                     'id_category_pelajaran' => $request->id_category_pelajaran,
                     'id_category_ujian' => $request->id_category_ujian,
-                    'id_soalujian_essay' => $id_soalujianEssay,
+                    'id_soalujian_essay' => $idsoalEssay,
                     'id_jawaban_essay' => $idjawabanEssay,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
+                ]);
 
-                $postsEssay = DB::table('ujian_sekolah_essays')->insert($insert2);
+                return response()->json([
+                    'data' => 'Data Ujian Sekolah Tampil Success',
+                    'insert3' => $insert3,
+                ]);
             }
-        };
-
-       $datasUjian =  DB::table('data_ujians')->insert($dataUjian);
-        DB::commit();
-
-        return response()->json([
-            'data' => 'Data Ujian Sekolah Tampil Success',
-            'postsGanda' => $postsGanda,
-            'postsEssay' => $postsEssay,
-            'datasUjian' => $datasUjian,
-        ]);
-
     }
 
     /**
