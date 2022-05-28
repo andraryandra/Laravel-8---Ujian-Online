@@ -16,6 +16,7 @@ class CreateDistribusiUjianKelasTable extends Migration
         Schema::create('distribusi_ujian_kelas', function (Blueprint $table) {
             $table->id();
             $table->string('id_kelas')->nullable();
+            $table->string('id_sekolah_asal')->nullable();
             $table->string('id_category')->nullable();
             $table->string('id_category_ujian')->nullable();
             $table->string('status')->nullable();

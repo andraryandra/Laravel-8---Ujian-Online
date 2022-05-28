@@ -9,7 +9,7 @@ use App\Models\DistribusiUjianKelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-
+use App\Models\Sekolah;
 
 class DistribusiUjianKelasController extends Controller
 {
@@ -22,10 +22,11 @@ class DistribusiUjianKelasController extends Controller
     {
         $DisujianKelases = DistribusiUjianKelas::with('kelas')->with('category')->with('categoryUjian')->get();
         $kelas = Kelas::pluck('name_kelas', 'id')->all();
+        $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
         $categori = Category::pluck('name_category', 'id')->all();
         $categoryUjians = CategoryUjian::pluck('name_category_ujian', 'id')->all();
         $DisujianKelasCount = DistribusiUjianKelas::count();
-        return view('admin.distribusiUjianKelas.index', compact('DisujianKelases','kelas','categori','categoryUjians','DisujianKelasCount'));
+        return view('admin.distribusiUjianKelas.index', compact('DisujianKelases','kelas','sekolahs','categori','categoryUjians','DisujianKelasCount'));
     }
 
     public function indexDistribusiUjianKelas()
@@ -33,8 +34,9 @@ class DistribusiUjianKelasController extends Controller
         $DisujianKelases = DistribusiUjianKelas::with('category')->with('categoryUjian')->get();
         $categori = Category::pluck('name_category', 'id')->all();
         $categoryUjians = CategoryUjian::pluck('name_category_ujian', 'id')->all();
+        $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
         $DisujianKelasCount = DistribusiUjianKelas::count();
-        return view('ujianSekolah.index', compact('DisujianKelases','categori','categoryUjians','DisujianKelasCount'));
+        return view('ujianSekolah.index', compact('DisujianKelases','categori','sekolahs','categoryUjians','DisujianKelasCount'));
     }
 
     /**
@@ -59,6 +61,7 @@ class DistribusiUjianKelasController extends Controller
     {
         $this->validate($request, [
             'id_kelas' => 'required',
+            'id_sekolah_asal' => 'required',
             'id_category' => 'required',
             'id_category_ujian' => 'required',
             'status' => 'required',
@@ -66,6 +69,7 @@ class DistribusiUjianKelasController extends Controller
 
         $DisujianKelas = DB::table('distribusi_ujian_kelas')->insert([
             'id_kelas' => $request->id_kelas,
+            'id_sekolah_asal' => $request->id_sekolah_asal,
             'id_category' => $request->id_category,
             'id_category_ujian' => $request->id_category_ujian,
             'status' => $request->status,
@@ -120,6 +124,7 @@ class DistribusiUjianKelasController extends Controller
     {
         $this->validate($request, [
             'id_kelas' => 'required',
+            'id_sekolah_asal' => 'required',
             'id_category' => 'required',
             'id_category_ujian' => 'required',
             'status' => 'required',
@@ -127,6 +132,7 @@ class DistribusiUjianKelasController extends Controller
 
         $DisujianKelas = DB::table('distribusi_ujian_kelas')->where('id', $request->id)->update([
             'id_kelas' => $request->id_kelas,
+            'id_sekolah_asal' => $request->id_sekolah_asal,
             'id_category' => $request->id_category,
             'id_category_ujian' => $request->id_category_ujian,
             'status' => $request->status,

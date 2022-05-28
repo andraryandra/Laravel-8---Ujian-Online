@@ -12,9 +12,17 @@
         <div class="modal-body">
             <form action="/distribusiUjianKelas/store" method="post">
                 @csrf
+                <div class="form-group m-3" >
+                    <label for="id_sekolah_asal" class="pb-2  fs-5"><i class="bi bi-building"></i> Sekolah</label>
+                    <select class="form-select form-select-lg  py-2" name="id_sekolah_asal" id="id_sekolah_asal">
+                        @if(Auth::user()->role == 'admin' && Auth::user()->sekolah->name_sekolah)
+                            <option class="fw-bold" value="{{ Auth::user()->sekolah->id }}">{{ Auth::user()->sekolah->name_sekolah }}</option>
+                        @endif
+                    </select>
+                </div>
 
                 <div class="form-group m-3">
-                    <label for="id_kelas" class="pb-2 fw-bold fs-5"><i class="bi bi-shop-window"></i> {{ __("Kelas") }}</label>
+                    <label for="id_kelas" class="pb-2 fw-bold fs-5"><i class="bi bi-house-door-fill"></i> {{ __("Kelas") }}</label>
                     <select class="form-select py-2" name="id_kelas" id="id_kelas">
                         <option class="text-secondary" readonly="disabled" value="">Pilih Kelas</option>
                         <option value="7">Kelas 7</option>
@@ -22,9 +30,9 @@
                         <option value="9">Kelas 9</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group m-3">
-                    <label for="id_category" class="pb-2 fw-bold fs-5"><i class="bi bi-shop-window"></i> {{ __("Category Pelajaran") }}</label>
+                    <label for="id_category" class="pb-2 fw-bold fs-5"><i class="fas fa-clipboard-list"></i> {{ __("Category Pelajaran") }}</label>
                     <select class="form-select py-2" name="id_category" id="id_category">
                         <option class="text-secondary" readonly="disabled" >Pilih Category Pelajaran</option>
                         @forelse($categori as $id => $categories)
@@ -36,7 +44,7 @@
                 </div>
 
                 <div class="form-group m-3">
-                    <label for="id_category_ujian" class="pb-2 fw-bold fs-5"><i class="bi bi-shop-window"></i> {{ __("Categori Ujian") }}</label>
+                    <label for="id_category_ujian" class="pb-2 fw-bold fs-5"><i class="fas fa-clipboard-list"></i> {{ __("Categori Ujian") }}</label>
                     <select class="form-select py-2" name="id_category_ujian" id="id_category_ujian">
                         <option class="text-secondary" readonly="disabled" >Pilih Category Ujian</option>
                         @forelse($categoryUjians as $id => $categoryUjian)
@@ -48,7 +56,7 @@
                 </div>
 
                 <div class="form-group m-3">
-                    <label for="status" class="pb-2 fw-bold fs-5"><i class="bi bi-shop-window"></i> {{ __("Status") }}</label>
+                    <label for="status" class="pb-2 fw-bold fs-5"><i class="bi bi-question-octagon-fill"></i> {{ __("Status") }}</label>
                     <select class="form-select py-2" name="status" id="status">
                         <option class="text-secondary" readonly="disabled" >Pilih Status</option>
                         <option value="1">Aktif</option>
@@ -56,7 +64,7 @@
                     </select>
                 </div>
 
-                
+
 
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary fs-5 shadow"><i class="bi bi-check-circle"></i> SIMPAN</button>

@@ -56,15 +56,21 @@
             <div class="card-header py-3">
                 <h6 class="font-weight-bold text-primary">DataTable </h6>
                  <p class="">Fitur pada bagian Category ini berfungsi untuk menambahkan Kategori Ujian yang dimana sesuai dengan mata Ujian SMP / SMA / SMK.</p>
-            </div>  
+            </div>
 
              <div class="card-body">
                 <form action="/distribusiUjianKelas/update" method="post">
                     @csrf
-                        <div class="m-3">
-                            <label for="id" class="pb-2 fw-bold" hidden >{{ __('ID Distribusi Ujian') }}</label>
+                        <div class="m-3" hidden>
+                            <label for="id" class="pb-2 fw-bold" >{{ __('ID Distribusi Ujian') }}</label>
                             <input type="hidden" class="form-control" placeholder="id" name="id" value="{{ $DisujianKelas->id ?? "" }}" required>
-                        </div>  
+                        </div>
+                        <div class="form-group m-3" hidden>
+                            <label for="id_sekolah_asal" class="pb-2 fw-bold fs-5"><i class="bi bi-building"></i> Sekolah</label>
+                            <select class="form-select form-select-lg py-2" name="id_sekolah_asal" id="id_sekolah_asal">
+                                <option value="{{ $DisujianKelas->id_sekolah_asal ?? ""}}">{{ $DisujianKelas->sekolah->name_sekolah ?? ""}}</option>
+                            </select>
+                        </div>
 
                         <div class="form-group m-3">
                             <label for="id_kelas" class="pb-2 fw-bold fs-5"><i class="bi bi-shop-window"></i> {{ __("Kelas") }}</label>
@@ -142,5 +148,5 @@
             </div>
         </div>
 
-    
+
 @endsection

@@ -79,6 +79,7 @@
                                 <th>No</th>
                                 <th>Kelas</th>
                                 <th>Nama Mata Pelajaran</th>
+                                <th>Sekolah</th>
                                 <th>Jenis Ujian</th>
                                 <th class="text-center">Status</th>
                                 <th class="text-center w-25">Action</th>
@@ -96,6 +97,7 @@
                             <td class="fw-bold">{{ $no++ }}</td>
                             <td>{{ $DisujianKelas->id_kelas ?? "" }}</td>
                             <td>{{ $DisujianKelas->category->name_category ?? "" }}</td>
+                            <td>{{ $DisujianKelas->sekolah->name_seklah ?? "" }}</td>
                             <td>{{ $DisujianKelas->categoryUjian->name_category_ujian ?? "" }}</td>
                             @if($DisujianKelas->status == 1)
                             <td class="text-center"><span class="badge bg-success p-3 text-white fw-bold  " style="font-size: 16px;">Aktif</span></td>

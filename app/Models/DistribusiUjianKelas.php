@@ -13,6 +13,7 @@ class DistribusiUjianKelas extends Model
     use HasFactory;
     protected $fillable = ([
         'id_kelas',
+        'id_sekolah_asal',
         'id_category',
         'id_category_ujian',
         'status',
@@ -31,6 +32,11 @@ class DistribusiUjianKelas extends Model
     public function categoryUjian()
     {
         return $this->belongsTo(CategoryUjian::class, 'id_category_ujian');
+    }
+
+    public function sekolah()
+    {
+        return $this->belongsTo(Sekolah::class, 'id_sekolah_asal');
     }
 
 
