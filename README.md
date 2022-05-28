@@ -55,7 +55,7 @@ Untuk Menambahkan data valid Faker bisa menggunakan command berikut.
 php artisan db:seed
 ```
 
-Setelah proses diatas berhasil dilalui tanpa hambatan, silahkan akses di browser url http://localhost:8080/login untuk mengakses aplikasi ujian atau juga http://localhost:8000 / http://127.0.0.1:8000 dengan menjalankan server via cmd.
+Setelah proses diatas berhasil dilalui tanpa hambatan, silahkan akses di browser url http://localhost:8000/login untuk mengakses aplikasi ujian atau juga http://localhost:8000 / http://127.0.0.1:8000 dengan menjalankan server via cmd.
 
 ```
 php artisan serve
