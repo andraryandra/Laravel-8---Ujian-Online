@@ -33,7 +33,7 @@ Setelah itu ketikan:
 git clone https://github.com/andraryandra/Laravel-8---Ujian-Online.git
 ```
 
-Tunggu sampai file selesai di clone ke folder htdocs server Anda, lalu masuk ke folder <b>tixam</b> dengan mengetikan (```cd tixam```) pada command prompt (gitbash) Anda, lalu ketikan :
+Tunggu sampai file selesai di clone ke folder htdocs server Anda, lalu masuk ke folder <b>Laravel-8---Ujian-Online</b> dengan mengetikan (```cd Laravel-8---Ujian-Online```) pada command prompt (gitbash) Anda, lalu ketikan :
 
 ```
 composer install
@@ -42,7 +42,7 @@ composer install
 ```
 php artisan key:generate
 ```
-Buka browser dan ketikan url http://localhost/phpmyadmin. Lalu buat database baru dengan nama <b>tixam</b>. Setelah itu ketikan script berikut pada command promt:
+Buka browser dan ketikan url http://localhost/phpmyadmin. Lalu buat database baru dengan nama <b>laravel_belajar_cobaan</b>. Setelah itu ketikan script berikut pada command promt:
 ```
 php artisan migrate
 ```
