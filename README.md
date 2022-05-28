@@ -37,16 +37,21 @@ Tunggu sampai file selesai di clone ke folder htdocs server Anda, lalu masuk ke 
 
 ```
 composer install
-php artisan key:generate
 ```
 
+```
+php artisan key:generate
+```
 Buka browser dan ketikan url http://localhost/phpmyadmin. Lalu buat database baru dengan nama <b>tixam</b>. Setelah itu ketikan script berikut pada command promt:
 ```
 php artisan migrate / php artisan migrate:fresh --seed
+```
+
+```
 php artisan db:seed
 ```
 
-Setelah proses diatas berhasil dilalui tanpa hambatan, silahkan akses di browser url http://localhost/tixam/public untuk mengakses aplikasi ujian atau juga http://localhost:8000 / http://127.0.0.1:8000 dengan menjalankan server via cmd.
+Setelah proses diatas berhasil dilalui tanpa hambatan, silahkan akses di browser url http://localhost:8080/login untuk mengakses aplikasi ujian atau juga http://localhost:8000 / http://127.0.0.1:8000 dengan menjalankan server via cmd.
 
 ```
 php artisan serve
