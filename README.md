@@ -48,8 +48,9 @@ php artisan migrate
 ```
 Atau
 ```
-php artisan migrate:fresh --seed
+php artisan migrate --seed
 ```
+Untuk Menambahkan data valid Faker bisa menggunakan command berikut.
 ```
 php artisan db:seed
 ```
