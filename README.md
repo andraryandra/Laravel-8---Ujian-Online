@@ -1,69 +1,64 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Ujian Online
+Aplikasi Ujian Pilihan Ganda Berbasis Komputer
 
 ## Kebutuhan Server
 
-Aplikasi ini dibangun diatas Framework <a href="https://laravel.com/docs/5.5" target="_blank" title="silahkan buka di tab baru, dengan klik kanan atau klik CTRL + clik">Laravel 5.4</a> dan MySQL versi 5. Sebelum menjalankan aplikasi ini, silahkan disiapkan terlebih dahulu beberapa software dan ekstension berikut:
+Aplikasi ini dibangun diatas Framework <a href="https://laravel.com/docs/8.x" target="_blank" title="silahkan buka di tab baru, dengan klik kanan atau klik CTRL + clik">Laravel 8</a> dan MySQL versi 7.4. Sebelum menjalankan aplikasi ini, silahkan disiapkan terlebih dahulu beberapa software dan ekstension berikut:
 
-- PHP versi 7.2 keatas
-  - OpenSSL PHP Extension
-  - PDO PHP Extension
-  - Mbstring PHP Extension
-  - Tokenizer PHP Extension
-  - XML PHP Extension
+- PHP versi 7.4 keatas
 - MySQL
 - Browser (lebih direkomendasikan Chrome versi 60 keatas
 
 Anda dapat menggunakan beberapa paket yang siap pakai untuk mempersingkat proses instalasi aplikasi ini.
 
-## About Laravel
+## Instalasi
 
-<h1 class="fw-bold">Selamat Datang di Project Laravel 8 Ujian Online.</h1>
+Disini akan saya jelaskan proses instalasi pada sistem operasi Windows.
 
-Untuk menggunakan atau menjalankan Project Laravel 8 Ujian Online ini.
+Pertama silahkan download XAMPP, silahkan download <a href="https://www.apachefriends.org/download.html" target="_blank" title="silahkan buka di tab baru, dengan klik kanan atau klik CTRL + clik">disini</a>.
+Silahkan install XAMPP yang telah berhasil Anda download. Pastikan dikomputer Anda belum terinstall PHP & MySQL untuk menghindari konflik port. Apabila sebelumnya telah ada, silahkan cek versi PHP harus 7.4.
 
-1.Pertama download project, kemudian ketikan perintah :
-- composer install
+Setelah berhasil menginstal PHP dan MySQL (dalam paket XAMPP), kita lanjutkan install composer dan gitbash.
 
-2. Ubah nama file .env.example menjadi .env
-- copy .env.example .env
+Untuk composer silahkan download <a href="https://getcomposer.org/download/" target="_blank" title="silahkan buka di tab baru, dengan klik kanan atau klik CTRL + clik">disini</a>.
 
-3. Ketikan perintah berikut,
-- php artisan key:generate
+Untuk gitbash silahkan download <a href="https://git-scm.com/downloads" target="_blank" title="silahkan buka di tab baru, dengan klik kanan atau klik CTRL + clik">disini</a>.
 
-4.lalu siapkan database di localhost/phpmyadmin, untuk nama databasenya bisa dilihat di file .env
+Silahkan instal composer dan git bash di komputer server Anda. Setelah semua berhasil diinstal dengan benar kita bisa mulai clone aplikasi ini ke komputer kita.
 
-5. Jalankan perintah migratation,
-- php artisan migrate
+Buka command prompt (gitbash) lalu arahkan ke folder htdocs (ada didalam folder xampp, misal Anda menginstal di C. Berarti Anda harus ke folder C:\\xampp\htdocs).
 
-6. Lalu jalankan perintah berikut juga,
-- php artisan db:seed
+Setelah itu ketikan:
+```
+git clone https://github.com/andraryandra/Laravel-8---Ujian-Online.git
+```
 
-7. Kalian tinggal menjalani project ini,
-- php artisan serve
+Tunggu sampai file selesai di clone ke folder htdocs server Anda, lalu masuk ke folder <b>tixam</b> dengan mengetikan (```cd tixam```) pada command prompt (gitbash) Anda, lalu ketikan :
 
-8. Buka Browser dan ketikan alamat URL berikut,
-- localhost:8000 atau 127.0.0.1:8000
+```
+composer install
+php artisan key:generate
+```
 
-9. Untuk info loginnya sebagai berikut,
+Buka browser dan ketikan url http://localhost/phpmyadmin. Lalu buat database baru dengan nama <b>tixam</b>. Setelah itu ketikan script berikut pada command promt:
+```
+php artisan migrate / php artisan migrate:fresh --seed
+php artisan db:seed
+```
 
-<p>SuperAdmin : </p>
-<p>Username = superadmin </p>
-<p>Password = superadmin</p>
+Setelah proses diatas berhasil dilalui tanpa hambatan, silahkan akses di browser url http://localhost/tixam/public untuk mengakses aplikasi ujian atau juga http://localhost:8000 / http://127.0.0.1:8000 dengan menjalankan server via cmd.
 
-<p>Admin : 
-<p>Username = admin </p>
-<p>Password = admin</p>
+```
+php artisan serve
+```
 
-Gunakan project ini sebaik mungkin, dan jadikan sebagai bahan referensi project.
-Salam Ngoding Aryand 🥇
+Untuk login sebagai Super Admin silahkan gunakan username: <b>superadmin</b>, password: <b>superadmin</b>
+Untuk login sebagai Admin Sekolah silahkan gunakan username: <b>adminMTS</b>, password: <b>admin</b>
+Untuk login sebagai Siswa Sekolah silahkan gunakan username: <b>siswaMTS1</b>, password: <b>passwordMTS</b>
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Info Tambahan
+
+Aplikasi ini bersifat terbuka, siapapun dipersilahkan untuk menjadi kontributor untuk meningkatkan kualitas aplikasi ini.
+
+Buat yang telah berhasil menggunakan, jangan lupa untuk kasih bintang ya supaya aplikasi kita ini semakin dikenal luas dan membawa manfaat lebih banyak lagi bagi dunia pendidikan kita.
