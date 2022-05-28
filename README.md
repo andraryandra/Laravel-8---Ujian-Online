@@ -44,9 +44,12 @@ php artisan key:generate
 ```
 Buka browser dan ketikan url http://localhost/phpmyadmin. Lalu buat database baru dengan nama <b>tixam</b>. Setelah itu ketikan script berikut pada command promt:
 ```
-php artisan migrate / php artisan migrate:fresh --seed
+php artisan migrate
 ```
-
+Atau
+```
+php artisan migrate:fresh --seed
+```
 ```
 php artisan db:seed
 ```
