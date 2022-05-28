@@ -26,6 +26,7 @@ class DistribusiUjianKelasController extends Controller
         $categori = Category::pluck('name_category', 'id')->all();
         $categoryUjians = CategoryUjian::pluck('name_category_ujian', 'id')->all();
         $DisujianKelasCount = DistribusiUjianKelas::count();
+
         return view('admin.distribusiUjianKelas.index', compact('DisujianKelases','kelas','sekolahs','categori','categoryUjians','DisujianKelasCount'));
     }
 
@@ -152,9 +153,46 @@ class DistribusiUjianKelasController extends Controller
      * @param  \App\Models\DistribusiUjianKelas  $distribusiUjianKelas
      * @return \Illuminate\Http\Response
      */
+
+     public function status($id)
+     {
+         $data = DistribusiUjianKelas::where('id', $id)->first();
+
+         $status_sekarang = $data->status;
+
+         if($status_sekarang == 1)
+         {
+            DistribusiUjianKelas::where('id', $id)->update([
+                'status' => 0,
+            ]);
+         }else {
+            DistribusiUjianKelas::where('id', $id)->update([
+                'status' => 1,
+            ]);
+         }
+
+         if($status_sekarang == 1)
+         {
+            alert()->toast('Status berhasil diubah menjadi '. 'Tidak Aktif', 'success');
+
+         } else{
+            alert()->toast('Status berhasil diubah menjadi '. 'Aktif', 'success',);
+         }
+
+            return redirect()->route('distribusiUjianKelas.index');
+     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\DistribusiUjianKelas  $distribusiUjianKelas
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(DistribusiUjianKelas $distribusiUjianKelas, $id)
     {
         DB::table('distribusi_ujian_kelas')->where('id', $id)->delete();
         return redirect()->route('distribusiUjianKelas.index')->with('success', 'Data berhasil dihapus');
     }
+
+
 }

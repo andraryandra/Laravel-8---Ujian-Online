@@ -78,7 +78,7 @@
                                 </th>
                                 <th>No</th>
                                 <th>Kelas</th>
-                                <th>Nama Mata Pelajaran</th>
+                                <th>Mata Pelajaran</th>
                                 <th>Sekolah</th>
                                 <th>Jenis Ujian</th>
                                 <th class="text-center">Status</th>
@@ -97,14 +97,29 @@
                             <td class="fw-bold">{{ $no++ }}</td>
                             <td>{{ $DisujianKelas->id_kelas ?? "" }}</td>
                             <td>{{ $DisujianKelas->category->name_category ?? "" }}</td>
-                            <td>{{ $DisujianKelas->sekolah->name_seklah ?? "" }}</td>
+                            <td>{{ $DisujianKelas->sekolah->name_sekolah ?? "" }}</td>
                             <td>{{ $DisujianKelas->categoryUjian->name_category_ujian ?? "" }}</td>
-                            @if($DisujianKelas->status == 1)
-                            <td class="text-center"><span class="badge bg-success p-3 text-white fw-bold  " style="font-size: 16px;">Aktif</span></td>
-                            @else
-                            <td class="text-center"><span class="badge bg-warning p-3 text-white fw-bold " style="font-size: 16px;">Tidak Aktif</span></td>
-                            @endif
-                            <td class="text-center">
+                            <td>
+                                <div class="dropdown no-arrow mb-4">
+                                    <button class="@if($DisujianKelas->status == 1) btn btn-success @else btn btn-danger @endif dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                       @if($DisujianKelas->status == 1)
+                                        Active
+                                        @else
+                                        Non Active
+                                        @endif
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        @if($DisujianKelas->status == 1)
+                                        <a class="dropdown-item text-black" style="font-size: 16px;" href="{{ url('/distribusiUjianKelas-status-'.$DisujianKelas->id) }}">Non Active</a>
+                                        @else
+                                        <a class="dropdown-item text-black" style="font-size: 16px;" href="{{ url('/distribusiUjianKelas-status-'.$DisujianKelas->id) }}">Active</a>
+                                        @endif
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center" >
                                 <a href="/distribusiUjianKelas-show-{{ $DisujianKelas->id }}" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
                                 <a href="/distribusiUjianKelas-edit-{{ $DisujianKelas->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i></a>
                                 <a href="/distribusiUjianKelas/delete/{{ $DisujianKelas->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>
@@ -124,8 +139,5 @@
 
     {{-- Create Category Ujian --}}
     @include('admin.distribusiUjianKelas.create')
-
-
-
 
 @endsection

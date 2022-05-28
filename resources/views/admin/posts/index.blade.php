@@ -82,7 +82,7 @@
                                     <th class="" width="20%">Category</th>
                                     <th class="" width="50%">Soal Ujian</th>
                                     <th class="text-center">Jawaban Benar</th>
-                                    <th class="text-center">Sekolahr</th>
+                                    <th class="text-center">Sekolah</th>
                                     <th class="text-center w-25">Action</th>
                                 </tr>
                             </thead>

@@ -48,7 +48,7 @@ class LoginController extends Controller
     {
         // Do your logic to flash data to session...
         alert()->toast('Welcome '. Auth::user()->name .', you have been successfully logged in!', 'success')->position('top-end');
-       
+
         // Return the results of the method we are overriding that we aliased.
         return $this->laravelRedirectPath();
     }
@@ -62,7 +62,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        
+
         return redirect('/');
     }
 

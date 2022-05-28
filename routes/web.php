@@ -223,6 +223,8 @@ Route::group(['middleware' => ['auth','role:admin']], function(){
         Route::get('/distribusiUjianKelas-edit-{id}', 'edit')->name('distribusiUjianKelas.edit');
         Route::post('/distribusiUjianKelas/update', 'update')->name('distribusiUjianKelas.update');
 
+        Route::get('/distribusiUjianKelas-status-{id}', 'status')->name('distribusiUjianKelas.status');
+
         Route::delete('/distribusiUjianKelasDeleteAll', 'deleteAll')->name('distribusiUjianKelas.deleteAll');
         Route::get('/distribusiUjianKelas/delete/{id}', 'destroy')->name('distribusiUjianKelas.destroy');
 
