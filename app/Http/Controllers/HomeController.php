@@ -8,6 +8,7 @@ use App\Models\Kelas;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -33,12 +34,12 @@ class HomeController extends Controller
         $categories = Category::all();
         $kelases = Kelas::all();
 
-        $siswaCount = User::where('role', 'siswa')->count();
-        $guruCount = User::where('role', 'guru')->count();
-        $categoriesCount = Category::count();
-        $postsCount = Post::count();
-        $kelasesCount = Kelas::count();
-        
+        $siswaCount = User::where('sekolah_asal', Auth::user()->sekolah_asal)->where('role', 'siswa')->count();
+        $guruCount = User::where('sekolah_asal', Auth::user()->sekolah_asal)->where('role', 'guru')->count();
+        $categoriesCount = Category::where('id_sekolah_asal', Auth::user()->sekolah_asal)->count();
+        $postsCount = Post::where('id_sekolah_asal', Auth::user()->sekolah_asal)->count();
+        $kelasesCount = Kelas::where('id_sekolah_asal', Auth::user()->sekolah_asal)->count();
+
         return view('admin.dashboard', compact('users','posts','categories','kelases','siswaCount','guruCount','categoriesCount', 'postsCount','kelasesCount'));
         // return view('admin.dashboard');
     }

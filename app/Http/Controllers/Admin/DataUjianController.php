@@ -22,13 +22,14 @@ class DataUjianController extends Controller
      */
     public function indexDataUjian2()
     {
-        $dataUjian = DataUjian::with('category_ujian')
+        $dataUjian = DataUjian::where('id_sekolah_asal', Auth::user()->sekolah_asal)
+        ->with('category_ujian')
         ->with('category_pelajaran')
         ->with('kelas')
         ->with('user')
         ->get();
 
-        $dataUjianCount = DataUjian::count();
+        $dataUjianCount = DataUjian::where('id_sekolah_asal', Auth::user()->sekolah_asal)->count();
         return view('guru.dataUjian.index', compact('dataUjian','dataUjianCount'));
     }
 
@@ -40,7 +41,7 @@ class DataUjianController extends Controller
      */
     public function show($id)
     {
-        $dataUjian = DataUjian::with('category_ujian')
+        $dataUjian = DataUjian::where('id_sekolah_asal', Auth::user()->sekolah_asal)->with('category_ujian')
         ->with('category_pelajaran')
         // ->with('post')
         ->with('kelas')
@@ -48,14 +49,14 @@ class DataUjianController extends Controller
         ->findOrFail($id);
 
 
-        $ujianSekolah = UjianSekolah::with('category_ujian')
+        $ujianSekolah = UjianSekolah::where('id_sekolah_asal', Auth::user()->sekolah_asal)->with('category_ujian')
         ->with('category_pelajaran')
         ->with('post')
         ->with('kelas')
         ->with('user')
         ->get();
 
-        $ujianSekolahEssay = UjianSekolahEssay::with('category_ujian')
+        $ujianSekolahEssay = UjianSekolahEssay::where('id_sekolah_asal', Auth::user()->sekolah_asal)->with('category_ujian')
         ->with('category_pelajaran')
         ->with('postEssay')
         ->with('kelas')
@@ -67,9 +68,9 @@ class DataUjianController extends Controller
 
         // $ujianSekolahCount = UjianSekolah::where('id_user', Auth::user()->id)->count();
         // $ujianSekolahCount = UjianSekolah::count();
-        $ujianSekolahCount = UjianSekolah::where('id_user', $id)->count();
+        $ujianSekolahCount = UjianSekolah::where('id_sekolah_asal', Auth::user()->sekolah_asal)->where('id_user', $id)->count();
 
-        $dataUjianCount = DataUjian::count();
+        $dataUjianCount = DataUjian::where('id_sekolah_asal', Auth::user()->sekolah_asal)->count();
         return view('guru.dataUjian.show', compact('dataUjian','ujianSekolahEssay','ujianSekolah','dataUjianCount','ujianSekolahCount'));
 
     }

@@ -91,6 +91,7 @@
                             $no = 1;
                         @endphp
                         @foreach ($siswaAdmins as $sd)
+                        @if($sd->sekolah->name_sekolah == Auth::user()->sekolah->name_sekolah)
                         <tr id="tr_{{ $sd->id}}">
                             <td class="text-center">
                                 <input type="checkbox" class="sub_chk" data-id="{{$sd->id}}">
@@ -114,6 +115,7 @@
                                 <a href="/siswa/delete/{{ $sd->id ?? ""}}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>
                                 </td>
                             </tr>
+                            @endif
                             @endforeach
                             </tbody>
                         </table>

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Kelas;
+use App\Models\Sekolah;
 use App\Models\Category;
-use App\Models\CategoryUjian;
-use App\Models\DistribusiUjianKelas;
 use Illuminate\Http\Request;
+use App\Models\CategoryUjian;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Sekolah;
+use App\Models\DistribusiUjianKelas;
+use Illuminate\Support\Facades\Auth;
 
 class DistribusiUjianKelasController extends Controller
 {
@@ -20,24 +21,23 @@ class DistribusiUjianKelasController extends Controller
      */
     public function index()
     {
-        $DisujianKelases = DistribusiUjianKelas::with('kelas')->with('category')->with('categoryUjian')->get();
-        $kelas = Kelas::pluck('name_kelas', 'id')->all();
+        $DisujianKelases = DistribusiUjianKelas::where('id_sekolah_asal', Auth::user()->sekolah_asal)->with('kelas')->with('category')->with('categoryUjian')->get();
+        $kelas = Kelas::where('id_sekolah_asal', Auth::user()->sekolah_asal)->pluck('name_kelas', 'id')->all();
         $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
-        $categori = Category::pluck('name_category', 'id')->all();
-        $categoryUjians = CategoryUjian::pluck('name_category_ujian', 'id')->all();
-        $DisujianKelasCount = DistribusiUjianKelas::count();
+        $categori = Category::where('id_sekolah_asal', Auth::user()->sekolah_asal)->pluck('name_category', 'id')->all();
+        $categoryUjians = CategoryUjian::where('id_sekolah_asal', Auth::user()->sekolah_asal)->pluck('name_category_ujian', 'id')->all();
+        $DisujianKelasCount = DistribusiUjianKelas::where('id_sekolah_asal', Auth::user()->sekolah_asal)->count();
 
         return view('admin.distribusiUjianKelas.index', compact('DisujianKelases','kelas','sekolahs','categori','categoryUjians','DisujianKelasCount'));
     }
 
     public function indexDistribusiUjianKelas()
     {
-        $DisujianKelases = DistribusiUjianKelas::with('category')->with('categoryUjian')->get();
-        $categori = Category::pluck('name_category', 'id')->all();
-        $categoryUjians = CategoryUjian::pluck('name_category_ujian', 'id')->all();
+        $DisujianKelases = DistribusiUjianKelas::where('id_sekolah_asal', Auth::user()->sekolah_asal)->with('category')->with('categoryUjian')->get();
+        $categori = Category::where('id_sekolah_asal', Auth::user()->sekolah_asal)->pluck('name_category', 'id')->all();
+        $categoryUjians = CategoryUjian::where('id_sekolah_asal', Auth::user()->sekolah_asal)->pluck('name_category_ujian', 'id')->all();
         $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
-        $DisujianKelasCount = DistribusiUjianKelas::count();
-        return view('ujianSekolah.index', compact('DisujianKelases','categori','sekolahs','categoryUjians','DisujianKelasCount'));
+        return view('ujianSekolah.index', compact('DisujianKelases','categori','sekolahs','categoryUjians'));
     }
 
     /**
@@ -47,8 +47,8 @@ class DistribusiUjianKelasController extends Controller
      */
     public function create()
     {
-        $DisujianKelas = DistribusiUjianKelas::with('kelas')->get();
-        $kelas = Kelas::pluck('name_kelas', 'id')->all();
+        $DisujianKelas = DistribusiUjianKelas::where('id_sekolah_asal', Auth::user()->sekolah_asal)->with('kelas')->get();
+        $kelas = Kelas::where('id_sekolah_asal', Auth::user()->sekolah_asal)->pluck('name_kelas', 'id')->all();
         return view('admin.distribusiUjianKelas.create', compact('DisujianKelas','kelas'));
     }
 
@@ -106,12 +106,11 @@ class DistribusiUjianKelasController extends Controller
      */
     public function edit(DistribusiUjianKelas $distribusiUjianKelas, $id)
     {
-        $DisujianKelas = DistribusiUjianKelas::with('kelas')->with('category')->with('categoryUjian')->find($id);
+        $DisujianKelas = DistribusiUjianKelas::where('id_sekolah_asal', Auth::user()->sekolah_asal)->with('kelas')->with('category')->with('categoryUjian')->find($id);
         $kelas = Kelas::pluck('name_kelas', 'id')->all();
-        $categori = Category::pluck('name_category', 'id')->all();
-        $categoryUjians = CategoryUjian::pluck('name_category_ujian', 'id')->all();
-        $DisujianKelasCount = DistribusiUjianKelas::count();
-        return view('admin.distribusiUjianKelas.edit', compact('DisujianKelas','kelas','categori','categoryUjians','DisujianKelasCount'));
+        $categori = Category::where('id_sekolah_asal', Auth::user()->sekolah_asal)->pluck('name_category', 'id')->all();
+        $categoryUjians = CategoryUjian::where('id_sekolah_asal', Auth::user()->sekolah_asal)->pluck('name_category_ujian', 'id')->all();
+        return view('admin.distribusiUjianKelas.edit', compact('DisujianKelas','kelas','categori','categoryUjians'));
     }
 
     /**

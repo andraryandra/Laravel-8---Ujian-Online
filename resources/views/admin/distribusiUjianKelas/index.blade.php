@@ -110,11 +110,11 @@
                                         Non Active
                                         @endif
                                     </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <div class="dropdown-menu @if($DisujianKelas->status == 1) bg-danger @else bg-success @endif" aria-labelledby="dropdownMenuButton">
                                         @if($DisujianKelas->status == 1)
-                                        <a class="dropdown-item text-black" style="font-size: 16px;" href="{{ url('/distribusiUjianKelas-status-'.$DisujianKelas->id) }}">Non Active</a>
+                                        <a class="dropdown-item text-white rounded bg-danger" style="font-size: 18px;" href="{{ url('/distribusiUjianKelas-status-'.$DisujianKelas->id) }}">Non Active</a>
                                         @else
-                                        <a class="dropdown-item text-black" style="font-size: 16px;" href="{{ url('/distribusiUjianKelas-status-'.$DisujianKelas->id) }}">Active</a>
+                                        <a class="dropdown-item text-white rounded bg-success" style="font-size: 18px;" href="{{ url('/distribusiUjianKelas-status-'.$DisujianKelas->id) }}">Active</a>
                                         @endif
                                     </div>
                                 </div>

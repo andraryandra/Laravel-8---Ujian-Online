@@ -36,7 +36,8 @@
                     $no = 1;
                 @endphp
                 @foreach ($DisujianKelases as $DisujianKelas)
-                @if ($DisujianKelas->status == 1 && $DisujianKelas->id_kelas == '7' && Auth::user()->kelas->name_kelas >= '7-A' && Auth::user()->kelas->name_kelas <= '7-Z')
+                {{-- && Auth::user()->kelas->name_kelas >= '7-A' && Auth::user()->kelas->name_kelas <= '7-Z' --}}
+                @if ($DisujianKelas->status == 1 && $DisujianKelas->id_kelas == '7')
                     <tr>
                         <td class="text-center">{{ $no++ }}</td>
                         <td class="text-center">{{ $DisujianKelas->id_kelas }}</td>
@@ -46,7 +47,7 @@
                             <a href="{{ url('/ujianSekolah-create-'.$DisujianKelas->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-box-arrow-in-right"></i> Mulai Ujian</a>
                         </td>
                     </tr>
-                @elseif($DisujianKelas->status == 1 && $DisujianKelas->id_kelas == '8' && Auth::user()->kelas->name_kelas >= '8-A' && Auth::user()->kelas->name_kelas <= '8-Z')
+                @elseif($DisujianKelas->status == 1 && $DisujianKelas->id_kelas == '8')
                     <tr>
                         <td class="text-center">{{ $no++ }}</td>
                         <td class="text-center">{{ $DisujianKelas->id_kelas }}</td>
@@ -56,7 +57,7 @@
                             <a href="{{ url('/ujianSekolah-create-'.$DisujianKelas->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-box-arrow-in-right"></i> Mulai Ujian</a>
                         </td>
                     </tr>
-                @elseif($DisujianKelas->status == 1 && $DisujianKelas->id_kelas == '9' && Auth::user()->kelas->name_kelas >= '9-A' && Auth::user()->kelas->name_kelas <= '9-Z')
+                @elseif($DisujianKelas->status == 1 && $DisujianKelas->id_kelas == '9')
                     <tr>
                         <td class="text-center">{{ $no++ }}</td>
                         <td class="text-center">{{ $DisujianKelas->id_kelas }}</td>

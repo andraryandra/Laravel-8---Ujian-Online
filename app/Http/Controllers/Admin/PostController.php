@@ -9,6 +9,7 @@ use App\Imports\PostImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PostController extends Controller
@@ -20,12 +21,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->get();
-        $categori = Category::pluck('name_category', 'id')->all();
+        $posts = Post::where('id_sekolah_asal', Auth::user()->sekolah_asal)->with('category')->get();
+        $categori = Category::where('id_sekolah_asal', Auth::user()->sekolah_asal)->pluck('name_category', 'id')->all();
         $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
-        $categoriesCount = Category::count();
-        $postCount = Post::count();
-        return view('admin.posts.index', compact('posts','categori','sekolahs','categoriesCount','postCount'));
+        $postCount = Post::where('id_sekolah_asal', Auth::user()->sekolah_asal)->count();
+        return view('admin.posts.index', compact('posts','categori','sekolahs','postCount'));
     }
 
     /**
@@ -101,10 +101,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::with('category')->find($id);
-        $categori = Category::pluck('name_category', 'id')->all();
-        $postCount = Post::count();
-        return view('admin.posts.edit', compact('post', 'categori','postCount'));
+        $post = Post::where('id_sekolah_asal', Auth::user()->sekolah_asal)->with('category')->find($id);
+        $categori = Category::where('id_sekolah_asal', Auth::user()->sekolah_asal)->pluck('name_category', 'id')->all();
+        return view('admin.posts.edit', compact('post', 'categori'));
     }
 
     /**

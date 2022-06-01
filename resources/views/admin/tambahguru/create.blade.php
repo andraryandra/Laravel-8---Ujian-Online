@@ -42,7 +42,7 @@
                     <label for="sekolah_asal" class="pb-2  fs-5"><i class="bi bi-building"></i> Sekolah</label>
                     <select class="form-select form-select-lg  py-2" name="sekolah_asal" id="sekolah_asal">
                         {{-- <option class="" value="">Pilih Sekolah...</option> --}}
-                        @if(Auth::user()->role == 'admin' && Auth::user()->sekolah->name_sekolah)
+                        @if(Auth::user()->role == 'admin' &&  Auth::user()->sekolah->name_sekolah)
                             <option class="fw-bold" value="{{ Auth::user()->sekolah->id }}">{{ Auth::user()->sekolah->name_sekolah }}</option>
                         @endif
                     </select>

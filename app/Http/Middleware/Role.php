@@ -19,13 +19,13 @@ class Role
     {
         $user = Auth::user();
 
-        if ($user->role == 'admin' || $user->role == 'guru') {
+        if ($user->role == 'admin' || $user->role == 'guru' || $user->role == 'siswa') {
             return $next($request);
         } elseif($user->role == 'guru') {
             return redirect('/blank');
         } elseif($user->role == 'siswa') {
             return redirect('/blank');
-        } 
+        }
 
         return $next($request);
     }

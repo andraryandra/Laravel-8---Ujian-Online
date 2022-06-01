@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Kelas;
+use App\Models\Sekolah;
 use App\Imports\KelasImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Sekolah;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Worksheet\Validations;
 
@@ -23,8 +24,8 @@ class KelasController extends Controller
     {
         // $kelases = Kelas::where('id_wali', null)->orderBy('id_wali', 'desc')->get();
         $kelases = Kelas::with('user')->with('sekolah')->get();
-        $kelasesCount = Kelas::count();
-        $guruAdmin = User::where('role', 'guru')->pluck('name', 'id')->all();
+        $kelasesCount = Kelas::where('id_sekolah_asal', Auth::user()->sekolah_asal)->count();
+        $guruAdmin = User::where('sekolah_asal', Auth::user()->sekolah_asal)->where('role', 'guru')->pluck('name', 'id')->all();
         $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
 
         return view('admin.kelas.index', compact('kelases','kelasesCount','guruAdmin','sekolahs'));
@@ -92,10 +93,9 @@ class KelasController extends Controller
     public function edit($id)
     {
         $kelas = Kelas::with('user')->with('sekolah')->find($id);
-        $guruAdmin = User::where('role', 'guru')->pluck('name', 'id')->all();
+        $guruAdmin = User::where('sekolah_asal', Auth::user()->sekolah_asal)->where('role', 'guru')->pluck('name', 'id')->all();
         $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
-        $kelasesCount = Kelas::count();
-        return view('admin.kelas.edit', compact('kelas','kelasesCount','guruAdmin','sekolahs'));
+        return view('admin.kelas.edit', compact('kelas','guruAdmin','sekolahs'));
     }
 
     /**

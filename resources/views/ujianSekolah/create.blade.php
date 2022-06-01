@@ -2,14 +2,14 @@
 @section('title' ,'Ujian Siswa')
 @section('content')
 
-@if ( $DisujianKelases->status == 1 && $DisujianKelases->id_kelas == '7' && Auth::user()->kelas->name_kelas >= '7-A' && Auth::user()->kelas->name_kelas <= '7-Z')
+@if ( $DisujianKelases->status == 1 && $DisujianKelases->id_kelas == '7' )
 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow-sm">
+    <div class="row justify-content-center ">
+        <div class="col-md-8 ">
+            <div class="card shadow-sm rounded">
                 @if( $DisujianKelases->id)
-                <div class="card-header">Ujian Online - {{ $DisujianKelases->categoryUjian->name_category_ujian }} - {{ $DisujianKelases->category->name_category }}</div>
+                <div class="card-header bg-dark text-warning fw-bold fs-5 rounded">Ujian Online - {{ $DisujianKelases->categoryUjian->name_category_ujian }} - {{ $DisujianKelases->category->name_category }}</div>
                 @endif
                     <div class="card-body">
 
@@ -49,15 +49,21 @@
                             </div>
                             @endif
 
+                            {{-- <div class="card text-start|center|end m-3"> --}}
+                                {{-- <div class="card-header"> --}}
+                                    <p class="text-capitalize badge bg-primary rounded-pill shadow-sm fs-5 m-2 text-center">Soal Pilihan Ganda Ujian</p>
+                                {{-- </div> --}}
+                            {{-- </div> --}}
                             @php
                                 $no = 1;
                             @endphp
                             @foreach ($post as $id => $posts)
                                 @if($DisujianKelases->id_category == $posts->id_category )
 
-                                <div class="card m-3 shadow-sm">
-                                    <div class="card-header p-3">
-                                        {{ $no++ }}. {{ $posts->soal_ujian }}
+                                <div class="card m-3 rounded shadow-sm">
+                                    <div class="card-header bg-white rounded-pill p-3" style="font-size: 19px;">
+                                        <p class="d-inline fw-bold badge bg-secondary" style="font-size: 14px;">{{ $no++ }}.</p>
+                                        <p class="d-inline m-2">{{ $posts->soal_ujian }}</p>
                                         <input type="hidden" name="id_soalujian[{{ $posts->id }}]" id="{{ $posts->id }}" value="{{ $posts->id }}">
                                     </div>
                                     <div class="card-body">
@@ -91,19 +97,20 @@
                                 @endif
                             @endforeach
                          <hr>
-                         <div class="card text-start|center|end m-3">
-                            <div class="card-header">
-                                <p class="text-capitalize badge bg-info fs-5 m-2 text-center">Soal Essay Ujian</p>
-                            </div>
-                        </div>
+                         {{-- <div class="card text-start|center|end m-3"> --}}
+                            {{-- <div class="card-header"> --}}
+                                <p class="text-capitalize badge bg-primary rounded-pill shadow-sm fs-5 m-2 text-center">Soal Essay Ujian</p>
+                            {{-- </div> --}}
+                        {{-- </div> --}}
                         @php
                             $noEssay = 1;
                         @endphp
                         @foreach ($postsEssay as $postEssay)
                         @if($DisujianKelases->id_category == $postEssay->id_category )
-                        <div class="card m-3 shadow-sm">
-                        <div class="card-header p-3">
-                            {{ $noEssay++ }}. {{ $postEssay->soal_ujian_essay }}
+                        <div class="card m-3 rounded shadow-sm">
+                        <div class="card-header bg-white rounded-pill p-3" style="font-size: 19px;">
+                            <p class="d-inline fw-bold badge bg-secondary" style="font-size: 14px;">{{ $noEssay++ }}.</p>
+                            <p class="d-inline m-2">{{ $postEssay->soal_ujian_essay }}</p>
                             <input type="hidden" name="id_soalujian_essay[{{ $postEssay->id }}]" id="{{ $postEssay->id }}" value="{{ $postEssay->id }}">
                         </div>
                         <div class="card-body">
@@ -128,7 +135,7 @@
     </div>
 </div>
 
-@elseif ('/ujianSekolah-create-'.$DisujianKelases->id && $DisujianKelases->status == 1 && $DisujianKelases->id_kelas == '8' && Auth::user()->kelas->name_kelas >= '8-A' && Auth::user()->kelas->name_kelas <= '8-Z')
+@elseif ('/ujianSekolah-create-'.$DisujianKelases->id && $DisujianKelases->status == 1 && $DisujianKelases->id_kelas == '8' )
 
 <div class="container">
     <div class="row justify-content-center">
@@ -226,7 +233,7 @@
     </div>
 </div>
 
-@elseif ('/ujianSekolah-create-'.$DisujianKelases->id && $DisujianKelases->status == 1 && $DisujianKelases->id_kelas == '9' && Auth::user()->kelas->name_kelas >= '9-A' && Auth::user()->kelas->name_kelas <= '9-Z')
+@elseif ('/ujianSekolah-create-'.$DisujianKelases->id && $DisujianKelases->status == 1 && $DisujianKelases->id_kelas == '9')
 
 <div class="container">
     <div class="row justify-content-center">

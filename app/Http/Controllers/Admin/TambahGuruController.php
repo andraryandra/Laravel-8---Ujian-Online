@@ -10,6 +10,7 @@ use App\Imports\PostImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -23,10 +24,11 @@ class TambahGuruController extends Controller
     public function index()
     {
         // $guruAdmins = User::all();
-        $guruAdmins = User::where('role', 'guru')->orderBy('id', 'desc')->get(); // Menampilkan data terbaru
+        $guruAdmins = User::where('sekolah_asal', Auth::user()->sekolah_asal)->where('role', 'guru')->orderBy('id', 'desc')->get(); // Menampilkan data terbaru
         $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
         // ->whereRole('admin') // menampilkan data  Admin saja
-        $guruAdminCount = User::where('role', 'guru')->count();
+        // $guruAdminCount = User::where('role', 'guru', '=' )->count();
+        $guruAdminCount = User::where('sekolah_asal', Auth::user()->sekolah_asal)->where('role', 'guru')->count();
         return view('admin.tambahguru.index', compact('guruAdmins','sekolahs','guruAdminCount'));
 
     }
@@ -103,10 +105,9 @@ class TambahGuruController extends Controller
      */
     public function edit($id)
     {
-        $guruAdmin = User::findOrFail($id);
+        $guruAdmin = User::where('sekolah_asal', Auth::user()->sekolah_asal)->findOrFail($id);
         $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
-        $guruAdminCount = User::where('role', 'guru')->count();
-        return view('admin.tambahguru.edit', compact('guruAdmin','sekolahs', 'guruAdminCount'));
+        return view('admin.tambahguru.edit', compact('guruAdmin','sekolahs'));
     }
 
     /**

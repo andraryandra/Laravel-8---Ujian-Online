@@ -8,6 +8,7 @@ use App\Models\CategoryUjian;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Imports\CategoryUjianImport;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CategoryUjianController extends Controller
@@ -19,9 +20,9 @@ class CategoryUjianController extends Controller
      */
     public function index()
     {
-        $categoryUjians = CategoryUjian::all();
+        $categoryUjians = CategoryUjian::where('id_sekolah_asal', Auth::user()->sekolah_asal)->get();
         $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
-        $categoryUjiansCount = CategoryUjian::count();
+        $categoryUjiansCount = CategoryUjian::where('id_sekolah_asal', Auth::user()->sekolah_asal)->count();
         return view('admin.categories-ujian.index', compact('categoryUjians','sekolahs','categoryUjiansCount'));
     }
 

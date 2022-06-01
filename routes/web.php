@@ -208,7 +208,7 @@ Route::group(['middleware' => ['auth','role:admin']], function(){
 
 // Route Data Ujian
     Route::controller(DataUjianController::class)->group(function () {
-        Route::get('/dataUjian', 'indexDataUjian2')->name('dataUjian.indexDataUjian');
+        Route::get('/dataUjian', 'indexDataUjian2')->name('dataUjian.indexDataUjian')->middleware('auth');
         Route::get('/dataUjian-show-{id}', 'show')->name('dataUjian.show');
     });
 

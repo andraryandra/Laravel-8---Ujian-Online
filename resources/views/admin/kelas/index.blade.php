@@ -85,6 +85,7 @@
                             $no = 1;
                         @endphp
                         @foreach ($kelases as $kelas)
+                        @if($kelas->sekolah->name_sekolah == Auth::user()->sekolah->name_sekolah)
                         <tr id="tr_{{ $kelas->id }}">
                             <td><input type="checkbox" class="sub_chk" data-id="{{$kelas->id}}"></td>
                             <td class="fw-bold">{{ $no++ }}</td>
@@ -103,6 +104,7 @@
                                 <a href="/kelas/delete/{{ $kelas->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>
                                 </td>
                             </tr>
+                            @endif
                             @endforeach
 
                             </tbody>

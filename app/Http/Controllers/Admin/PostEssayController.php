@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Sekolah;
 use App\Models\Category;
 use App\Models\PostEssay;
 use Illuminate\Http\Request;
 use App\Imports\PostEssayImport;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Sekolah;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PostEssayController extends Controller
@@ -20,10 +21,10 @@ class PostEssayController extends Controller
      */
     public function index()
     {
-        $postsEssays = PostEssay::with('category_pelajaran')->get();
-        $categori = Category::pluck('name_category', 'id')->all();
+        $postsEssays = PostEssay::where('id_sekolah_asal', Auth::user()->sekolah_asal)->with('category_pelajaran')->get();
+        $categori = Category::where('id_sekolah_asal', Auth::user()->sekolah_asal)->pluck('name_category', 'id')->all();
         $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
-        $postEssayCount = PostEssay::count();
+        $postEssayCount = PostEssay::where('id_sekolah_asal', Auth::user()->sekolah_asal)->count();
         return view('admin.postsEssay.index', compact('postsEssays','sekolahs','categori','postEssayCount'));
     }
 
@@ -85,10 +86,9 @@ class PostEssayController extends Controller
      */
     public function edit($id)
     {
-        $postsEssay = PostEssay::find($id);
-        $categori = Category::pluck('name_category', 'id')->all();
-        $postEssayCount = PostEssay::count();
-        return view('admin.postsEssay.edit', compact('postsEssay','categori','postEssayCount'));
+        $postsEssay = PostEssay::where('id_sekolah_asal', Auth::user()->sekolah_asal)->find($id);
+        $categori = Category::where('id_sekolah_asal', Auth::user()->sekolah_asal)->pluck('name_category', 'id')->all();
+        return view('admin.postsEssay.edit', compact('postsEssay','categori'));
     }
 
     /**

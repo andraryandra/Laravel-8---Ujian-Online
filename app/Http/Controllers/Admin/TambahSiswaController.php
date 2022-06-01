@@ -10,6 +10,7 @@ use App\Imports\PostImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -25,8 +26,8 @@ class TambahSiswaController extends Controller
         $siswaAdmins = User::with('kelas')->where('role', 'siswa')->orderBy('id', 'desc')->get(); // Menampilkan data terbaru
         // ->whereRole('admin') // menampilkan data  Admin saja
         $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
-        $kelas = Kelas::pluck('name_kelas', 'id')->all();
-        $siswaAdminCount = User::where('role', 'siswa')->count();
+        $kelas = Kelas::where('id_sekolah_asal', Auth::user()->sekolah_asal)->pluck('name_kelas', 'id')->all();
+        $siswaAdminCount = User::where('sekolah_asal', Auth::user()->sekolah_asal)->where('role', 'siswa')->count();
         return view('admin.tambahsiswa.index', compact('siswaAdmins','sekolahs','kelas','siswaAdminCount'));
     }
 
@@ -109,7 +110,7 @@ class TambahSiswaController extends Controller
     {
         $siswaAdmin = User::with('kelas')->findOrFail($id);
         $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
-        $kelas = Kelas::pluck('name_kelas', 'id')->all();
+        $kelas = Kelas::where('id_sekolah_asal', Auth::user()->sekolah_asal)->pluck('name_kelas', 'id')->all();
         $siswaAdminCount = User::where('role', 'siswa')->count();
         return view('admin.tambahsiswa.edit', compact('siswaAdmin','sekolahs','kelas','siswaAdminCount'));
     }

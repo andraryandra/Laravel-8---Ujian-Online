@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Imports\CategoryImport;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -21,9 +22,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::where('id_sekolah_asal', Auth::user()->sekolah_asal)->get();
         $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
-        $categoriesCount = Category::count();
+        $categoriesCount = Category::where('id_sekolah_asal', Auth::user()->sekolah_asal)->count();
         return view('admin.categories.index', compact('categories','sekolahs','categoriesCount'));
     }
 
