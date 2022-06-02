@@ -175,6 +175,8 @@ Route::group(['middleware' => ['auth','role:admin']], function(){
 
     Route::controller(TambahSiswaController::class)->group(function () {
         Route::get('/siswa', 'index')->name('siswa.index');
+
+        Route::get('/siswaPrint', 'listSiswa')->name('siswa.print');
         Route::get('/siswa-show-{id}', 'show')->name('siswa.show');
 
         Route::get('/siswa/create', 'create')->name('siswa.create');
@@ -192,6 +194,8 @@ Route::group(['middleware' => ['auth','role:admin']], function(){
 // Route Tambah Guru
     Route::controller(TambahGuruController::class)->group(function () {
         Route::get('/guru', 'index')->name('guru.index');
+
+        Route::get('/guruPrint', 'listGuru')->name('guru.print');
         Route::get('/guru-show-{id}', 'show')->name('guru.show');
 
         Route::get('/guru/create', 'create')->name('guru.create');

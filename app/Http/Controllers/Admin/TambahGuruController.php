@@ -33,6 +33,12 @@ class TambahGuruController extends Controller
 
     }
 
+    public function listGuru()
+    {
+       $guruPersons = DB::select("CALL `getGuruData`()");
+        return view('admin.tambahguru.print', compact('guruPersons'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -31,6 +31,12 @@ class TambahSiswaController extends Controller
         return view('admin.tambahsiswa.index', compact('siswaAdmins','sekolahs','kelas','siswaAdminCount'));
     }
 
+    public function listSiswa()
+    {
+       $siswaPersons = DB::select("CALL `getSiswaData`()");
+        return view('admin.tambahsiswa.print', compact('siswaPersons'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

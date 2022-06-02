@@ -378,6 +378,46 @@
 </script>
 
 <script>
+    $(document).ready(function() {
+    var printCounter = 0;
+    $('#examplePrint').DataTable( {
+        dom: 'Bfrtip',
+        stateSave: true,
+
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.'
+            },
+            {
+                extend: 'pdf',
+                messageBottom: null
+            },
+            {
+                extend: 'csv',
+                messageBottom: null
+            },
+            {
+                extend: 'print',
+                messageTop: function () {
+                    printCounter++;
+
+                    if ( printCounter === 1 ) {
+                        // return "<h5>This is the first time you have printed this document.</h5>";
+                    }
+                    else {
+                        return 'You have printed this document '+printCounter+' times';
+                    }
+                },
+                messageBottom: null
+            }
+        ]
+    } );
+} );
+</script>
+
+<script>
     $('.jeda-confirm').on('click', function (event) {
     let timerInterval
         Swal.fire({

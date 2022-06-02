@@ -70,6 +70,10 @@
                     <i class="bi bi-trash-fill"></i>
                     Delete All Selected
                 </button>
+                <a href="{{ url('/guruPrint') }}" class="btn btn-info  m-1 p-3 shadow">
+                    <i class="bi bi-printer-fill" style="color: white;"></i>
+                    Print All Data
+                </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive ">
