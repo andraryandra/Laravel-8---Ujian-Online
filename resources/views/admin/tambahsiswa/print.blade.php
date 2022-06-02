@@ -31,6 +31,7 @@
                                 <th width="">Status</th>
                                 <th width="">Nama</th>
                                 <th width="">Gender</th>
+                                <th width="">Sekolah</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,6 +45,7 @@
                             <td class="text-capitalize">{{ $siswaPerson->role }}</td>
                             <td class="text-capitalize">{{ $siswaPerson->name }}</td>
                             <td>{{ $siswaPerson->jk }}</td>
+                            <td>{{ Auth::user()->sekolah->name_sekolah }}</td>
                             @endif
                             @endforeach
                             </tbody>

@@ -29,17 +29,24 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+    crossorigin="anonymous"
+  />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
 
                 <div class="">
                 <ul class="nav nav-pills">
                     <li class="nav-item ">
-                      {{-- <a class=""  href="#">Active</a> --}}
-                      {{-- <a class="navbar-brand nav-link active" aria-current="page" href="{{ url('/') }}"> --}}
                         <a class="navbar-brand  nav-link {{ Request::is('/')? "active":"" }}" aria-current="page" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
@@ -132,7 +139,78 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+            <div class="container">
+              <img
+                class="me-4"
+                src="assets/images/logo-polindra.png"
+                alt=""
+                width="30"
+                height="24"
+              />
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-4">
+                    @auth
+                       @if (Auth::user()->role == 'admin')
+                       <li class="nav-item">
+                           <a class="navbar-brand  nav-link {{ Request::is('home')? "active":"" }}" aria-current="page" href="{{ url('/home') }}">
+                               {{ config('Home', 'Home') }}
+                           </a>
+                       </li>
+                         <li class="nav-item">
+                           <a class="navbar-brand  nav-link {{ Request::is('categories')? "active":"" }}" aria-current="page" href="{{ url('/categories') }}">
+                               {{ config('Categori', 'Categori') }}
+                           </a>
+                         </li>
+                         <li class="nav-item">
+                           <a class="navbar-brand  nav-link {{ Request::is('posts')? "active":"" }}" aria-current="page" href="{{ url('/posts') }}">
+                               {{ config('Posts', 'Posts') }}
+                           </a>
+                         </li>
+                         <li class="nav-item">
+                           <a class="navbar-brand  nav-link {{ Request::is('ujianSekolah')? "active":"" }}" aria-current="page" href="{{ url('/ujianSekolah') }}">
+                               {{ config('UjianSekolah', 'UjianSekolah') }}
+                           </a>
+                         </li>
+                       @endif
+                       @if (Auth::user()->role == 'siswa')
+
+                     <a class="navbar-brand nav-link {{ Request::is('home')? "active":"" }}" href="{{ url('/home') }}">
+                       {{ config('Home', 'Home') }}
+                   </a>
+                     <a class="navbar-brand nav-link {{ Request::is('ujianSekolah')? "active":"" }}" href="{{ url('/ujianSekolah') }}">
+                       {{ config('UjianSekolah', 'UjianSekolah') }}
+                   </a>
+                     @endif
+                     @endauth
+                </ul>
+                  @auth
+                      <a href="{{ url('/home') }}" class="btn btn-dark me-4 shadow">Home</a>
+                      @else
+                      <a href="{{ route('login') }}" class="col-md-1 btn btn-dark me-4">Log in</a>
+                      @if (Route::has('register'))
+                      {{-- <a href="{{ route('register') }}" class="btn btn-primary me-4">Register</a> --}}
+                      @endif
+                  @endauth
+                </form>
+              </div>
+            </div>
+          </nav>
 
         <main class="py-4">
             @yield('content')

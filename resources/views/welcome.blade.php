@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -47,7 +47,7 @@
               </div>
             </div>
           </nav>
-          
+
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
@@ -143,4 +143,229 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
+</html> --}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>@yield('title') - Ujian Online</title>
+    <link rel="icon" href="{{ asset('/img/logo-ujian.png') }}"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <img
+          class="me-4"
+          src="assets/images/logo-polindra.png"
+          alt=""
+          width="30"
+          height="24"
+        />
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-4">
+            <li class="nav-item me-4">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item me-4">
+              <a class="nav-link" href="#">Fitur</a>
+            </li>
+            <li class="nav-item dropdown me-4">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown me-2">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link ">Contact</a>
+            </li>
+          </ul>
+            @auth
+                <a href="{{ url('/home') }}" class="btn btn-dark me-4 shadow">Home</a>
+                @else
+                <a href="{{ route('login') }}" class="btn btn-dark me-4">Log in</a>
+                @if (Route::has('register'))
+                {{-- <a href="{{ route('register') }}" class="btn btn-primary me-4">Register</a> --}}
+                @endif
+            @endauth
+          </form>
+        </div>
+      </div>
+    </nav>
+    <br>
+    <br>
+    <div class="container">
+    <div class="row">
+      <div class="column side">
+         <h2>ONLINE TEST <br>
+      BASED-MOBILE</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing <br> elit. Enim, eveniet. Distinctio, reprehenderit. In, est consequatur, <br>
+         id, natus quasi eligendi rerum
+      </p>
+      <a class="btn btn-dark" href="{{ url('/login') }}" style="box-shadow: 2px 4px 5px rgb(65, 65, 65); width: 20%;">Get Started <i class="fa-solid fa-arrow-right me-2" style="color: white;"></i></a>
+      </div>
+      <div class="column side">
+  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner" style="border-radius: 20px; box-shadow: 2px 4px 3px rgb(248, 234, 248);">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="assets/images/1.webp" height="400" width="500" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="assets/images/2.webp" height="400" width="500" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="assets/images/3.webp" height="400" width="500" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<br>
+<br>
+      </div>
+       <h3 class="text-center">Special <span style="color: rgb(128, 173, 255);">Features</span></h3>
+       <br>
+       <br>
+      <div class="row">
+  <div class="col-sm-4">
+    <div class="card1">
+      <div class="card-body">
+        <img src="assets/images/study.png" height="45" width="50"  style="background-color: white; border-radius: 10px;" alt="">
+        <h5 class="card-title">Ringan</h5>
+        <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, inventore perferendis iure dignissimos iusto aperiam rem voluptate asperiores beatae. Esse similique magnam dolores quod veniam iusto enim porro nulla quis.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card2">
+      <div class="card-body">
+
+        <img src="assets/images/fast-time.png" height="45" width="50"  style="background-color: white; border-radius: 10px;" alt="">
+        <h5 class="card-title">Cepat</h5>
+        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam at perferendis amet porro cum impedit quia, beatae fugiat laudantium tenetur nisi. Architecto ipsum esse officia quis voluptas, rerum distinctio dolorem?</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card3">
+      <div class="card-body">
+
+        <img src="assets/images/efficiency.png" height="45" width="50"  style="background-color: white; border-radius: 10px;" alt="">
+        <h5 class="card-title">Efisien</h5>
+        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit quo totam facere fugiat voluptas vel accusantium, dignissimos nesciunt. Consequuntur quas ex sint reiciendis doloremque quod nam quidem consectetur, facere iste!</p>
+      </div>
+    </div>
+    <br><br><br>
+  </div>
+    </div>
+    <hr>
+    <div class="container-fluid">
+<div class="container">
+  <footer class="py-5">
+    <div class="row">
+      <div class="col-2">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-2">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-2">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-4 offset-1">
+        <form>
+          <h5>Subscribe to our newsletter</h5>
+          <p>Monthly digest of whats new and exciting from us.</p>
+          <div class="d-flex w-100 gap-2">
+            <label for="newsletter1" class="visually-hidden">Email address</label>
+            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+            <button class="btn btn-dark" type="button" style="width: 20%;">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between py-4 my-4 border-top">
+      <p>&copy; 2021 Company, Inc. All rights reserved.</p>
+      <ul class="list-unstyled d-flex">
+        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+        <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+      </ul>
+    </div>
+  </footer>
+</div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
+

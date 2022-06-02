@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-image: url("assets/images/bg.png");
+  background-size: cover;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.card1 {
+  border-radius: 10px;
+  font-size: 14px;
+  width: 90%;
+  background-color: rgb(192, 255, 235);
+  color: rgb(0, 118, 79);
+  box-shadow: 2px 4px 5px rgb(69, 152, 109);
+}
+
+.card2 {
+  border-radius: 10px;
+  font-size: 14px;
+  width: 90%;
+  background-color: rgb(255, 227, 174);
+  color: rgb(137, 89, 0);
+  box-shadow: 2px 4px 5px rgb(144, 113, 28);
+}
+
+.card3 {
+  border-radius: 10px;
+  font-size: 14px;
+  width: 90%;
+  background-color: rgba(34, 163, 255, 0.1);
+  color: rgb(0, 81, 72);
+  box-shadow: 2px 4px 5px rgb(42, 95, 112);
+}
+
+/* Left and right column */
+.column.side {
+  width: 50%;
+}
+.column.side.two {
+  width: 50%;
+}
+/* Middle column */
+.column.middle {
+  width: 10%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.btn {
+  border-radius: 5px;
+  width: 10%;
+  font-size: 14px;
+}
+.btn .btn-dark {
+  box-shadow: 10px;
+}
+.container {
+  padding: 1em 1em;
+}
+
+.card {
+  border-radius: 20px;
+  font-size: 14px;
+  width: 90%;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.side,
+  .column.side.two .column.middle {
+    width: 100%;
+  }
+}
+
+.b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid rgba(0, 0, 0, 0.15);
+  border-width: 1px 0;
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+}
+
+.bi {
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
