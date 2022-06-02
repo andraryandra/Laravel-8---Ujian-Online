@@ -7,7 +7,7 @@ use App\Models\Post;
 
 use App\Models\Kelas;
 use App\Models\Sekolah;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

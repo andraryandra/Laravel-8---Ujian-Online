@@ -12,6 +12,7 @@ use App\Http\Controllers\API\Admin\PostApiController;
 use App\Http\Controllers\API\Admin\PostEssayApiController;
 use App\Http\Controllers\API\UjianSekolahApiController;
 use App\Http\Controllers\API\UjianSekolahEssayApiController;
+use App\Http\Controllers\PassportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,17 +24,25 @@ use App\Http\Controllers\API\UjianSekolahEssayApiController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::controller(AuthController::class)->group(function () {
+Route::controller(PassportController::class)->group(function() {
     Route::get('/auth/index', 'index');
-    Route::post('/auth/register', 'register');
+    Route::get('/auth/indexSuperAdmin', 'indexSuperAdmin');
+    Route::get('/auth/indexAdmin', 'indexAdmin');
+    Route::get('/auth/indexGuru', 'indexGuru');
+    Route::get('/auth/indexSiswa', 'indexSiswa');
+
     Route::post('/auth/login', 'login');
-    Route::post('/auth/logout', 'logout');
-    Route::post('/auth/person', 'userDetail');
+    Route::post('/auth/register', 'register');
+
+    // put all api protected routes here
+    Route::middleware('auth:api')->group(function () {
+        Route::post('/auth/user-detail', 'userDetail');
+        Route::post('/auth/logout', 'logout');
+    });
 });
 
 Route::controller(CategoryUjianApiController::class)->group(function () {
-    Route::get('/categories-ujian/index', 'index');
+    Route::get('/categories-ujian', 'index');
     Route::post('/categories-ujian/store', 'store');
     Route::post('/categories-ujian/update', 'update');
     Route::post('/categories-ujian/delete', 'delete');

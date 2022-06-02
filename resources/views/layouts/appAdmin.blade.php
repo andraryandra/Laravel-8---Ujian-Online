@@ -175,6 +175,8 @@
         </div>
     </div>
 
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
     <script src="https://kit.fontawesome.com/fe6aa2d4ea.js" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -216,6 +218,19 @@
 
 
 </body>
+
+{{-- <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('my-editor');
+</script> --}}
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#description' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 
 <script src="https://kit.fontawesome.com/fe6aa2d4ea.js" crossorigin="anonymous"></script>
 @yield('scripts')

@@ -32,7 +32,7 @@
                     </div>
                 <div class="m-3">
                     <label for="soal_ujian" class="pb-2 fw-bold"><i class="bi bi-book-fill "></i> Create Soal Ujian</label>
-                    <textarea name="soal_ujian" id="soal_ujian" cols="5" rows="5" class="form-control" required >{{ old('soal_ujian') }}</textarea>
+                    <textarea name="soal_ujian" id="my-editor" cols="5" rows="5" class="form-control" required >{{ old('soal_ujian') }}</textarea>
                 </div>
                 <div class="m-3">
                     <label for="pilihan_a" class="pb-2 fw-bold"><i class="bi bi-arrow-right-square-fill"></i> {{ __('Pilihan A') }}</label>
@@ -72,3 +72,8 @@
         </div>
     </div>
 </div>
+
+<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('my-editor');
+    </script>
