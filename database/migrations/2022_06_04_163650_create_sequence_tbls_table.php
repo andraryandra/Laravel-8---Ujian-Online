@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSekolahsTable extends Migration
+class CreateSequenceTblsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateSekolahsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sekolahs', function (Blueprint $table) {
+        Schema::create('sequence_tbls', function (Blueprint $table) {
             $table->id();
-            $table->string('id_secret')->nullable();
-            $table->string('name_sekolah');
-            $table->timestamps();
         });
     }
 
@@ -28,6 +25,6 @@ class CreateSekolahsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sekolahs');
+        Schema::dropIfExists('sequence_tbls');
     }
 }

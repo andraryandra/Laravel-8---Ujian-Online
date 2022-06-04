@@ -78,7 +78,7 @@
                                 <th width="5%" class="text-center">
                                     <input type="checkbox" class="p-5" id="master" />
                                 </th>
-                                <th width="">No</th>
+                                <th width="">ID Sekolah</th>
                                 <th width="">Sekolah</th>
                                 <th class="text-center w-25">Action</th>
                             </tr>
@@ -92,7 +92,7 @@
                             <td class="text-center">
                                 <input type="checkbox" class="sub_chk" data-id="{{$sekolah->id}}">
                             </td>
-                            <td>{{ $no++ }}</td>
+                            <td>{{ $sekolah->id_secret}}</td>
                             <td>{{ $sekolah->name_sekolah ?? ""}}</td>
                             <td class="text-center">
                                 <a href="/sekolah-show-{{ $sekolah->id }}" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
