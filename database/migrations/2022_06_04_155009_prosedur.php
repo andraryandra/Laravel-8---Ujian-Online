@@ -35,4 +35,5 @@ class Prosedur extends Migration
             END
         ');
     }
+
 }

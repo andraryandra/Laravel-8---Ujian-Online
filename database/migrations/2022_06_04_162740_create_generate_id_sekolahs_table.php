@@ -14,6 +14,7 @@ class CreateGenerateIdSekolahsTable extends Migration
      */
     public function up()
     {
+        // INSERT INTO sequence_tbls VALUES (NULL);
         DB::unprepared('
                 CREATE TRIGGER id_secret_sekolah BEFORE INSERT ON sekolahs FOR EACH ROW
                     BEGIN
