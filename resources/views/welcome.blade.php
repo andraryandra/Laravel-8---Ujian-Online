@@ -158,9 +158,19 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/preloader.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  </head>
+
+</head>
   <body>
+    <div id="loading"></div>
+    <script>
+        var load = document.getElementById("loading");
+
+        window.addEventListener('load', function(){
+         load.style.display = "none";
+        });
+       </script>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">

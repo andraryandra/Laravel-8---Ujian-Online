@@ -12,6 +12,7 @@
     <link rel="icon" href="{{ asset('/img/logo-ujian.png') }}"/>
 
     <!-- Scripts -->
+    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -55,7 +56,7 @@
     <link rel="stylesheet" href="{{ asset('/css/radio-style.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/preloader.css') }}">
     <script src="jquery.min.js"></script>
-    <script type="text/javascript">
+    {{-- <script>
     //script preloader
      (function( $ ) {
        $(window).on('load', function(){
@@ -67,7 +68,7 @@
       })(jQuery);
 
      //slow bisa diganti dengan angka misal 2000
-    </script>
+    </script> --}}
 
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
@@ -77,6 +78,14 @@
 
 </head>
 <body id="page-top">
+    <div id="loading"></div>
+        <script>
+            var load = document.getElementById("loading");
+
+            window.addEventListener('load', function(){
+             load.style.display = "none";
+            });
+           </script>
         @include('sweetalert::alert')
 
         {{-- <div id="preloader">
@@ -219,10 +228,18 @@
 
 </body>
 
-{{-- <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+
 <script>
-    CKEDITOR.replace('my-editor');
-</script> --}}
+  var options = {
+    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+  };
+</script>
+<script>
+    CKEDITOR.replace('my-editor', options);
+    </script>
 
 <script>
     ClassicEditor
@@ -231,6 +248,9 @@
             console.error( error );
         } );
 </script>
+
+
+
 
 <script src="https://kit.fontawesome.com/fe6aa2d4ea.js" crossorigin="anonymous"></script>
 @yield('scripts')

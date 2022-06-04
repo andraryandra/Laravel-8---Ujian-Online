@@ -49,11 +49,9 @@
                             </div>
                             @endif
 
-                            {{-- <div class="card text-start|center|end m-3"> --}}
-                                {{-- <div class="card-header"> --}}
-                                    <p class="text-capitalize badge bg-primary rounded-pill shadow-sm fs-5 m-2 text-center">Soal Pilihan Ganda Ujian</p>
-                                {{-- </div> --}}
-                            {{-- </div> --}}
+
+                            <p class="text-capitalize badge bg-primary rounded-pill shadow-sm fs-5 m-2 text-center">Soal Pilihan Ganda Ujian</p>
+                            <hr>
                             @php
                                 $no = 1;
                             @endphp
@@ -61,9 +59,9 @@
                                 @if($DisujianKelases->id_category == $posts->id_category )
 
                                 <div class="card m-3 rounded shadow-sm">
-                                    <div class="card-header bg-white rounded-pill p-3" style="font-size: 19px;">
-                                        <p class="d-inline fw-bold badge bg-secondary" style="font-size: 14px;">{{ $no++ }}.</p>
-                                        <p class="d-inline m-2">{{ $posts->soal_ujian }}</p>
+                                    <div class="card-header bg-white  p-3" style="font-size: 19px;">
+                                        <p class="d-inline fw-bold badge bg-secondary" style="font-size: 14px;">Soal No.{{ $no++ }}.</p><br><hr>
+                                        <p class="d-inline m-2">{!! $posts->soal_ujian !!}</p>
                                         <input type="hidden" name="id_soalujian[{{ $posts->id }}]" id="{{ $posts->id }}" value="{{ $posts->id }}">
                                     </div>
                                     <div class="card-body">
@@ -97,20 +95,18 @@
                                 @endif
                             @endforeach
                          <hr>
-                         {{-- <div class="card text-start|center|end m-3"> --}}
-                            {{-- <div class="card-header"> --}}
-                                <p class="text-capitalize badge bg-primary rounded-pill shadow-sm fs-5 m-2 text-center">Soal Essay Ujian</p>
-                            {{-- </div> --}}
-                        {{-- </div> --}}
+
+                         <p class="text-capitalize badge bg-primary rounded-pill shadow-sm fs-5 m-2 text-center">Soal Essay Ujian</p>
+                        <hr>
                         @php
                             $noEssay = 1;
                         @endphp
                         @foreach ($postsEssay as $postEssay)
-                        @if($DisujianKelases->id_category == $postEssay->id_category )
+                        @if($DisujianKelases->id_category == $postEssay->id_category)
                         <div class="card m-3 rounded shadow-sm">
-                        <div class="card-header bg-white rounded-pill p-3" style="font-size: 19px;">
-                            <p class="d-inline fw-bold badge bg-secondary" style="font-size: 14px;">{{ $noEssay++ }}.</p>
-                            <p class="d-inline m-2">{{ $postEssay->soal_ujian_essay }}</p>
+                        <div class="card-header bg-white rounded p-3" style="font-size: 19px;">
+                            <p class="d-inline fw-bold badge bg-secondary" style="font-size: 14px;">Soal No.{{ $noEssay++ }}.</p><br><hr>
+                            <p class="d-inline m-2">{!! $postEssay->soal_ujian_essay !!}</p>
                             <input type="hidden" name="id_soalujian_essay[{{ $postEssay->id }}]" id="{{ $postEssay->id }}" value="{{ $postEssay->id }}">
                         </div>
                         <div class="card-body">

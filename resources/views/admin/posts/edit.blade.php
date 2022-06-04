@@ -66,7 +66,7 @@
                     </div>
                     <div class="m-3">
                         <label for="soal_ujian" class="pb-2 fw-bold mb-2 btn btn-info text-white"><i class="bi bi-book-fill "></i> {{ __('Create Soal Ujian') }}</label>
-                        <textarea name="soal_ujian" id="soal_ujian" cols="30" rows="10" class="form-control" required>{{ $post->soal_ujian }}</textarea>
+                        <textarea name="soal_ujian" id="my-editor" cols="30" rows="10" class="form-control" required>{{ $post->soal_ujian }}</textarea>
                     </div>
                     <div class="m-3">
                         <label for="pilihan_a" class="pb-2 fw-bold mb-2 btn btn-dark"><i class="bi bi-chevron-double-right"></i> {{ __('Pilihan A') }}</label>

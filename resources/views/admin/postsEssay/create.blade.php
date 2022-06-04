@@ -32,12 +32,12 @@
                     </div>
                 <div class="m-3">
                     <label for="soal_ujian_essay" class="pb-2 fw-bold"><i class="bi bi-book-fill "></i> Create Soal Essay Ujian</label>
-                    <textarea name="soal_ujian_essay my-editor" id="my-editor" cols="5" rows="5" placeholder="Isi Text Soal Essay Ujian..." class="form-control" required >{{ old('soal_ujian_essay') }}</textarea>
+                    <textarea name="soal_ujian_essay" id="my-editor" cols="5" rows="5" placeholder="Isi Text Soal Essay Ujian..." class="form-control" required >{{ old('soal_ujian_essay') }}</textarea>
                 </div><br>
 
                 <div class="m-3">
                     <label for="jawaban_essay" class="fw-bold badge bg-success p-2" style="font-size: 16px;"><i class="bi bi-journal-check"></i> Jawaban Benar Guru</label>
-                    <textarea name="jawaban_essay" id="description" cols="5" rows="5" placeholder="Isi Jawaban Guru..." class="form-control" required >{{ old('jawaban_essay') }}</textarea>
+                    <textarea name="jawaban_essay" id="jawaban_essay" cols="5" rows="5" placeholder="Isi Jawaban Guru..." class="form-control" required >{{ old('jawaban_essay') }}</textarea>
                 </div>
 
             </div>
@@ -50,7 +50,5 @@
     </div>
 </div>
 
-<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('my-editor');
-    </script>
+
+

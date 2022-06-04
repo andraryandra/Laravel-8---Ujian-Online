@@ -3,63 +3,65 @@
 @section('content')
 <div class="container mb-2">
     <br>
-<div class="row">
- <div class="column side">
-     <h3>Hello Again!</h3>
-     <p style="color: #555;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis, expedita! Esse qui</p>
+{{-- <div class="row"> --}}
+    <div class="column side row ">
+        <h3>Hello Again!</h3>
+        <p style="color: #555;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis, expedita! Esse qui</p>
 
-    <br>
+        <br>
 
-    <form method="POST" action="{{ route('login') }}">
-     @csrf
+        <form method="POST" action="{{ route('login') }}">
+        @csrf
 
-     <div class="mb-3">
-         <label for="username" class="form-label">Username:</label>
-             <input style="width: 80%" id="username" type="username" placeholder="Username"  class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username:</label>
+                <input style="width: 80%" id="username" type="username" placeholder="Username"  class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
-             @error('username')
-                 <span class="invalid-feedback" role="alert">
-                     <strong>{{ $message }}</strong>
-                 </span>
-             @enderror
-       </div>
+                @error('username')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+        </div>
 
-       <div class="mb-3">
-         <label for="exampleFormControlInput1" class="form-label">Password:</label>
-             <input id="password" style="width: 80%" type="password" placeholder="Password Min 6 Character..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Password:</label>
+                <input id="password" style="width: 80%" type="password" placeholder="Password Min 6 Character..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-             @error('password')
-                 <span class="invalid-feedback" role="alert">
-                     <strong>{{ $message }}</strong>
-                 </span>
-             @enderror
-       </div>
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+        </div>
 
 
-             <div class="form-check mb-3">
-                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                 <label class="form-check-label" for="remember">
-                     {{ __('Remember Me') }}
-                 </label>
-             </div>
+                    <label class="form-check-label" for="remember">
+                        {{ __('Remember Me') }}
+                    </label>
+                </div>
 
-             <div class="mb-3 d-inline">
-                 <button type="submit" class="btn btn-primary p-2">
-                     {{ __('Login') }}
-                 </button>
-             </div> ||
-             @if (Route::has('password.request'))
-             <a class="btn btn-link bg-warning text-white text-decoration-none p-2" href="{{ route('password.request') }}">
-                 {{ __('Forgot Your Password?') }}
-             </a>
-         @endif
- </form>
- </div>
- <div
-   class="column side"
- >
- <img src="assets/images/login.png" height="700" width="700" alt="">
+                <div class="mb-3 d-flex mb-3">
+                    <button type="submit" class="btn btn-primary p-2" style="width: 80%;">
+                        {{ __('Login') }}
+                    </button>
+                </div>
+                @if (Route::has('password.request'))
+                <a class="btn bg-warning text-white text-decoration-none p-2" style="width: 80%;" href="{{ route('password.request') }}">
+                    {{ __('Forgot Your Password?') }}
+                </a>
+            @endif
+        </form>
+        </div>
+
+        <div class="column side">
+        <img src="assets/images/login.png" height="700" width="700" alt="">
+        </div>
+
+    {{-- </div> --}}
 </div>
 @endsection
 <link
@@ -88,12 +90,12 @@
 
       /* Left and right column */
       .column.side {
-        width: 50%;
+        width: 45%;
       }
 
       /* Middle column */
       .column.middle {
-        width: 50%;
+        width: 45%;
       }
 
       /* Clear floats after the columns */

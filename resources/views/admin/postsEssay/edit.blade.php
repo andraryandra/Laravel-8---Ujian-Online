@@ -67,7 +67,7 @@
 
                     <div class="form-group m-3">
                         <label for="soal_ujian_essay" class="pb-2 fw-bold mb-2 btn btn-info text-white"><i class="bi bi-bookmark-check"></i> {{ __('soal_ujian_essay') }}</label>
-                        <textarea name="soal_ujian_essay" id="soal_ujian_essay" cols="5" rows="5" placeholder="Isi Text Soal Ujian..." class="form-control" required >{{ $postsEssay->soal_ujian_essay }}</textarea>
+                        <textarea name="soal_ujian_essay" id="my-editor" cols="5" rows="5" placeholder="Isi Text Soal Ujian..." class="form-control" required >{{ $postsEssay->soal_ujian_essay }}</textarea>
                     </div>
 
                     <div class="m-3">
@@ -85,3 +85,5 @@
     </div>
 
 @endsection
+
+

@@ -82,7 +82,7 @@
                                     <th class="" width="20%">Category</th>
                                     <th class="" width="50%">Soal Ujian</th>
                                     <th class="text-center">Jawaban Benar</th>
-                                    <th class="text-center">Sekolah</th>
+                                    {{-- <th class="text-center">Sekolah</th> --}}
                                     <th class="text-center w-25">Action</th>
                                 </tr>
                             </thead>
@@ -105,9 +105,9 @@
                                     @else
                                     <td class="">{{ $post->category->name_category ?? "Silahkan klik edit dan sesuaikan data Category"}}</td>
                                     @endif
-                                    <td class="">{{ $post->soal_ujian ?? ""}}</td>
+                                    <td class="">{!! $post->soal_ujian ?? ""!!}</td>
                                     <td class="text-white text-center fw-bold fs-5 bg-success">{{ $post->jawaban ?? ""}}</td>
-                                    <td>{{ $post->sekolah->name_sekolah }}</td>
+                                    {{-- <td>{{ $post->sekolah->name_sekolah }}</td> --}}
                                     <td class="text-center">
                                         <a href="/posts-show-{{ $post->id }}" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
                                         <a href="/posts-edit-{{ $post->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i></a>

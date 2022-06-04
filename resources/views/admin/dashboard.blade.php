@@ -6,3 +6,4 @@
     @include('admin.component.isi-content-index')
 
 @endsection
+

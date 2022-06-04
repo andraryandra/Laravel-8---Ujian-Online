@@ -41,7 +41,13 @@ class HomeController extends Controller
         $postsCount = Post::where('id_sekolah_asal', Auth::user()->sekolah_asal)->count();
         $kelasesCount = Kelas::where('id_sekolah_asal', Auth::user()->sekolah_asal)->count();
 
-        return view('admin.dashboard', compact('users','posts','categories','kelases','siswaCount','guruCount','categoriesCount', 'postsCount','kelasesCount'));
+
+        $usersChart = User::select(DB::raw("COUNT(*) as count"))
+                    ->whereYear('created_at', date('Y'))
+                    ->groupBy(DB::raw("Month(created_at)"))
+                    ->pluck('count');
+
+        return view('admin.dashboard', compact('users','usersChart','posts','categories','kelases','siswaCount','guruCount','categoriesCount', 'postsCount','kelasesCount'));
         // return view('admin.dashboard');
     }
 
@@ -53,5 +59,14 @@ class HomeController extends Controller
     public function indexGuru()
     {
         return view('guru.dashboard');
+    }
+
+    public function listLog()
+    {
+        $usersLogArray = [];
+        $usersLogArray = DB::table('authentication_log')->get();
+        // $usersLog = User::get();
+        // dd($usersLogArray);
+        return view('admin.log', compact('usersLogArray'));
     }
 }

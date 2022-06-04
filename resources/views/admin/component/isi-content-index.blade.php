@@ -170,9 +170,22 @@
                     <p class="mb-0">Aplikasi ini digunakan untuk pembelajaran dan penggunaan Ujian secara online. Selamat menikmati...</p>
                 </div>
             </div>
+    {{-- <div class="chartsUser">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-chart-pie"></i> Grafik Penggunaan Aplikasi</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-area">
+                    <canvas id="myAreaChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div> --}}
 
         </div>
     </div>
 
 </div>
 <!-- /.container-fluid -->
+

@@ -4,7 +4,9 @@ use App\Models\User;
 use App\Models\Sekolah;
 use App\Models\Category;
 use App\Models\TambahAdmin;
+use App\Models\CategoryUjian;
 use Illuminate\Support\Facades\Auth;
+use UniSharp\LaravelFilemanager\Lfm;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -15,14 +17,13 @@ use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\UjianSekolahController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DataUjianController;
+use App\Http\Controllers\Admin\PostEssayController;
 use App\Http\Controllers\Admin\TambahGuruController;
 use App\Http\Controllers\Admin\TambahSiswaController;
 use App\Http\Controllers\SuperAdmin\SekolahController;
 use App\Http\Controllers\Admin\CategoryUjianController;
 use App\Http\Controllers\SuperAdmin\TambahAdminController;
 use App\Http\Controllers\Admin\DistribusiUjianKelasController;
-use App\Http\Controllers\Admin\PostEssayController;
-use App\Models\CategoryUjian;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,17 @@ use App\Models\CategoryUjian;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+
+});
+
+// Route::get('/log', function() {
+//     return view('admin.log');
+//     // Route::get('/log', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('log');
+// })->name('log')->middleware('auth');
+
+Route::get('/log', [HomeController::class, 'listLog'])->name('log');
 
 Route::get('/', function () {
     return view('welcome');
@@ -84,6 +96,7 @@ Route::group(['middleware' => ['auth']], function(){
 
 // ----------------- ADMIN -----------------------
 Route::group(['middleware' => ['auth','role:admin']], function(){
+
 //Route Profile
     Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
 

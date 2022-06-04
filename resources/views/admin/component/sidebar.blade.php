@@ -17,6 +17,13 @@
             <i class="bi bi-house-fill"></i>
             <span>{{ __("Dashboard") }}</span></a>
     </li>
+    @if(Auth::user()->role == 'admin' || Auth::user()->role == 'superadmin')
+    <li class="nav-item {{ Request::is('log')? " active ":" " }}">
+        <a class="nav-link " href="{{ url('/log') }}">
+            <i class="bi bi-send-fill"></i>
+            <span>{{ __("Log Message") }}</span></a>
+    </li>
+    @endif
     <li class="nav-item {{ Request::is('profile')? " active ":" " }}">
         <a class="nav-link " href="{{ url('/profile') }}">
             <i class="bi bi-person-workspace"></i>
