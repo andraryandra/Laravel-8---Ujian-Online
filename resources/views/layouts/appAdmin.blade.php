@@ -12,7 +12,6 @@
     <link rel="icon" href="{{ asset('/img/logo-ujian.png') }}"/>
 
     <!-- Scripts -->
-    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -184,8 +183,6 @@
         </div>
     </div>
 
-
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
     <script src="https://kit.fontawesome.com/fe6aa2d4ea.js" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -228,26 +225,30 @@
 
 </body>
 
-
+<script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
 <script>
   var options = {
     filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
     filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
     filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+    width: '100%',
+    height: '200px',
+    removeButtons: 'PasteFromWord',
   };
 </script>
 <script>
     CKEDITOR.replace('my-editor', options);
     </script>
 
+{{-- <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
 <script>
     ClassicEditor
-        .create( document.querySelector( '#description' ) )
+        .create( document.querySelector( '#my-editor' ) )
         .catch( error => {
             console.error( error );
         } );
-</script>
+</script> --}}
 
 
 

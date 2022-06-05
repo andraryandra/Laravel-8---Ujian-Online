@@ -227,6 +227,11 @@ Route::group(['middleware' => ['auth','role:admin']], function(){
     Route::controller(DataUjianController::class)->group(function () {
         Route::get('/dataUjian', 'indexDataUjian2')->name('dataUjian.indexDataUjian')->middleware('auth');
         Route::get('/dataUjian-show-{id}', 'show')->name('dataUjian.show');
+
+        Route::get('/dataUjian-edit-{id}', 'edit')->name('dataUjian.edit');
+        Route::post('/dataUjian/update', 'update')->name('dataUjian.update');
+
+        Route::get('/dataUjian/delete/{id}', 'destroy')->name('dataUjian.destroy');
     });
 
 // Route Distribusi Ujian Kelas

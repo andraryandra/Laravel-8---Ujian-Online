@@ -22,7 +22,7 @@ class CreateDataUjiansTable extends Migration
             $table->string('id_category_ujian')->nullable();
             // $table->string('id_ujiansekolah')->nullable();
             $table->string('total_correct')->nullable();
-            // $table->string('total_nilai')->nullable();
+            $table->string('total_nilai')->nullable();
             $table->timestamps();
         });
     }

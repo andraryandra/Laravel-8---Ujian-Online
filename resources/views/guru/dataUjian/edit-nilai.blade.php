@@ -1,5 +1,5 @@
 @extends('layouts.appAdmin')
-@section('title' ,'Show Data Hasil Ujian Siswa')
+@section('title' ,'Edit Nilai Data Hasil Ujian Siswa')
 @section('guru')
 
 <!-- Begin Page Content -->
@@ -18,42 +18,11 @@
         <a href="{{ url('/dataUjian') }}" class="btn btn-success py-3"> <i class="bi bi-box-arrow-left"></i> Kembali</a>
     </div>
 
-    <!-- Content Row -->
-    <div class="row">
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-dark shadow h-100 py-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Jumlah Data Ujian Sekolah">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
-                                Data Ujian Sekolah
-                            </div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $dataUjianCount ?? "" }}</div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-dark" role="progressbar"
-                                         style="width: {{ $dataUjianCount ?? "" }}%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="bi bi-journal-text fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="font-weight-bold text-primary">DataTable </h6>
+                <h6 class="font-weight-bold text-primary">DataTable Nilai Siswa</h6>
                 <p class="">Fitur pada bagian Show ini berfungsi untuk menampilkan Identitas data diri yang dimana sesuai dengan data SMP / SMA / SMK .</p>
             </div>
             <div class="card-body">
@@ -98,7 +67,7 @@
 
                     <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                         <thead>
-                            <tr class="bg-primary text-white">
+                            <tr>
                                 <th>No</th>
                                 <th>Total Jawaban Benar Pilihan Ganda</th>
                                 <th>Total Nilai Keseluruhan Nilai</th>
@@ -110,15 +79,21 @@
                             @endphp
                             <tr>
                                 <td class="text-center fw-bold">{{ $no++ }}</td>
-                                <td class="text-center  fs-5">{{ $dataUjian->total_correct }}</td>
-                                @if(empty($dataUjian->total_nilai))
-                                    <td class="text-center fst-italic">Data Ujian Belum Di Nilai</td>
-                                @else
-                                <td class="text-center fs-5">{{ $dataUjian->total_nilai }}</td>
-                                @endif
+                                <td class="text-center">{{ $dataUjian->total_correct }}</td>
+                                <form action="/dataUjian/update" method="post">
+                                    @csrf
+                                <td hidden>
+                                    <input type="text" name="id" value="{{ $dataUjian->id }}">
+                                </td>
+                                <td>
+                                    <input type="text" name="total_nilai" id="total_nilai" class="form-control" placeholder="Total Nilai" value="{{ $dataUjian->total_nilai }}" />
+                                </td>
                             </tr>
                         </tbody>
                     </table>
+                        <button type="submit" class="btn btn-primary fs-5 shadow float-end"><i class="bi bi-check-circle"></i> SIMPAN</button>
+                        <button type="reset" class="btn btn-warning shadow fst-italic fw-bold float-start" ><i class="bi bi-info-circle-fill"></i> Kembalikan Data Awal</button>
+                </form>
                 </div>
             </div>
         </div>

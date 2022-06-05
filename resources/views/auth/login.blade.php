@@ -3,6 +3,9 @@
 @section('content')
 <div class="container mb-2">
     <br>
+    <div class="column side ">
+        <img src="assets/images/login.png"  height="50%" width="100%" alt="">
+        </div>
 {{-- <div class="row"> --}}
     <div class="column side row ">
         <h3>Hello Again!</h3>
@@ -15,7 +18,7 @@
 
         <div class="mb-3">
             <label for="username" class="form-label">Username:</label>
-                <input style="width: 80%" id="username" type="username" placeholder="Username"  class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                <input style="width: 100%" id="username" type="username" placeholder="Username"  class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                 @error('username')
                     <span class="invalid-feedback" role="alert">
@@ -26,7 +29,7 @@
 
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Password:</label>
-                <input id="password" style="width: 80%" type="password" placeholder="Password Min 6 Character..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                <input id="password" style="width: 100%" type="password" placeholder="Password Min 6 Character..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                 @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -45,21 +48,19 @@
                 </div>
 
                 <div class="mb-3 d-flex mb-3">
-                    <button type="submit" class="btn btn-primary p-2" style="width: 80%;">
+                    <button type="submit" class="btn btn-primary p-2" style="width: 100%;">
                         {{ __('Login') }}
                     </button>
                 </div>
                 @if (Route::has('password.request'))
-                <a class="btn bg-warning text-white text-decoration-none p-2" style="width: 80%;" href="{{ route('password.request') }}">
+                <a class="btn bg-warning text-white text-decoration-none p-2" style="width: 100%;" href="{{ route('password.request') }}">
                     {{ __('Forgot Your Password?') }}
                 </a>
             @endif
         </form>
         </div>
 
-        <div class="column side">
-        <img src="assets/images/login.png" height="700" width="700" alt="">
-        </div>
+
 
     {{-- </div> --}}
 </div>
@@ -81,6 +82,7 @@
         background-image: url('assets/images/bg.png');
         background-size: cover;
       }
+
 
       /* Create three unequal columns that floats next to each other */
       .column {

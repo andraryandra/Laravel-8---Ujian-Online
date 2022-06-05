@@ -24,6 +24,9 @@ use App\Http\Controllers\PassportController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
+
 Route::controller(PassportController::class)->group(function() {
     Route::get('/auth/index', 'index');
     Route::get('/auth/indexSuperAdmin', 'indexSuperAdmin');

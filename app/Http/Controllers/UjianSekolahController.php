@@ -63,7 +63,9 @@ class UjianSekolahController extends Controller
         $post = Post::get();
         $postsEssay = PostEssay::get();
         $categori = Category::pluck('name_category', 'id')->all();
-        return view('ujianSekolah.create', compact('ujianSekolah', 'categori', 'post','postsEssay', 'DisujianKelases'));
+        $ujianSekolahSum = UjianSekolah::where('id_user', Auth::user()->id)->sum('correct');
+        $ujianSekolahCount = UjianSekolah::where('id_user', Auth::user()->id)->count();
+        return view('ujianSekolah.create', compact('ujianSekolah','ujianSekolahSum','ujianSekolahCount', 'categori', 'post','postsEssay', 'DisujianKelases'));
     }
 
     /**
@@ -79,9 +81,6 @@ class UjianSekolahController extends Controller
             $idjawaban = $request->id_jawaban[$key];
             $id_soalujian = $request->id_soalujian[$key];
             $jawaban = Post::find($id_soalujian)->jawaban;
-
-            $benar = 1;
-            $salah = 0;
 
             if($idjawaban == $jawaban) {
                 $correct = 1;
@@ -108,6 +107,27 @@ class UjianSekolahController extends Controller
                 $hasil = UjianSekolah::where('id_user', Auth::user()->id)->sum('correct');
             }
 
+
+
+            // $total_jawaban = UjianSekolah::where('id_user', Auth::user()->id)->sum('correct');
+            // $total_soal = UjianSekolah::where('id_user', Auth::user()->id)->count();
+            // if($total_jawaban == $total_soal) {
+            //     $status = 1;
+            // $nilai = $hasil / $total_soal * 100;
+            // $hasil_akhir = 0;
+            // if($hasil_akhir > 0) {
+            // $total_soal = UjianSekolah::where('id_user', Auth::user()->id)->count();
+
+            // }else{
+            //     $rumus = round(($hasil / $total_soal) * 100);
+            // }
+
+
+            // $rumus = $hasil / $total_soal;
+            // $nilai = round($rumus * 100);
+
+            // $hasil_akhir = round(($hasil / $total_soal) * 100);
+
             $dataUjian = [
                 'id_kelas' => $request->id_kelas,
                 'id_user' => $request->id_user,
@@ -116,10 +136,24 @@ class UjianSekolahController extends Controller
                 'id_category_ujian' => $request->id_category_ujian,
                 // 'id_ujiansekolah' => $request->id,
                 'total_correct' => $hasil,
-                // 'total_nilai' => $hasil2,
+                // 'total_nilai' => $request->total_nilai,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
+
+
+
+
+
+
+            // $total_nilai_jawaban = round(($total_jawaban / $total_soal) * 100);
+            // $nilai_abc = $total_nilai_jawaban;
+
+
+
+        // $ujianSekolah = UjianSekolah::where('id_user', Auth::user()->id)->sum('correct');
+        // $ujianSekolahCount = UjianSekolah::where('id_user', Auth::user()->id)->count();
+        // {{ round(($ujianSekolah*100) / $ujianSekolahCount) }}
 
 
             DB::table('ujian_sekolahs')->insert($insert);

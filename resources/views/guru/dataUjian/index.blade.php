@@ -83,7 +83,13 @@
                             {{-- <td>{{ round(($ujianSekolah*100) / $ujianSekolahCount) }}</td> --}}
                             <td class="text-center w-25">
                                 <a href="/dataUjian-show-{{ $dataUjians->id }}" class="btn btn-info text-white shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i> Lihat Hasil Ujian</a>
+                                @if(Auth::user()->role == 'admin' || Auth::user()->role == 'guru')
+                                <a href="/dataUjian-edit-{{ $dataUjians->id }}" class="btn btn-primary text-white shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-pencil-square"></i> Store Nilai Ujian</a>
+                                @endif
                             </td>
+                            {{-- <td>
+                                <a href="/dataUjian/delete/{{ $dataUjians->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>
+                            </td> --}}
                         </tr>
 
                         {{-- <tr id="tr_??">

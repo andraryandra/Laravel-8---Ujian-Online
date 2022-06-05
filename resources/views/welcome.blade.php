@@ -174,13 +174,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <img
-          class="me-4"
-          src="assets/images/logo-polindra.png"
-          alt=""
-          width="30"
-          height="24"
-        />
+        <a href="/"><img class="me-4" src="assets/images/logo-polindra.png" alt="" width="30" height="24"/></a>
         <button
           class="navbar-toggler"
           type="button"
