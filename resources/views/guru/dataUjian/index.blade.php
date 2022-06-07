@@ -14,6 +14,7 @@
           </nav>
     </div>
 
+@if(Auth::user()->role == 'guru' || Auth::user()->role == 'admin')
     <!-- Content Row -->
     <div class="row">
        <!-- Earnings (Monthly) Card Example -->
@@ -46,6 +47,7 @@
         </div>
         </div>
     </div>
+@endif
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -64,7 +66,6 @@
                                 <th>Mata Pelajaran</th>
                                 <th>Nama Siswa</th>
                                 <th>Kelas</th>
-                                <th>Nilai</th>
                                 <th class="text-center w-25">Action</th>
                             </tr>
                         </thead>
@@ -73,43 +74,34 @@
                             $no = 1;
                         @endphp
                         @foreach ($dataUjian as $dataUjians)
+                        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'guru')
                         <tr id="tr_{{ $dataUjians->id }}">
                             <td>{{ $no++ }}</td>
                             <td>{{ $dataUjians->category_ujian->name_category_ujian ?? ""}}</td>
                             <td class="text-capitalize">{{ $dataUjians->category_pelajaran->name_category ?? "" }}</td>
                             <td class="text-capitalize">{{ $dataUjians->user->name ?? "" }}</td>
                             <td>{{ $dataUjians->kelas->name_kelas ?? "" }}</td>
-                            <td>{{ $dataUjians->total_correct ?? "" }}</td>
-                            {{-- <td>{{ round(($ujianSekolah*100) / $ujianSekolahCount) }}</td> --}}
                             <td class="text-center w-25">
                                 <a href="/dataUjian-show-{{ $dataUjians->id }}" class="btn btn-info text-white shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i> Lihat Hasil Ujian</a>
-                                @if(Auth::user()->role == 'admin' || Auth::user()->role == 'guru')
-                                <a href="/dataUjian-edit-{{ $dataUjians->id }}" class="btn btn-primary text-white shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-pencil-square"></i> Store Nilai Ujian</a>
-                                @endif
+                                <a href="/dataUjian-edit-{{ $dataUjians->id }}" class="btn btn-primary text-white shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Store"> <i class="bi bi-pencil-square"></i> Store Nilai Ujian</a>
                             </td>
-                            {{-- <td>
-                                <a href="/dataUjian/delete/{{ $dataUjians->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>
-                            </td> --}}
                         </tr>
+                        @endif
+                        @endforeach
 
-                        {{-- <tr id="tr_??">
-                            <td class="text-center">
-                                <input type="checkbox" class="sub_chk" data-id="??">
-                            </td>
-                           <td>{{ $no++ }}</td>
-                           <td>{{ $ujianSekolahs->category->name_category ?? "" }}</td>
-                           <td class="text-capitalize">{{ $ujianSekolahs->user->name ?? "" }}</td>
-                           <td>{{ $ujianSekolahs->user->kelas->name_kelas ?? "" }}</td>
-
-                           <td>{{ $ujianSekolahs->id_jawaban }} / 10</td>
-
-                            <td class="text-center">
-                                <a href="/dataUjian-show-" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
-                                <a href="/dataUjian-edit-" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i></a>
-                                <a href="/dataUjian/delete/{{ $ujianSekolahs->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>
-                                </td>
-                            </tr> --}}
-
+                            @foreach ($dataUjian as $dataUjians)
+                                @if(Auth::user()->role == 'siswa '|| Auth::user()->id == $dataUjians->id_user)
+                                <tr id="tr_{{ $dataUjians->id }}">
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $dataUjians->category_ujian->name_category_ujian ?? ""}}</td>
+                                    <td class="text-capitalize">{{ $dataUjians->category_pelajaran->name_category ?? "" }}</td>
+                                    <td class="text-capitalize">{{ $dataUjians->user->name ?? "" }}</td>
+                                    <td>{{ $dataUjians->kelas->name_kelas ?? "" }}</td>
+                                    <td class="text-center w-25">
+                                        <a href="/dataUjian-show-{{ $dataUjians->id }}" class="btn btn-info text-white shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i> Lihat Hasil Ujian</a>
+                                    </td>
+                                </tr>
+                                @endif
                             @endforeach
                             </tbody>
                         </table>

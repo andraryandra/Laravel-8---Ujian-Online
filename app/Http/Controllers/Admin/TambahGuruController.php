@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Sekolah;
 use App\Imports\PostImport;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -70,12 +71,14 @@ class TambahGuruController extends Controller
             'password' => 'required',
         ]);
 
+        $noInduk = $request->no_induk = $request->username;
+
         $guruAdmin = User::insert([
             'role' => $request->role,
-            'no_induk' => $request->no_induk,
+            // 'no_induk' => $request->no_induk = $request->username,
+            'no_induk' => $noInduk,
             'nisn' => $request->nisn,
             'jk' => $request->jk,
-            // 'gambar' => $request->gambar,
             'sekolah_asal' => $request->sekolah_asal,
             'name' => $request->name,
             'username' => $request->username,
@@ -127,7 +130,7 @@ class TambahGuruController extends Controller
     {
 
         DB::table('users')->where('id', $request->id)->update([
-            'no_induk' => $request->no_induk,
+            'no_induk' => $request->no_induk = $request->username,
             'nisn' => $request->nisn,
             'jk' => $request->jk,
             'sekolah_asal' => $request->sekolah_asal,

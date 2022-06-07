@@ -67,7 +67,7 @@
 
                     <table class="table table-bordered" id="example" width="100%" cellspacing="0">
                         <thead>
-                            <tr>
+                            <tr class="bg-primary text-white">
                                 <th>No</th>
                                 <th>Total Jawaban Benar Pilihan Ganda</th>
                                 <th>Total Nilai Keseluruhan Nilai</th>
@@ -79,7 +79,7 @@
                             @endphp
                             <tr>
                                 <td class="text-center fw-bold">{{ $no++ }}</td>
-                                <td class="text-center">{{ $dataUjian->total_correct }}</td>
+                                <td class="text-center fs-5">{{ $dataUjian->total_correct }}</td>
                                 <form action="/dataUjian/update" method="post">
                                     @csrf
                                 <td hidden>

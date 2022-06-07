@@ -9,31 +9,41 @@
 {{-- <div class="row"> --}}
     <div class="column side row ">
         <h3>Hello Again!</h3>
-        <p style="color: #555;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis, expedita! Esse qui</p>
-
+        <p style="color: #555;">Selamat Datang di Aplikasi Website Ujian Online</p>
         <br>
+
+        @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>Something went wrong Username and Password</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
         <form method="POST" action="{{ route('login') }}">
         @csrf
 
+
         <div class="mb-3">
             <label for="username" class="form-label">Username:</label>
-                <input style="width: 100%" id="username" type="username" placeholder="Username"  class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                <input style="width: 100%" id="username" type="text" placeholder="Username"  class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                 @error('username')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                        <strong>Username Salah</strong>
                     </span>
                 @enderror
         </div>
 
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Password:</label>
-                <input id="password" style="width: 100%" type="password" placeholder="Password Min 6 Character..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+            <label for="password" class="form-label">Username:</label>
+                <input id="password" style="width: 100%" type="password" placeholder="Password Min 6 Character..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="password">
 
                 @error('password')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                        <strong>Password Salah</strong>
                     </span>
                 @enderror
         </div>

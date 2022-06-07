@@ -22,13 +22,18 @@
                     <label for="name" class="pb-2 fw-bold fs-5"><i class="bi bi-person"></i> {{ __('Nama Asli') }}</label>
                     <input type="text" class="form-control text-capitalize" placeholder="Nama Asli" name="name" value="{{ old('name') }}" required>
                 </div>
-                <div class="m-3">
+                <div class="m-3" hidden>
                     <label for="no_induk" class="pb-2 fw-bold fs-5"><i class="bi bi-card-text"></i> {{ __('NIK') }}</label>
-                    <input type="text" class="form-control" placeholder="Nomer Induk Guru" name="no_induk" value="{{ old('no_induk') }}" required>
+                    <input type="text" class="form-control" placeholder="Nomer Induk Guru" name="no_induk" value="null">
                 </div>
                 <div class="m-3">
                     <label for="nisn" class="pb-2 fw-bold fs-5"><i class="bi bi-card-text"></i> {{ __('NISN') }}</label>
-                    <input type="text" class="form-control" placeholder="NISN" name="nisn" value="{{ old('nisn') }}" required>
+                    <input type="text" class="form-control @error('nisn') is-invalid @enderror" placeholder="NISN" name="nisn" value="{{ old('nisn') }}" required>
+                    @error('nisn')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
                 </div>
                 <div class="form-group m-3">
                     <label for="jk" class="pb-2 fs-5"><i class="bi bi-gender-ambiguous"></i> Jenis Kelamin</label>

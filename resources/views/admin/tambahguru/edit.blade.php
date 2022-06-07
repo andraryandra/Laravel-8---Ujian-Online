@@ -25,6 +25,28 @@
                 <h6 class="font-weight-bold text-primary">DataTable </h6>
                 <p class="">Fitur pada bagian Post ini berfungsi untuk mengedit Soal Ujian yang dimana sesuai dengan mata Ujian SMP / SMA / SMK.</p>
             </div>
+            <!-- Card Content - Collapse -->
+            <div class="collapse show" id="collapseCardExample">
+                <div class="card-body">
+                    <div class="card mb-4 py-3 border-left-primary">
+                        <div class="card-body">
+                            <p class="fw-bold btn bg-primary text-light">Identitas Profil Guru:</p>
+                            <div class="fw-bold">
+                                <p class="text-capitalize">{{ __("NIS :") }} <span class="badge bg-primary" style="font-size: 16px;">
+                                    {{ $guruAdmin->no_induk }}
+                                </span></p>
+                                 <p class="text-capitalize">{{ __("NISN:") }} <span class="badge bg-primary" style="font-size: 16px;">
+                                    {{ $guruAdmin->nisn }}
+                                </span></p>
+                                <p class="text-capitalize">{{ __("Nama :") }} <span class="badge bg-primary" style="font-size: 16px;">
+                                    {{ $guruAdmin->name }}
+                                </span></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card-body">
                 <form action="/guru/update" method="post">
                     @csrf
@@ -37,9 +59,9 @@
                         <label for="name" class="pb-2 fw-bold mb-2 fs-5"><i class="bi bi-person"></i> {{ __('Name Asli') }}</label>
                         <input type="text" class="form-control text-capitalize" placeholder="Name" name="name" value="{{ $guruAdmin->name  }}" required>
                     </div>
-                    <div class="m-3">
+                    <div class="m-3" hidden>
                         <label for="no_induk" class="pb-2 fw-bold mb-2 fs-5"><i class="bi bi-card-text"></i> {{ __('NIK') }}</label>
-                        <input type="text" class="form-control" placeholder="NIK" name="no_induk" value="{{ $guruAdmin->no_induk  }}" required>
+                        <input disabled type="text" class="form-control" placeholder="NIK" name="no_induk" value="{{ $guruAdmin->no_induk  }}" required>
                     </div>
                     <div class="m-3">
                         <label for="nisn" class="pb-2 fw-bold mb-2 fs-5"><i class="bi bi-card-text"></i> {{ __('NISN') }}</label>

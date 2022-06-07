@@ -19,6 +19,23 @@
         <a href="{{ url('/guru') }}" class="btn btn-success py-3"> <i class="bi bi-box-arrow-left"></i> Kembali</a>
     </div>
 
+    <!-- Card Content - Collapse -->
+    <div class="collapse show" id="collapseCardExample">
+            <div class="card mb-4 py-3 border-left-primary">
+                <div class="card-body">
+                    <p class="fw-bold btn bg-primary text-light">Identitas Profil Guru:</p>
+                    <div class="fw-bold">
+                        <p class="text-capitalize">{{ __("NIS :") }} <span class="badge bg-primary" style="font-size: 16px;">
+                            {{ $guruAdmin->no_induk }}
+                        </span></p>
+                         <p class="text-capitalize">{{ __("NISN:") }} <span class="badge bg-primary" style="font-size: 16px;">
+                            {{ $guruAdmin->nisn }}
+                        </span></p>
+                    </div>
+                </div>
+            </div>
+    </div>
+
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
