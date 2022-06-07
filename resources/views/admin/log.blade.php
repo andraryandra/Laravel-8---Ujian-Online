@@ -58,7 +58,20 @@
                                 @php
                                 $no = 1;
                             @endphp
-                            @foreach ($usersLogArray as $key => $item)
+
+                            @foreach ($authentication_logs as $item)
+                            @if($item->authenticatable_id == Auth::user()->id && Auth::user()->sekolah_asal)
+                            <tr>
+                                <th scope="row">{{ $no++ }}</th>
+                                <td>{{ $item->ip_address }}</td>
+                                <td>{{ $item->user->name }}</td>
+                                <td>{{ Carbon\Carbon::parse($item->login_at)->isoFormat('D MMMM YYYY h:mm A') }}</td>
+                                <td>{{ $item->login_successful  == true ? 'Yes' : 'No' }}</td>
+                                <td>{{ $item->logout_at == NULL ? '-' : Carbon\Carbon::parse($item->logout_at)->isoFormat('D MMMM YYYY h:mm A') }}</td>
+                            </tr>
+                            @endif
+                            @endforeach
+                            {{-- @foreach ($usersLogArray as $key => $item)
                             @if($item->authenticatable_id == Auth::user()->id && Auth::user()->sekolah_asal)
                             <tr>
                                 <th scope="row">{{ $no++ }}</th>
@@ -80,7 +93,7 @@
                                 <td>{{ $item->logout_at == NULL ? '-' : Carbon\Carbon::parse($item->logout_at)->isoFormat('D MMMM YYYY h:mm A') }}</td>
                             </tr>
                             @endif
-                            @endforeach
+                            @endforeach --}}
                                 </tbody>
                             </table>
                         </div>

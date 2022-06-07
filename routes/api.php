@@ -25,9 +25,7 @@ use App\Http\Controllers\PassportController;
 |
 */
 
-
-
-Route::controller(PassportController::class)->group(function() {
+Route::controller(AuthController::class)->group(function() {
     Route::get('/auth/index', 'index');
     Route::get('/auth/indexSuperAdmin', 'indexSuperAdmin');
     Route::get('/auth/indexAdmin', 'indexAdmin');
@@ -38,11 +36,27 @@ Route::controller(PassportController::class)->group(function() {
     Route::post('/auth/register', 'register');
 
     // put all api protected routes here
-    Route::middleware('auth:api')->group(function () {
         Route::post('/auth/user-detail', 'userDetail');
         Route::post('/auth/logout', 'logout');
-    });
+
 });
+
+// Route::controller(PassportController::class)->group(function() {
+//     Route::get('/auth/index', 'index');
+//     Route::get('/auth/indexSuperAdmin', 'indexSuperAdmin');
+//     Route::get('/auth/indexAdmin', 'indexAdmin');
+//     Route::get('/auth/indexGuru', 'indexGuru');
+//     Route::get('/auth/indexSiswa', 'indexSiswa');
+
+//     Route::post('/auth/login', 'login');
+//     Route::post('/auth/register', 'register');
+
+//     // put all api protected routes here
+//     Route::middleware('auth:api')->group(function () {
+//         Route::post('/auth/user-detail', 'userDetail');
+//         Route::post('/auth/logout', 'logout');
+//     });
+// });
 
 Route::controller(CategoryUjianApiController::class)->group(function () {
     Route::get('/categories-ujian', 'index');

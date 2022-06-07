@@ -14,8 +14,31 @@ class AuthController extends Controller
 
     public function index()
     {
-        $users = User::all();
-        return response()->json(['messagess' => 'Data Tampil Success', 'Data' => $users]);
+        $datas = User::get();
+        return response()->json($datas);
+    }
+    public function indexSuperAdmin()
+    {
+        $datas = User::where('role', 'superadmin')->get();
+        return response()->json($datas);
+    }
+
+    public function indexAdmin()
+    {
+        $datas = User::where('role', 'admin')->get();
+        return response()->json($datas);
+    }
+
+    public function indexGuru()
+    {
+        $datas = User::where('role', 'guru')->get();
+        return response()->json($datas);
+    }
+
+    public function indexSiswa()
+    {
+        $datas = User::where('role', 'siswa')->get();
+        return response()->json($datas);
     }
 
     public function register(Request $req)
@@ -58,8 +81,9 @@ class AuthController extends Controller
         $user = User::where('username', $req->username)->where('role', $req->role)->first();
         // if user email found and password is correct
         if($user && Hash::check($req->password, $user->password)){
-            $token = $user->createToken('Personal Access Token')->plainTextToken;
-            $response=['user'=> $user, 'token'=> $token];
+            // $token = $user->createToken('Personal Access Token')->plainTextToken;
+            // $response=['user'=> $user, 'token'=> $token];
+            $response=['user'=> $user];
             return response()->json($response, 200);
         }
         $response = ['message'=>'Incorrect role or email or password'];

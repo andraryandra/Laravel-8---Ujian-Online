@@ -24,6 +24,8 @@ use App\Http\Controllers\SuperAdmin\SekolahController;
 use App\Http\Controllers\Admin\CategoryUjianController;
 use App\Http\Controllers\SuperAdmin\TambahAdminController;
 use App\Http\Controllers\Admin\DistribusiUjianKelasController;
+use App\Http\Controllers\AuthenticationLogController;
+use App\Http\Middleware\Authenticate;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +47,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 //     // Route::get('/log', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('log');
 // })->name('log')->middleware('auth');
 
-Route::get('/log', [HomeController::class, 'listLog'])->name('log');
+Route::get('/log', [AuthenticationLogController::class, 'index'])->name('log');
 
 Route::get('/', function () {
     return view('welcome');

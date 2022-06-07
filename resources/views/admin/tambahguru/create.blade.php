@@ -20,7 +20,12 @@
                 </div>
                 <div class="m-3">
                     <label for="name" class="pb-2 fw-bold fs-5"><i class="bi bi-person"></i> {{ __('Nama Asli') }}</label>
-                    <input type="text" class="form-control text-capitalize" placeholder="Nama Asli" name="name" value="{{ old('name') }}" required>
+                    <input type="text" class="form-control text-capitalize @error('name') is-invalid @enderror" placeholder="Nama Asli" name="name" value="{{ old('name') }}">
+                 @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>Isi Form Name</strong>
+                    </span>
+                @enderror
                 </div>
                 <div class="m-3" hidden>
                     <label for="no_induk" class="pb-2 fw-bold fs-5"><i class="bi bi-card-text"></i> {{ __('NIK') }}</label>
@@ -28,10 +33,10 @@
                 </div>
                 <div class="m-3">
                     <label for="nisn" class="pb-2 fw-bold fs-5"><i class="bi bi-card-text"></i> {{ __('NISN') }}</label>
-                    <input type="text" class="form-control @error('nisn') is-invalid @enderror" placeholder="NISN" name="nisn" value="{{ old('nisn') }}" required>
+                    <input type="text" class="form-control @error('nisn') is-invalid @enderror" placeholder="NISN" name="nisn" value="{{ old('nisn') }}">
                     @error('nisn')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
+                        <strong>Isi Form Nisn</strong>
                     </span>
                 @enderror
                 </div>

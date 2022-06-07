@@ -28,7 +28,7 @@
 
         <div class="mb-3">
             <label for="username" class="form-label">Username:</label>
-                <input style="width: 100%" id="username" type="text" placeholder="Username"  class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                <input style="width: 100%" id="username" type="text" placeholder="Username"  class="form-control rounded-pill @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                 @error('username')
                     <span class="invalid-feedback" role="alert">
@@ -38,8 +38,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="password" class="form-label">Username:</label>
-                <input id="password" style="width: 100%" type="password" placeholder="Password Min 6 Character..." class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="password">
+            <label for="password" class="form-label">Password:</label>
+                <input id="password" style="width: 100%" type="password" placeholder="Password Min 6 Character..." class="form-control rounded-pill @error('password') is-invalid @enderror" name="password" required autocomplete="password">
 
                 @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -58,12 +58,12 @@
                 </div>
 
                 <div class="mb-3 d-flex mb-3">
-                    <button type="submit" class="btn btn-primary p-2" style="width: 100%;">
+                    <button type="submit" class="btn btn-primary p-2 rounded" style="width: 100%;">
                         {{ __('Login') }}
                     </button>
                 </div>
                 @if (Route::has('password.request'))
-                <a class="btn bg-warning text-white text-decoration-none p-2" style="width: 100%;" href="{{ route('password.request') }}">
+                <a class="btn bg-warning text-white text-decoration-none p-2 rounded" style="width: 100%;" href="{{ route('password.request') }}">
                     {{ __('Forgot Your Password?') }}
                 </a>
             @endif
