@@ -59,17 +59,17 @@ Route::controller(AuthController::class)->group(function() {
 // });
 
 Route::controller(CategoryUjianApiController::class)->group(function () {
-    Route::get('/categories-ujian', 'index');
-    Route::post('/categories-ujian/store', 'store');
-    Route::post('/categories-ujian/update', 'update');
-    Route::post('/categories-ujian/delete', 'delete');
+    Route::get('categories-ujian', 'index');
+    Route::post('categories-ujian/store', 'store');
+    Route::post('categories-ujian/update', 'update');
+    Route::post('categories-ujian/delete', 'delete');
 });
 
 Route::controller(CategoryAPIController::class)->group(function () {
-    Route::get('/categories-pelajaran/index', 'index');
-    Route::post('/categories-pelajaran/store', 'store');
-    Route::post('/categories-pelajaran/update', 'update');
-    Route::post('/categories-pelajaran/delete', 'delete');
+    Route::get('categoriesPelajaran', 'index');
+    Route::post('categories-pelajaran/store', 'store');
+    Route::post('categories-pelajaran/update', 'update');
+    Route::post('categories-pelajaran/delete', 'delete');
 });
 
 Route::controller(KelasApiController::class)->group(function () {

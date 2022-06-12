@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\API\Admin;
 
+use App\Models\Sekolah;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryApiController extends Controller
 {
@@ -14,13 +16,28 @@ class CategoryApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index()
+    // {
+    //     $categories = Category::get();
+    //     return response()->json([
+    //         'data' => 'Data Category Pelajaran Tampil Success',
+    //         'categories' => $categories,
+    //     ], 200);
+    // }
+
     public function index()
     {
-        $categories = Category::all();
-        return response()->json([
-            'data' => 'Data Category Pelajaran Tampil Success',
-            'categories' => $categories,
-        ]);
+        $categories = Category::get();
+        // $sekolahs = Sekolah::pluck('name_sekolah', 'id')->all();
+
+        return response()->json(['categories' => $categories]);
+
+        // return response()->json([
+        //     'data' => 'Data Category Pelajaran Tampil Success',
+        //     'categories' => $categories,
+        //     // 'sekolahs' => $sekolahs,
+
+        // ], 200);
     }
 
     /**
