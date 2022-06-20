@@ -69,10 +69,13 @@ class TambahSiswaController extends Controller
             'password' => 'required',
         ]);
 
+        $noInduk = $request->no_induk = $request->username;
+
         $siswaAdmin = User::insert([
             'id_kelas' => $request->id_kelas,
             'role' => $request->role,
-            'no_induk' => $request->no_induk,
+            // 'no_induk' => $request->no_induk,
+            'no_induk' => $noInduk,
             'nisn' => $request->nisn,
             'jk' => $request->jk,
             // 'gambar' => $request->gambar,
@@ -133,7 +136,7 @@ class TambahSiswaController extends Controller
 
         DB::table('users')->where('id', $request->id)->update([
             'id_kelas' => $request->id_kelas,
-            'no_induk' => $request->no_induk,
+            'no_induk' => $request->no_induk = $request->username,
             'nisn' => $request->nisn,
             'jk' => $request->jk,
             'sekolah_asal' => $request->sekolah_asal,

@@ -32,7 +32,7 @@
                         <div class="card-body">
                             <p class="fw-bold btn bg-primary text-light">Identitas Profil Guru:</p>
                             <div class="fw-bold">
-                                <p class="text-capitalize">{{ __("NIS :") }} <span class="badge bg-primary" style="font-size: 16px;">
+                                <p class="text-capitalize">{{ __("NIP :") }} <span class="badge bg-primary" style="font-size: 16px;">
                                     {{ $guruAdmin->no_induk }}
                                 </span></p>
                                  <p class="text-capitalize">{{ __("NISN:") }} <span class="badge bg-primary" style="font-size: 16px;">

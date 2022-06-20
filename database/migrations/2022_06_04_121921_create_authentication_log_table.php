@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create(config('authentication-log.table_name'), function (Blueprint $table) {
             $table->id();
+            // $table->unsignedBigInteger('id')->primary();
             $table->morphs('authenticatable');
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();

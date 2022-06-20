@@ -66,7 +66,7 @@
                         <label for="name" class="pb-2 fw-bold mb-2 fs-5"><i class="bi bi-person"></i> {{ __('Name Asli') }}</label>
                         <input type="text" class="form-control" placeholder="Name" name="name" value="{{ $siswaAdmin->name ?? "" }}" required>
                     </div>
-                    <div class="m-3">
+                    <div class="m-3" hidden>
                         <label for="no_induk" class="pb-2 fw-bold mb-2 fs-5"><i class="bi bi-card-text"></i> {{ __('NIK') }}</label>
                         <input type="text" class="form-control" placeholder="NIK" name="no_induk" value="{{ $siswaAdmin->no_induk ?? "" }}" required>
                     </div>

@@ -95,10 +95,10 @@
                             <td>{{ $categori->name_category ?? "" }}</td>
                             <td>{{ $categori->sekolah->name_sekolah ?? "" }}</td>
                             <td class="text-center">
-                                <a href="/categories-pelajaran-show-{{ $categori->id }}" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
-                                <a href="/categories-pelajaran-edit-{{ $categori->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i></a>
-                                <a href="/categories-pelajaran/delete/{{ $categori->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>
-                                </td>
+                                <a href="{{ url('/categories-pelajaran-show-'.$categori->id) }}" class="btn btn-info text-white p-2 shadow-sm m-2 show-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Show"> <i class="bi bi-eye-fill"></i></a>
+                                <a href="{{ url('/categories-pelajaran-edit-').$categori->id }}" class="btn btn-warning text-white p-2 shadow-sm m-2 edit-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"> <i class="bi bi-pencil-square"></i></a>
+                                <a href="{{ url('/categories-pelajaran/delete/').$categori->id }}" class="btn btn-danger text-white p-2 shadow-sm m-2 delete-confirm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"> <i class="bi bi-trash-fill"></i></a>
+                            </td>
                             </tr>
                             @endforeach
                             </tbody>

@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('id_sekolah_asal')->nullable();
             $table->string('id_category')->nullable();
-            $table->string('soal_ujian')->nullable();
+            $table->longText('soal_ujian')->nullable();
             $table->string('pilihan_a')->nullable();
             $table->string('pilihan_b')->nullable();
             $table->string('pilihan_c')->nullable();

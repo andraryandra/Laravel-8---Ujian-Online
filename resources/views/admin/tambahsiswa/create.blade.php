@@ -37,9 +37,9 @@
                             @endforelse
                     </select>
                 </div>
-                <div class="m-3">
-                    <label for="no_induk" class="pb-2 fw-bold fs-5"><i class="bi bi-card-text"></i> {{ __('NIK') }}</label>
-                    <input type="text" class="form-control" placeholder="Nomer Induk Siswa" name="no_induk" value="{{ old('no_induk') }}" required>
+                <div class="m-3" hidden>
+                    <label for="no_induk" class="pb-2 fw-bold fs-5"><i class="bi bi-card-text"></i> {{ __('NIS') }}</label>
+                    <input type="text" class="form-control" placeholder="NIS" name="no_induk" value="null" required>
                 </div>
                 <div class="m-3">
                     <label for="nisn" class="pb-2 fw-bold fs-5"><i class="bi bi-card-text"></i> {{ __('NISN') }}</label>

@@ -87,9 +87,9 @@ class TambahGuruController extends Controller
         ]);
 
         if(!$guruAdmin){
-            return redirect()->route('guru.index')->with('success', 'Created Guru Admin successfully!');
-        } else {
             return redirect()->route('guru.index')->with('error', 'Failed to create Guru Admin!');
+        } else {
+            return redirect()->route('guru.index')->with('success', 'Created Guru Admin successfully!');
         }
     }
 

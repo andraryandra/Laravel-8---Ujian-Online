@@ -59,7 +59,7 @@ Route::controller(AuthController::class)->group(function() {
 // });
 
 Route::controller(CategoryUjianApiController::class)->group(function () {
-    Route::get('categories-ujian', 'index');
+    Route::get('categoriesUjian', 'index');
     Route::post('categories-ujian/store', 'store');
     Route::post('categories-ujian/update', 'update');
     Route::post('categories-ujian/delete', 'delete');
@@ -73,24 +73,24 @@ Route::controller(CategoryAPIController::class)->group(function () {
 });
 
 Route::controller(KelasApiController::class)->group(function () {
-    Route::get('/kelas/index', 'index');
-    Route::post('/kelas/store', 'store');
-    Route::post('/kelas/update', 'update');
-    Route::post('/kelas/delete', 'delete');
+    Route::get('kelas/index', 'index');
+    Route::post('kelas/store', 'store');
+    Route::post('kelas/update', 'update');
+    Route::post('kelas/delete', 'delete');
 });
 
 Route::controller(PostApiController::class)->group(function () {
-    Route::get('/posts/index', 'index');
-    Route::post('/posts/store', 'store');
-    Route::post('/posts/update', 'update');
-    Route::post('/posts/delete', 'delete');
+    Route::get('posts/index', 'index');
+    Route::post('posts/store', 'store');
+    Route::post('posts/update', 'update');
+    Route::post('posts/delete', 'delete');
 });
 
 Route::controller(PostEssayApiController::class)->group(function () {
-    Route::get('/posts-essay/index', 'index');
-    Route::post('/posts-essay/store', 'store');
-    Route::post('/posts-essay/update', 'update');
-    Route::post('/posts-essay/delete', 'delete');
+    Route::get('posts-essay/index', 'index');
+    Route::post('posts-essay/store', 'store');
+    Route::post('posts-essay/update', 'update');
+    Route::post('posts-essay/delete', 'delete');
 });
 
 Route::controller(DistribusiUjianKelasApiController::class)->group(function () {

@@ -28,12 +28,12 @@
                 @enderror
                 </div>
                 <div class="m-3" hidden>
-                    <label for="no_induk" class="pb-2 fw-bold fs-5"><i class="bi bi-card-text"></i> {{ __('NIK') }}</label>
+                    <label for="no_induk" class="pb-2 fw-bold fs-5"><i class="bi bi-card-text"></i> {{ __('NIS') }}</label>
                     <input type="text" class="form-control" placeholder="Nomer Induk Guru" name="no_induk" value="null">
                 </div>
                 <div class="m-3">
-                    <label for="nisn" class="pb-2 fw-bold fs-5"><i class="bi bi-card-text"></i> {{ __('NISN') }}</label>
-                    <input type="text" class="form-control @error('nisn') is-invalid @enderror" placeholder="NISN" name="nisn" value="{{ old('nisn') }}">
+                    <label for="nisn" class="pb-2 fw-bold fs-5"><i class="bi bi-card-text"></i> {{ __('NIP') }}</label>
+                    <input type="text" class="form-control @error('nisn') is-invalid @enderror" placeholder="NIP" name="nisn" value="{{ old('nisn') }}">
                     @error('nisn')
                     <span class="invalid-feedback" role="alert">
                         <strong>Isi Form Nisn</strong>
